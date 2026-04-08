@@ -46,5 +46,7 @@ public class DriverDetails {
 
     public void setCab_Name(String cab_Name) {
         this.cab_Name = cab_Name;
+        System.out.println("hello");
     }
+
 }
