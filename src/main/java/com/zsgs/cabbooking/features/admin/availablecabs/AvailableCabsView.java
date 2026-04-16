@@ -1,4 +1,4 @@
-package com.zsgs.cabbooking.features.admin.availableCabs;
+package com.zsgs.cabbooking.features.admin.availablecabs;
 
 public class AvailableCabsView {
 

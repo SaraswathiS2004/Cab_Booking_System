@@ -1,7 +1,5 @@
 package com.zsgs.cabbooking.features.admin.driverdetails;
 
-import com.zsgs.cabbooking.features.admin.availableCabs.AvailableCabsView;
-
 public class DriverDetailsModel {
     private DriverDetailsView driverDetailsView;
 
