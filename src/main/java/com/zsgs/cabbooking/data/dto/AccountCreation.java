@@ -1,4 +1,4 @@
-package dto;
+package com.zsgs.cabbooking.data.dto;
 
 public class AccountCreation {
 
@@ -17,5 +17,4 @@ public class AccountCreation {
     public String getPassword(){
         return password;
     }
-
 }

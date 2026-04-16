@@ -1,4 +1,4 @@
-package dto;
+package com.zsgs.cabbooking.data.dto;
 
 public class UserTripDetails {
     private char pickUp;
@@ -7,9 +7,11 @@ public class UserTripDetails {
     private String cabName;
     private float price;
     private TripStatus status;
+    private int id;
+    private Login user;
 
     public enum TripStatus{
-        BOOKING , NOT_BOOKING
+        CONFIRMED , REQUESTED, IN_PROGRESS, COMPLETED, CANCELLED
     }
 
     public void setPick_up(char pickUp){
@@ -48,6 +50,19 @@ public class UserTripDetails {
     }
     public TripStatus getStatus(){
         return status;
+    }
+    public void setId(int id){
+        this.id = id;
+    }
+    public int getId(){
+        return id;
+    }
+
+    public void setUser(Login user) {
+        this.user = user;
+    }
+    public Login getUser(){
+        return user;
     }
 
 }

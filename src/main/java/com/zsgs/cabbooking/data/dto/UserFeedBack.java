@@ -1,13 +1,9 @@
-package dto;
+package com.zsgs.cabbooking.data.dto;
 
-public class Login {
+public class UserFeedBack {
     private String name;
     private String password;
-    private Role role;
-
-    public enum Role{
-        ADMIN , USER , DRIVER
-    }
+    private String feedBackContent;
 
     public void setName(String name){
         this.name = name;
@@ -21,10 +17,10 @@ public class Login {
     public String getPassword(){
         return password;
     }
-    public void setRole(Role role){
-        this.role = role;
+    public void setFeedBackContent(String feedBackContent){
+        this.feedBackContent = feedBackContent;
     }
-    public Role getRole(){
-        return role;
+    public String getFeedBackContent(){
+        return feedBackContent;
     }
 }
