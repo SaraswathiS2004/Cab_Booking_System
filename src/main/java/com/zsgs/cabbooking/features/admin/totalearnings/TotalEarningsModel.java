@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.admin.totalearnings;
 
-public class TotalEarningsModel {
+class TotalEarningsModel {
     private TotalEarningsView totalEarningsView;
 
     public TotalEarningsModel(){

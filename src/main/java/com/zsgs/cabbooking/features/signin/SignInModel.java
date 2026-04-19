@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.signin;
 
-public class SignInModel {
+class SignInModel {
 
     private SignInView signInView;
 

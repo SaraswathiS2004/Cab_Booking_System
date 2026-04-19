@@ -1,9 +1,10 @@
 package com.zsgs.cabbooking.data.dto;
 
-public class AccountCreation {
+public class AccountDetails {
 
     private String name;
     private String password;
+    private Role role;
 
     public void setName(String name){
         this.name = name;
@@ -17,4 +18,11 @@ public class AccountCreation {
     public String getPassword(){
         return password;
     }
+    public void setRole(Role role){
+        this.role = role;
+    }
+    public Role getRole(){
+        return role;
+    }
+
 }

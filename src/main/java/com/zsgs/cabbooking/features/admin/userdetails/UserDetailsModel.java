@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.admin.userdetails;
 
-public class UserDetailsModel {
+class UserDetailsModel {
 
     private UserDetailsView userDetailsView;
 

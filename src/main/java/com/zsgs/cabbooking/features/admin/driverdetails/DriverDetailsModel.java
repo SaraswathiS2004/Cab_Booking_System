@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.admin.driverdetails;
 
-public class DriverDetailsModel {
+class DriverDetailsModel {
     private DriverDetailsView driverDetailsView;
 
     public DriverDetailsModel(DriverDetailsView driverDetailsView){

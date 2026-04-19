@@ -2,7 +2,7 @@ package com.zsgs.cabbooking.features.signup;
 
 import com.zsgs.cabbooking.features.signin.SignInView;
 
-public class SignUpModel {
+class SignUpModel {
 
     private SignUpView signUpView;
 

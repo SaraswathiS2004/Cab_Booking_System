@@ -3,11 +3,7 @@ package com.zsgs.cabbooking.data.dto;
 public class Login {
     private String name;
     private String password;
-    private Role role;
 
-    public enum Role{
-        ADMIN , USER , DRIVER
-    }
 
     public void setName(String name){
         this.name = name;
@@ -21,10 +17,5 @@ public class Login {
     public String getPassword(){
         return password;
     }
-    public void setRole(Role role){
-        this.role = role;
-    }
-    public Role getRole(){
-        return role;
-    }
+
 }

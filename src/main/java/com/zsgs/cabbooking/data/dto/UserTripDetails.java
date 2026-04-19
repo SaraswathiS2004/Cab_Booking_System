@@ -10,10 +10,6 @@ public class UserTripDetails {
     private int id;
     private Login user;
 
-    public enum TripStatus{
-        CONFIRMED , REQUESTED, IN_PROGRESS, COMPLETED, CANCELLED
-    }
-
     public void setPick_up(char pickUp){
         this.pickUp = pickUp;
     }

@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.admin.availablecabs;
 
-public class AvailableCabsModel {
+class AvailableCabsModel {
     private AvailableCabsView availableCabsView;
 
     public AvailableCabsModel(){

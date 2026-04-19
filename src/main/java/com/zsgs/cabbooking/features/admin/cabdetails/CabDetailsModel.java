@@ -2,7 +2,7 @@ package com.zsgs.cabbooking.features.admin.cabdetails;
 
 import com.zsgs.cabbooking.features.user.CabNotification.CabNotificationView;
 
-public class CabDetailsModel {
+class CabDetailsModel {
      private CabDetailsView cabDetailsView;
 
      public CabDetailsModel (){
