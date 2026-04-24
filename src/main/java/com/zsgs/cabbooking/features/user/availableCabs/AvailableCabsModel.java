@@ -7,6 +7,6 @@ public class AvailableCabsModel {
         availableCabsView = new AvailableCabsView();
     }
     public void getAvailableCabs(){
-        availableCabsView.showAvailableCabs();
+//        availableCabsView.showAvailableCabs();
     }
 }

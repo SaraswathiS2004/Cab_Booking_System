@@ -6,7 +6,7 @@ class DriverDetailsModel {
     public DriverDetailsModel(DriverDetailsView driverDetailsView){
         this.driverDetailsView = new DriverDetailsView();
     }
-    public void getAvailableCabsDetails(){
-        driverDetailsView.showCabDetails();
-    }
+//    public void getAvailableCabsDetails(){
+//        driverDetailsView.showCabDetails();
+//    }
 }
