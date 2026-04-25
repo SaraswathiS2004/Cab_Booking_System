@@ -1,4 +1,4 @@
-package com.zsgs.cabbooking.features.admin.list.user;
+package com.zsgs.cabbooking.features.admin.list.userList;
 
 class UserDetailsModel {
 

@@ -2,6 +2,7 @@ package com.zsgs.cabbooking.features.signin;
 
 import com.zsgs.cabbooking.data.dto.Role;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
+import com.zsgs.cabbooking.features.home.HomeView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
@@ -68,6 +69,9 @@ public class SignInView {
         if(role.equals(Role.DRIVER)){
             System.out.println("Enter Your Driving Details");
            new DriverDetailsView().init();
+        }
+        else if(role.equals(Role.ADMIN)){
+            new HomeView().showAdminMenu();
         }
     }
     public void onSignInFailed(String message){
