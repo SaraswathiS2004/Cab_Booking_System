@@ -36,11 +36,6 @@ public class SignUpView {
             System.out.println("As the first user in the system, you will be registered as a ADMIN.");
         }
         onSignUpSuccessful();
-
-//        for(int i = 0; i< accountDetails.size(); i++) {
-//            AccountDetails ac = accountDetails.get(i);
-//            System.out.println(ac.getName()+  "     "+ ac.getPassword()+  "    "+ ac.getEmail()+ "     "+ ac.getMobileNumber()+ "     "+ac.getRole());
-//        }
     }
     public void showSignUp(){
 
@@ -89,6 +84,11 @@ public class SignUpView {
             String email = scan.next();
             String error = signUpModel.validateEmailAddress(email);
             if(error == null){
+                boolean isTrue = signUpModel.checkIsEmailId(email);
+                if(isTrue) {
+                    showErrorMessage("This Email Id Already Exist");
+                    continue;
+                };
                 return email.trim();
             }
             else {
@@ -99,7 +99,6 @@ public class SignUpView {
 
     public Role promptRole(){
         boolean isAdmin = signUpModel.isAdmin();
-
         while(true) {
             if(isAdmin) {
                 return Role.ADMIN;

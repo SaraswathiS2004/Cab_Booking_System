@@ -1,16 +1,72 @@
 package com.zsgs.cabbooking.features.admin.cabdetails;
 
-public class CabDetailsView {
-//    private CabDetailsModel cabDetailsModel;
-//
-//    public CabDetailsView(){
-//        this.cabDetailsModel = new CabDetailsModel();
-//    }
-//    public void init(){
-//
-//    }
-//    public void showCabDetails(){
-//
-//    }
+import com.zsgs.cabbooking.features.input.Input;
 
+import java.util.Scanner;
+
+public class CabDetailsView {
+    private CabDetailsModel cabDetailsModel;
+    private Scanner scanner;
+    public CabDetailsView(){
+        this.cabDetailsModel = new CabDetailsModel(this);
+        Input input = new Input();
+        scanner = input.getInstance();
+    }
+    public void init(){
+        System.out.println("Welcome to RideX");
+        promptAction();
+    }
+    public void promptAction(){
+        long registrationNumber = promptRegistrationNumber();
+        String model = promptModel();
+        String type = promptType();
+        cabDetailsModel.storeData(registrationNumber , model , type);
+    }
+    long promptRegistrationNumber(){
+
+        while(true) {
+            System.out.println("Enter Your Id");
+            long id = scanner.nextInt();
+            String error = cabDetailsModel.validateId(id);
+            if (error == null) {
+                boolean isValidId = cabDetailsModel.isAlreadyRegistered(id);
+                if (isValidId) return id;
+                showErrorMessage("Your Account Doesn't Exist");
+                continue;
+            }
+            showErrorMessage(error);
+        }
+    }
+
+    String promptType(){
+        while(true){
+            System.out.println("Enter Your Cab Type");
+            String type = scanner.nextLine();
+            String error = cabDetailsModel.validateType(type);
+
+            if(error == null){
+                return type;
+            }
+            showErrorMessage(error);
+        }
+    }
+
+    String promptModel(){
+        while(true){
+            System.out.println("Enter Your Cab Model");
+            String model = scanner.nextLine();
+            String error = cabDetailsModel.validateModel(model);
+            if(error == null){
+                return model;
+            }
+            showErrorMessage(error);
+        }
+    }
+
+    void onSuccessful(){
+        System.out.println("Successfully Added Your cab Details");
+    }
+    void showErrorMessage(String message){
+        System.out.println(message);
+    }
 }

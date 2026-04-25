@@ -17,10 +17,11 @@ class SignUpModel {
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
 
+    private CabDB cabDB;
 
     public boolean isAdmin(){
 
-        CabDB cabDB = CabDB.getInstance();
+        cabDB = CabDB.getInstance();
         ArrayList<AccountDetails> accountDetails = cabDB.getAccounts();
         int size = accountDetails.size();
         if(size == 0){
@@ -31,6 +32,7 @@ class SignUpModel {
 
     public SignUpModel(SignUpView signUpView) {
         this.signUpView = signUpView;
+        cabDB = CabDB.getInstance();
     }
 
     public void getSignUp(){
@@ -110,16 +112,21 @@ class SignUpModel {
             return "Password do not Match";
         }
     }
-
+    public boolean checkIsEmailId(String email){
+        String message = cabDB.checkIsAlreadyExistEmailId(email);
+        if(message == null){
+            return false;
+        }
+        return true;
+    }
 
     public ArrayList<AccountDetails> storeData(String name , String password , String email , String city , String mobileNumber , Role role){
         AccountDetails accountDetails = new AccountDetails();
-        accountDetails.registerPeople(name , password , email , city , mobileNumber , role);
-
+        long id = cabDB.getPeopleId();
+        accountDetails.registerPeople(name , password , email , city , mobileNumber , role , id);
         CabDB cabDB = CabDB.getInstance();
         cabDB.addAccount(accountDetails);
         ArrayList<AccountDetails> accounts = cabDB.getAccounts();
         return accounts;
-
     }
 }

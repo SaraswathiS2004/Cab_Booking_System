@@ -2,6 +2,8 @@ package com.zsgs.cabbooking.features.signin;
 
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Login;
+import com.zsgs.cabbooking.data.dto.Role;
+import com.zsgs.cabbooking.features.admin.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
@@ -21,11 +23,11 @@ public class SignInView {
     }
 
     public void init(){
-        System.out.println("Sign in to ThiranX");
-        while (!authenticated){
+        System.out.println("Sign in to RideX");
+        while (!authenticated) {
             promptAndAuthenticate();
-            if(authenticated) return;
-            if(!promptPostFailureAction()) return;
+            if (authenticated) return;
+            if (!promptPostFailureAction()) return;
         }
     }
     public void promptAndAuthenticate(){
@@ -33,7 +35,6 @@ public class SignInView {
         String password = promptPassword();
         String email = promptEmailAddress();
         signInModel.isAuthenticate(password , email);
-
 
     }
     public String promptPassword(){
@@ -64,9 +65,13 @@ public class SignInView {
     }
 
 
-    public void onSignInSuccessful(String name){
+    public void onSignInSuccessful(String name , Role role){
         authenticated = true;
         System.out.println("Welcome to "+ name);
+        if(role.equals(Role.DRIVER)){
+            System.out.println("Enter Your Driving Details");
+           new DriverDetailsView().init();
+        }
     }
     public void onSignInFailed(String message){
         System.out.println(message);
@@ -88,7 +93,7 @@ public class SignInView {
                     new SignUpView().init();
                     return false;
                 case "3":
-                    System.out.println("Thank you for using ThiranX");
+                    System.out.println("Thank you for using RideX");
                     System.exit(0);
                     return false;
                 default:
@@ -100,5 +105,7 @@ public class SignInView {
     public void showErrorMessage(String message){
         System.out.println(message);
     }
+
+
 
 }

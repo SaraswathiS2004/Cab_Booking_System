@@ -1,16 +1,25 @@
 package com.zsgs.cabbooking.data.dto;
 
 public class CabDetails {
-    private String registrationNumber;
+    private long registrationNumber;
+    private long cabId;
     private String model;
     private String type;
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
+    public void setRegistrationNumber(long registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public long getCabId() {
+        return cabId;
+    }
+
+    public void setCabId(long cabId) {
+        this.cabId = cabId;
+    }
+
+    public long getRegistrationNumber() {
+        return registrationNumber;
     }
 
     public String getModel() {
@@ -27,5 +36,12 @@ public class CabDetails {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setValues(long cabId  , long registrationNumber , String model , String type){
+        setCabId(cabId);
+        setRegistrationNumber(registrationNumber);
+        setModel(model);
+        setType(type);
     }
 }

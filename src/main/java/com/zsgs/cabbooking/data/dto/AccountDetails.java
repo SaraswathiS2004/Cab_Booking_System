@@ -7,6 +7,15 @@ public class AccountDetails {
     private String email;
     private Role role;
     private String mobileNumber;
+    private long id;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;
@@ -52,13 +61,14 @@ public class AccountDetails {
         this.email = email;
     }
 
-    public void registerPeople(String name , String password ,String email ,  String mobileNumber , String city , Role role){
+    public void registerPeople(String name , String password ,String email ,  String mobileNumber , String city , Role role , long id){
         setName(name);
         setPassword(password);
         setEmail(email);
         setCity(city);
         setMobileNumber(mobileNumber);
         setRole(role);
+        setId(id);
     }
 
 }

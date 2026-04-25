@@ -1,16 +1,35 @@
 package com.zsgs.cabbooking.data.dto;
 
 public class DriverDetails {
-    private int id;
+    private long id;
+    private String name;
     private String address;
     private int age;
     private int experience;
-    private String phoneNumber;
+    private String mobileNumber;
     private CabDetails cabDetails;
-    public int getId() {
+
+    public void setDriverDetails(String name , long id , String address , int age , int experience , String mobileNumber ){
+        setName(name);
+        setId(id);
+        setAddress(address);
+        setAge(age);
+        setExperience(experience);
+        setMobileNumber(mobileNumber);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -37,11 +56,11 @@ public class DriverDetails {
     public void setExperience(int experience) {
         this.experience = experience;
     }
-    public void setPhoneNumber(String phoneNumber){
-        this.phoneNumber = phoneNumber;
+    public void setMobileNumber(String mobileNumber){
+        this.mobileNumber = mobileNumber;
     }
-    public String getPhoneNumber(){
-        return phoneNumber;
+    public String getMobileNumber(){
+        return mobileNumber;
     }
     public void setCabDetails(CabDetails cabDetails){
         this.cabDetails = cabDetails;

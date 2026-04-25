@@ -9,8 +9,7 @@ import java.util.Scanner;
 public class CabBooking {
 
     public static void main(String[] args){
-        System.out.println("Welcome to ThiranX");
-
+        System.out.println("Welcome to RideX");
         showMenu();
     }
 
@@ -42,6 +41,5 @@ public class CabBooking {
             choice = scan.next();
         }
         while (choice.equalsIgnoreCase("Y"));
-
     }
 }
