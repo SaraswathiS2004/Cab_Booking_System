@@ -1,4 +1,4 @@
-package com.zsgs.cabbooking.features.admin.cabdetails;
+package com.zsgs.cabbooking.features.driverdetails.cabdetails;
 
 import com.zsgs.cabbooking.features.input.Input;
 

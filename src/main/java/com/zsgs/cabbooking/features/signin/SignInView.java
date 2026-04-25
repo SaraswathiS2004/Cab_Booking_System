@@ -1,13 +1,10 @@
 package com.zsgs.cabbooking.features.signin;
 
-import com.zsgs.cabbooking.data.dto.AccountDetails;
-import com.zsgs.cabbooking.data.dto.Login;
 import com.zsgs.cabbooking.data.dto.Role;
-import com.zsgs.cabbooking.features.admin.driverdetails.DriverDetailsView;
+import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.Scanner;
 
 public class SignInView {

@@ -1,9 +1,8 @@
-package com.zsgs.cabbooking.features.admin.cabdetails;
+package com.zsgs.cabbooking.features.driverdetails.cabdetails;
 
 import com.zsgs.cabbooking.data.dto.CabDetails;
 import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.user.CabNotification.CabNotificationView;
 
 import java.util.ArrayList;
 

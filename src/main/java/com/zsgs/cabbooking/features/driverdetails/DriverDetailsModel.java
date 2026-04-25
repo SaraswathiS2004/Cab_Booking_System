@@ -1,12 +1,9 @@
-package com.zsgs.cabbooking.features.admin.driverdetails;
+package com.zsgs.cabbooking.features.driverdetails;
 
-import com.zsgs.cabbooking.data.dto.CabDetails;
 import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.input.Input;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 class DriverDetailsModel {

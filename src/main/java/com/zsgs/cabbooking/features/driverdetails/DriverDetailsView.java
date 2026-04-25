@@ -1,12 +1,8 @@
-package com.zsgs.cabbooking.features.admin.driverdetails;
+package com.zsgs.cabbooking.features.driverdetails;
 
 //import com.zsgs.cabbooking.features.admin;
 
-import com.zsgs.cabbooking.CabBooking;
-import com.zsgs.cabbooking.data.dto.CabDetails;
-import com.zsgs.cabbooking.data.dto.DriverDetails;
-import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.admin.cabdetails.CabDetailsView;
+import com.zsgs.cabbooking.features.driverdetails.cabdetails.CabDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 
 import java.util.Scanner;
