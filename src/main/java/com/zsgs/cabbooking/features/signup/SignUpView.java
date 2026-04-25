@@ -107,7 +107,8 @@ public class SignUpView {
                 System.out.println("Enter Your Role (USER , DRIVER)");
             }
             String role = scan.next();
-            String error = signUpModel.validateRole(role.toUpperCase() , isAdmin);
+            role = role.toUpperCase();
+            String error = signUpModel.validateRole(role , isAdmin);
             Role res;
             if (error == null) {
                 if (role.equals("ADMIN")) {

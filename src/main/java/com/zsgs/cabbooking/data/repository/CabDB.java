@@ -90,4 +90,14 @@ public class CabDB {
         }
         return null;
     }
+
+    public String getDriverName(long id){
+        for(AccountDetails accountDetails1 : accountDetails){
+            if(accountDetails1.getId() == id){
+                return accountDetails1.getName();
+            }
+        }
+        return null;
+    }
+
 }

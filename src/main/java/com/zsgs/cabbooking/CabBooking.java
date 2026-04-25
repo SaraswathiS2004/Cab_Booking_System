@@ -1,5 +1,7 @@
 package com.zsgs.cabbooking;
 
+import com.zsgs.cabbooking.data.dto.DriverDetails;
+import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 import com.zsgs.cabbooking.features.signup.SignUpView;
@@ -12,6 +14,10 @@ public class CabBooking {
         System.out.println("Welcome to RideX");
         showMenu();
     }
+
+//    public static void showMenu(){
+//        new DriverDetailsView().init();
+//    }
 
     public static void showMenu(){
         Input input = new Input();

@@ -1,5 +1,6 @@
 package com.zsgs.cabbooking.features.driverdetails;
 
+import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
 
@@ -10,35 +11,25 @@ class DriverDetailsModel {
     private DriverDetailsView driverDetailsView;
     private CabDB cabDB;
 
+
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
     public DriverDetailsModel(DriverDetailsView driverDetailsView){
         this.driverDetailsView = driverDetailsView;
         cabDB = CabDB.getInstance();
 
     }
-    public void storeDriverData(String name , String address , int age , int experience , String mobileNumber){
+    public void storeDriverData(String address , int age , int experience , String mobileNumber){
         long id = cabDB.getDriverId();
+        String name = cabDB.getDriverName(id);
         DriverDetails driverDetails = new DriverDetails();
         driverDetails.setDriverDetails(name , id , address , age , experience , mobileNumber);
         cabDB.addDriver(driverDetails);
         ArrayList<DriverDetails> driverDetails1 = cabDB.getDriver();
-        driverDetailsView.onDriverSuccessful();
-        for(DriverDetails driverDetails2 : driverDetails1){
-            System.out.println("Name : "+ driverDetails2.getName() +"    "+"id : "+
-                    driverDetails2.getId() +"  "+"MobileNumber "+driverDetails2.getMobileNumber()+" experience : "+ driverDetails2.getExperience() + " age : "+ driverDetails2.getAge() +"Address : "+ driverDetails2.getAddress());
-        }
+        driverDetailsView.onDriverSuccessful(id);
+
     }
 
-    String validateName(String name){
 
-        if(name == null || name.trim().isEmpty()){
-            return "Name Cannot be Empty";
-        }
-        else if(name.length() < 3 || name.length() > 30){
-            return "Name must be between 3 to 30 Characters";
-        }
-        return null;
-    }
     String validateAddress(String name){
 
         if(name == null || name.trim().isEmpty()){

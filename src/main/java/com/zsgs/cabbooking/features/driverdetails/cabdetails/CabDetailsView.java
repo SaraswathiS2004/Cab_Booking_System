@@ -13,26 +13,24 @@ public class CabDetailsView {
         scanner = input.getInstance();
     }
     public void init(){
+        System.out.println("Enter Your Cab Details");
         System.out.println("Welcome to RideX");
         promptAction();
     }
     public void promptAction(){
-        long registrationNumber = promptRegistrationNumber();
+        long registrationNumber = promptDriverID();
         String model = promptModel();
         String type = promptType();
         cabDetailsModel.storeData(registrationNumber , model , type);
     }
-    long promptRegistrationNumber(){
 
-        while(true) {
-            System.out.println("Enter Your Id");
-            long id = scanner.nextInt();
+    public long promptDriverID(){
+        while(true){
+            System.out.println("Enter Your Registration Number");
+            long id = scanner.nextLong();
             String error = cabDetailsModel.validateId(id);
-            if (error == null) {
-                boolean isValidId = cabDetailsModel.isAlreadyRegistered(id);
-                if (isValidId) return id;
-                showErrorMessage("Your Account Doesn't Exist");
-                continue;
+            if(error == null){
+                return id;
             }
             showErrorMessage(error);
         }
@@ -54,6 +52,7 @@ public class CabDetailsView {
     String promptModel(){
         while(true){
             System.out.println("Enter Your Cab Model");
+            scanner.nextLine();
             String model = scanner.nextLine();
             String error = cabDetailsModel.validateModel(model);
             if(error == null){

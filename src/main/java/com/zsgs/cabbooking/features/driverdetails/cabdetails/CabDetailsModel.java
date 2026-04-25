@@ -24,12 +24,16 @@ class CabDetailsModel {
          cabDetailsView.onSuccessful();
      }
 
-     String validateId(long id){
-         if(id < 0 ){
-             return "Id cannot be Negative value";
-         }
-         return null;
-     }
+    String validateId(long id){
+        ArrayList<DriverDetails> driverDetails = cabDB.getDriver();
+        for(DriverDetails driverDetails1 : driverDetails){
+            long driverId = driverDetails1.getId();
+            if(driverId == id){
+                return null;
+            }
+        }
+        return "Your Driver Id is Incorrect";
+    }
 
     String validateModel(String model){
          if(model == null || model.trim().isEmpty()){

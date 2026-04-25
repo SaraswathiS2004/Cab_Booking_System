@@ -21,38 +21,28 @@ public class DriverDetailsView {
     public void init(){
         System.out.println("Welcome to RideX");
         promptDriverDetails();
+
         new CabDetailsView().init();
     }
 
     public void promptDriverDetails(){
-
-        String name = promptName();
-        String address = promptAddress();
         int age = promptAge();
+        String address = promptAddress();
         int experience = promptExperience();
         String mobileNumber = promptMobileNumber();
-        driverDetailsModel.storeDriverData(name  ,address , age , experience , mobileNumber);
+        driverDetailsModel.storeDriverData(address , age , experience , mobileNumber);
 
     }
-    public void onDriverSuccessful(){
+    public void onDriverSuccessful(long id){
+        System.out.println("Your Registration Number is : "+ id);
         System.out.println("Successfully added Your Details");
 
     }
 
-    public String promptName(){
-        while(true){
-            System.out.println("Enter Your Name");
-            String name = scanner.next();
-            String error = driverDetailsModel.validateName(name);
-            if(error == null){
-                return name;
-            }
-            showErrorMessage(error);
-        }
-    }
     public String promptAddress(){
         while(true){
             System.out.println("Enter Your Address");
+            scanner.nextLine();
             String address = scanner.nextLine();
             String error = driverDetailsModel.validateAddress(address);
             if(error == null){
@@ -83,6 +73,8 @@ public class DriverDetailsView {
             showErrorMessage(error);
         }
     }
+
+
 
     public String promptMobileNumber(){
         while(true) {
