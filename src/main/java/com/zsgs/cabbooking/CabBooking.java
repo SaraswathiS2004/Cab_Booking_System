@@ -1,6 +1,7 @@
 package com.zsgs.cabbooking;
 
 import com.zsgs.cabbooking.data.dto.DriverDetails;
+import com.zsgs.cabbooking.data.repository.CabDB;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
@@ -15,19 +16,21 @@ public class CabBooking {
         showMenu();
     }
 
-//    public static void showMenu(){
-//        new DriverDetailsView().init();
-//    }
-
     public static void showMenu(){
+        CabDB cabDB = CabDB.getInstance();
         Input input = new Input();
         Scanner scan = input.getInstance();
 
         String choice = "Y";
         do {
-            System.out.println("1. SignUp");
-            System.out.println("2. SignIn");
-            System.out.println("Choose Your Option");
+            if(cabDB.getAccounts().size() == 0) {
+                System.out.println("1. SignUp");
+                System.out.println("Choose Your Option");
+            }
+            else {
+                System.out.println("1. SignUp");
+                System.out.println("2. SignIn");
+            }
 
             String option = scan.next();
             switch (option) {

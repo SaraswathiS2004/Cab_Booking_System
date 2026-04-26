@@ -54,7 +54,7 @@ public class CabDB {
         CabDB.driverDetails.add(driverDetails);
         driverId++;
     }
-    public ArrayList<DriverDetails> getDriver(){
+    public ArrayList<DriverDetails> getDriverDetails(){
         return driverDetails;
     }
     public void addCab(CabDetails cabDetails){

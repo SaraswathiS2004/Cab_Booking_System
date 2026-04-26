@@ -24,7 +24,7 @@ class DriverDetailsModel {
         DriverDetails driverDetails = new DriverDetails();
         driverDetails.setDriverDetails(name , id , address , age , experience , mobileNumber);
         cabDB.addDriver(driverDetails);
-        ArrayList<DriverDetails> driverDetails1 = cabDB.getDriver();
+        ArrayList<DriverDetails> driverDetails1 = cabDB.getDriverDetails();
         driverDetailsView.onDriverSuccessful(id);
 
     }
@@ -43,13 +43,16 @@ class DriverDetailsModel {
 
     String validateAge(int age){
         if(age < 19 || age > 60){
-            return "Your age Must be between 18 to 60";
+            return "Your age Must be between 19 to 60";
         }
         return null;
     }
-    String validateExperience(int experience){
+    String validateExperience(int experience , int age){
         if(experience < 1){
             return "The Experience must be more than 1 year";
+        }
+        else if(experience > 0 && (age - experience) < 18){
+            return "The Experience cannot be meet the age requirement";
         }
         return null;
     }

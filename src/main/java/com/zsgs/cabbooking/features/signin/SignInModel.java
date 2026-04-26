@@ -41,7 +41,7 @@ class SignInModel {
             signInView.showErrorMessage("Please try again");
         }
         else{
-            signInView.onSignInSuccessful(accountDetails.getName() , accountDetails.getRole());
+            signInView.onSignInSuccessful(accountDetails);
         }
 
     }

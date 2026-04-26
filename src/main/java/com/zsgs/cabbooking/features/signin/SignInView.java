@@ -1,5 +1,6 @@
 package com.zsgs.cabbooking.features.signin;
 
+import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Role;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.home.HomeView;
@@ -29,9 +30,8 @@ public class SignInView {
         }
     }
     public void promptAndAuthenticate(){
-
-        String password = promptPassword();
         String email = promptEmailAddress();
+        String password = promptPassword();
         signInModel.isAuthenticate(password , email);
 
     }
@@ -63,15 +63,15 @@ public class SignInView {
     }
 
 
-    public void onSignInSuccessful(String name , Role role){
+    public void onSignInSuccessful(AccountDetails accountDetails){
         authenticated = true;
-        System.out.println("Welcome to "+ name);
-        if(role.equals(Role.DRIVER)){
+        System.out.println("Welcome to "+ accountDetails.getName());
+        if(accountDetails.getRole().equals(Role.DRIVER)){
             System.out.println("Enter Your Driving Details");
            new DriverDetailsView().init();
         }
-        else if(role.equals(Role.ADMIN)){
-            new HomeView().showAdminMenu();
+        else if(accountDetails.getRole().equals(Role.ADMIN)){
+            new HomeView(accountDetails).init();
         }
     }
     public void onSignInFailed(String message){

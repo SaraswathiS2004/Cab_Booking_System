@@ -25,7 +25,7 @@ class CabDetailsModel {
      }
 
     String validateId(long id){
-        ArrayList<DriverDetails> driverDetails = cabDB.getDriver();
+        ArrayList<DriverDetails> driverDetails = cabDB.getDriverDetails();
         for(DriverDetails driverDetails1 : driverDetails){
             long driverId = driverDetails1.getId();
             if(driverId == id){
@@ -55,7 +55,7 @@ class CabDetailsModel {
     }
      boolean isAlreadyRegistered(long id){
 
-         ArrayList<DriverDetails> driverDetails = cabDB.getDriver();
+         ArrayList<DriverDetails> driverDetails = cabDB.getDriverDetails();
 
          for(DriverDetails driverDetails1 : driverDetails){
              if(driverDetails1 == null) continue;

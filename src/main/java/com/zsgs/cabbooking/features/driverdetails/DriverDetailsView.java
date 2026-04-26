@@ -28,7 +28,7 @@ public class DriverDetailsView {
     public void promptDriverDetails(){
         int age = promptAge();
         String address = promptAddress();
-        int experience = promptExperience();
+        int experience = promptExperience(age);
         String mobileNumber = promptMobileNumber();
         driverDetailsModel.storeDriverData(address , age , experience , mobileNumber);
 
@@ -62,11 +62,11 @@ public class DriverDetailsView {
             showErrorMessage(error);
         }
     }
-    public int promptExperience(){
+    public int promptExperience(int age){
         while(true){
             System.out.println("Enter Your Drive Experience");
             int experience = scanner.nextInt();
-            String error = driverDetailsModel.validateExperience(experience);
+            String error = driverDetailsModel.validateExperience(experience , age);
             if(error == null){
                 return experience;
             }
