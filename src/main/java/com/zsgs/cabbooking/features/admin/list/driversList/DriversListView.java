@@ -11,10 +11,12 @@ public class DriversListView {
         this.driversListModel = new DriversListModel(this);
     }
     public void init(){
-       driversListModel.getDrivers();
+
+        driversListModel.getDrivers();
     }
     void showDrivers(ArrayList<DriverDetails> driverDetails){
-
+        System.out.println("Drivers : ");
+        System.out.println();
         for(DriverDetails driverDetails1 : driverDetails){
             System.out.println("Register_number : "+ driverDetails1.getId()+" Name : "+ driverDetails1.getName()
             +" Address : "+driverDetails1.getAddress()+" Age : "+driverDetails1.getAge()+" Experience "+

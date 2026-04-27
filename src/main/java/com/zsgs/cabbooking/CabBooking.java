@@ -2,6 +2,7 @@ package com.zsgs.cabbooking;
 
 import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
+import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
@@ -11,23 +12,26 @@ import java.util.Scanner;
 
 public class CabBooking {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("Welcome to RideX");
         showMenu();
     }
+//    public static void showMenu(){
+//        new AccountsListView().init();
+//    }
 
-    public static void showMenu(){
+
+    public static void showMenu() {
         CabDB cabDB = CabDB.getInstance();
         Input input = new Input();
         Scanner scan = input.getInstance();
 
         String choice = "Y";
         do {
-            if(cabDB.getAccounts().size() == 0) {
+            if (cabDB.getAccounts().size() == 0) {
                 System.out.println("1. SignUp");
                 System.out.println("Choose Your Option");
-            }
-            else {
+            } else {
                 System.out.println("1. SignUp");
                 System.out.println("2. SignIn");
             }

@@ -65,14 +65,14 @@ public class CabDB {
         return cabDetails;
     }
 
-    public AccountDetails getEmployeeByEmail(String email){
+    public AccountDetails getEmployeeByEmail(String email , String password){
         if (email == null){
             return null;
         }
-        String key =email.trim();
-        if(key.isEmpty()) return null;
+//        String key =email.trim();
+        if(email.isEmpty()) return null;
         for(AccountDetails current : accountDetails){
-            if(current.getEmail() != null && current.getEmail().equals(key)){
+            if(current.getEmail() != null && current.getEmail().equals(email) && current.getPassword().equals(password)){
                 return current;
             }
         }

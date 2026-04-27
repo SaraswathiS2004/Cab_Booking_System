@@ -35,7 +35,7 @@ class SignInModel {
             return;
         }
 
-        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail());
+        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
         if(accountDetails == null) {
             signInView.showErrorMessage("You cannot Sign in Your Account");
             signInView.showErrorMessage("Please try again");
