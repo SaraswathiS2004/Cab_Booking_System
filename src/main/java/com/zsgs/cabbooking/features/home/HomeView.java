@@ -8,6 +8,9 @@ import com.zsgs.cabbooking.features.admin.list.cablist.CabListView;
 import com.zsgs.cabbooking.features.admin.list.driversList.DriversListView;
 import com.zsgs.cabbooking.features.admin.list.userList.UserDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.user.availableCabs.AvailableCabsView;
+import com.zsgs.cabbooking.features.user.feedback.FeedBackView;
+import com.zsgs.cabbooking.features.user.travelldetails.TravelDetailsView;
 
 import java.util.Scanner;
 
@@ -21,10 +24,11 @@ public class HomeView {
         this.homeModel = new HomeModel(this);
     }
     public void init(){
+        System.out.println("Welcome to "+accountDetails.getName());
         homeModel.init(accountDetails);
     }
     public void showUnAuthorized(){
-        System.out.println("YOur Account role is not set");
+        System.out.println("Your Account role is not set");
     }
 
     void showAdminMenu(){
@@ -61,7 +65,7 @@ public class HomeView {
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid Option please ty again");
+                    System.out.println("Invalid Option please try again");
                     break;
             }
         }
@@ -70,6 +74,39 @@ public class HomeView {
 
     void showUserMenu(){
 
+        while(true){
+            System.out.println();
+            System.out.println("1. Enter Travel Details");
+            System.out.println("2. Check Available Cabs and Drivers");
+            System.out.println("3. Feed back Upload");
+            System.out.println("4. Log Out");
+            System.out.println("5. Exit");
+
+            String choice = scanner.next();
+
+            switch (choice){
+                case "1" :
+                    new TravelDetailsView(accountDetails).init();
+                    break;
+                case "2":
+                    new AvailableCabsView();
+                    break;
+                case "3":
+                    new FeedBackView();
+                    break;
+                case "4":
+                    CabBooking.showMenu();
+                    System.exit(0);
+                    break;
+                case "5":
+                    System.out.println("Thank You for using RideX");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid Option Please Try Again!");
+                    break;
+            }
+        }
     }
 
 }

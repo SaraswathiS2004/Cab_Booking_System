@@ -3,6 +3,7 @@ package com.zsgs.cabbooking.data.repository;
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.CabDetails;
 import com.zsgs.cabbooking.data.dto.DriverDetails;
+import com.zsgs.cabbooking.data.dto.UserTripDetails;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class CabDB {
     private static long peopleId = 1;
     private static long driverId = 1;
     private static long cabId = 1;
+    private static long tripId = 1;
      private CabDB(){
 
      }
@@ -26,7 +28,7 @@ public class CabDB {
      private static ArrayList<AccountDetails> accountDetails = new ArrayList<>();
      private static ArrayList<DriverDetails> driverDetails = new ArrayList<>();
      private static ArrayList<CabDetails> cabDetails = new ArrayList<>();
-
+     private static ArrayList<UserTripDetails> userTripDetails = new ArrayList<>();
     public static ArrayList<AccountDetails> getAccountDetails() {
         return accountDetails;
     }
@@ -43,6 +45,11 @@ public class CabDB {
          CabDB.accountDetails.add(accountDetails);
          peopleId++;
      }
+     public void addTripDetails(UserTripDetails userTripDetails){
+        cabDB.userTripDetails.add(userTripDetails);
+         tripId++;
+     }
+
 
     public ArrayList<AccountDetails> getAccounts(){
         return accountDetails;

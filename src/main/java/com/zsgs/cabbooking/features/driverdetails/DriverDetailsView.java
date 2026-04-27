@@ -15,13 +15,12 @@ public class DriverDetailsView {
     public DriverDetailsView(){
         this.driverDetailsModel = new DriverDetailsModel(this);
         Input input = new Input();
-        scanner = input.getInstance();
+        this.scanner = input.getInstance();
 
     }
     public void init(){
         System.out.println("Welcome to RideX");
         promptDriverDetails();
-
         new CabDetailsView().init();
     }
 

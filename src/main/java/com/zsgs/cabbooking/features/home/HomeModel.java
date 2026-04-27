@@ -6,7 +6,7 @@ import com.zsgs.cabbooking.data.dto.Role;
 public class HomeModel {
 
     private HomeView homeView;
-     HomeModel(HomeView homeView){
+    HomeModel(HomeView homeView){
         this.homeView = homeView;
     }
     void init(AccountDetails accountDetails){
@@ -16,7 +16,7 @@ public class HomeModel {
         else if(accountDetails.getRole() == Role.ADMIN){
             homeView.showAdminMenu();
         }
-        else {
+        else if(accountDetails.getRole() == Role.USER) {
             homeView.showUserMenu();
         }
 

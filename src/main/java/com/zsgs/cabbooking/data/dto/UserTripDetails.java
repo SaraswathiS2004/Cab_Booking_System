@@ -1,64 +1,69 @@
 package com.zsgs.cabbooking.data.dto;
 
-public class UserTripDetails {
-    private char pickUp;
-    private char dropUp;
-    private long pickupTiming;
-    private String cabName;
-    private float price;
-    private TripStatus status;
-    private int id;
-    private Login user;
+import com.zsgs.cabbooking.data.repository.CabDB;
 
-    public void setPick_up(char pickUp){
-        this.pickUp = pickUp;
+public class UserTripDetails {
+    private long tripId;
+    private String pickUp;
+    private String dropUp;
+    private long cabId;
+    private int pickupTiming;
+    private TripStatus status;
+    private AccountDetails accountDetails;
+
+    public long getTripId() {
+        return tripId;
     }
-    public char getPick_up(){
+
+    public void setTripId(long tripId) {
+        this.tripId = tripId;
+    }
+
+    public String getPickUp() {
         return pickUp;
     }
-    public void setDrop_up(char dropUp){
-        this.dropUp = dropUp;
+
+    public long getCabId() {
+        return cabId;
     }
-    public char getDropUp(){
+
+    public void setCabId(long cabId) {
+        this.cabId = cabId;
+    }
+
+    public void setPickUp(String pickUp) {
+        this.pickUp = pickUp;
+    }
+
+    public String getDropUp() {
         return dropUp;
     }
-    public void setPickupTiming(long pickupTiming){
-        this.pickupTiming = pickupTiming;
+
+    public void setDropUp(String dropUp) {
+        this.dropUp = dropUp;
     }
-    public long getPickupTiming(){
+
+    public int getPickupTiming() {
         return pickupTiming;
     }
-    public void setCabName(String cabName){
-        this.cabName = cabName;
-    }
-    public String getCabName(){
-        return cabName;
-    }
-    public void setPrice(float price){
-        this.price = price;
-    }
-    public float getPrice(){
-        return price;
+
+    public void setPickupTiming(int pickupTiming) {
+        this.pickupTiming = pickupTiming;
     }
 
-    public void setTripStatus(TripStatus status){
-        this.status = status;
-    }
-    public TripStatus getStatus(){
+    public TripStatus getStatus() {
         return status;
     }
-    public void setId(int id){
-        this.id = id;
-    }
-    public int getId(){
-        return id;
+
+    public void setStatus(TripStatus status) {
+        this.status = status;
     }
 
-    public void setUser(Login user) {
-        this.user = user;
-    }
-    public Login getUser(){
-        return user;
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
     }
 
+    public void setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
+    }
 }

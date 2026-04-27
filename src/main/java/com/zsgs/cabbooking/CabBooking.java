@@ -4,6 +4,7 @@ import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
 import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
+import com.zsgs.cabbooking.features.home.HomeView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 import com.zsgs.cabbooking.features.signup.SignUpView;
@@ -16,11 +17,6 @@ public class CabBooking {
         System.out.println("Welcome to RideX");
         showMenu();
     }
-//    public static void showMenu(){
-//        new AccountsListView().init();
-//    }
-
-
     public static void showMenu() {
         CabDB cabDB = CabDB.getInstance();
         Input input = new Input();
