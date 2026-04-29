@@ -1,4 +1,4 @@
-package com.zsgs.cabbooking.features.user.travelldetails;
+package com.zsgs.cabbooking.features.user.traveldetails;
 
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.CabDetails;
@@ -6,11 +6,9 @@ import com.zsgs.cabbooking.data.dto.TripStatus;
 import com.zsgs.cabbooking.data.dto.UserTripDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
 
-import java.sql.PreparedStatement;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 public class TravelDetailsModel {
 
@@ -25,17 +23,47 @@ public class TravelDetailsModel {
         this.userTripDetails = new UserTripDetails();
     }
 
+    LocalTime getDropTiming(String pickUpPlace  , String dropUpPlace){
 
-    void storeData(String pickUp , String dropUp , int pickupTiming , long cabId , TripStatus tripStatus , AccountDetails currentUser){
+        int index1 = places.indexOf(pickUpPlace);
+        int index2 = places.indexOf(dropUpPlace);
+        int value = Math.abs(index2 - index1) * 10;
+        LocalTime now = LocalTime.now();
+        LocalTime dropTime = now.plusMinutes(value);
+        return dropTime;
+
+    }
+    void storeData(String pickUp , String dropUp , LocalTime pickupTiming , LocalTime dropupTiming , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment){
+        int money = calculateMoney(pickUp , dropUp);
         userTripDetails.setPickUp(pickUp);
         userTripDetails.setDropUp(dropUp);
         userTripDetails.setPickupTiming(pickupTiming);
+        userTripDetails.setDropupTiming(dropupTiming);
         userTripDetails.setCabId(cabId);
         userTripDetails.setStatus(tripStatus);
         userTripDetails.setAccountDetails(currentUser);
         userTripDetails.setTripId(cabDB.getCabId());
+        userTripDetails.setPayment(payment);
         cabDB.addTripDetails(userTripDetails);
         travelDetailsView.onDetailsUploadedSuccessful();
+
+    }
+    void setCabEarnings(long cabId ,int earnings){
+        cabDB.setCabEarnings(cabId ,earnings);
+    }
+
+    int calculateMoney(String pick , String drop){
+        int index = Math.abs(places.indexOf(pick) - places.indexOf(drop));
+        int money = 100;
+        index = index -1;
+        int sumMoney = 0;
+        while(index > 0){
+            sumMoney += 10;
+            index --;
+
+        }
+        int totalMoney = sumMoney + money;
+        return totalMoney;
 
     }
     String validatePickUpPlace(String place){
@@ -57,22 +85,6 @@ public class TravelDetailsModel {
             return null;
         }
     }
-    String validatePickUpTiming(int pickUpTiming){
-        if(pickUpTiming <= 0 ){
-            return "There is not a valid time";
-        }
-        LocalTime now = LocalTime.now();
-        int hoursAndMinutesNow = now.getHour() * now.getMinute();
-        int value = hoursAndMinutesNow - pickUpTiming;
-        if(value < 0){
-            return "There is not a valid time";
-        }
-        else {
-            return null;
-        }
-
-    }
-
     ArrayList<CabDetails> getAvailableCabs(){
         ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
 
@@ -86,7 +98,8 @@ public class TravelDetailsModel {
         }
         return "Invalid Cab Id";
     }
-    public void getTravelDetails(){
-        travelDetailsView.showTravelDetails();
+    String validateAmount(int money , int payment){
+        if(money == payment) return null;
+        return "Enter valid Amount";
     }
 }

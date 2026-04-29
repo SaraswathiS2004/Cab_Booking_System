@@ -1,17 +1,12 @@
-package com.zsgs.cabbooking.features.user.travelldetails;
+package com.zsgs.cabbooking.features.user.traveldetails;
 
-import com.zsgs.cabbooking.data.dto.AccountDetails;
-import com.zsgs.cabbooking.data.dto.CabDetails;
-import com.zsgs.cabbooking.data.dto.Login;
-import com.zsgs.cabbooking.data.dto.TripStatus;
-import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.home.HomeView;
+import com.zsgs.cabbooking.data.dto.*;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 
+
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class TravelDetailsView {
@@ -19,6 +14,7 @@ public class TravelDetailsView {
     private TravelDetailsModel travelDetailsModel;
     private AccountDetails accountDetails;
     private Scanner scanner;
+    private ArrayList<CabDetails> cabDetails;
 
     public TravelDetailsView(AccountDetails accountDetails){
         this.travelDetailsModel = new TravelDetailsModel(this);
@@ -31,12 +27,8 @@ public class TravelDetailsView {
         System.out.println("Welcome to RideX");
         promptTravelDetails();
     }
-
-    public void showTravelDetails(){
-
-    }
     void promptTravelDetails(){
-        ArrayList<CabDetails> cabDetails = travelDetailsModel.getAvailableCabs();
+        cabDetails = travelDetailsModel.getAvailableCabs();
         if(cabDetails.size() == 0){
             showErrorMessage("There is no available Cabs");
             promptPostFailureAction();
@@ -44,18 +36,42 @@ public class TravelDetailsView {
         else {
             String pickUp = promptPickUpPoint();
             String dropUp = promptDropUpPoint(pickUp);
-            int pickupTiming = promptPickUpTiming();
+            LocalTime pickupTiming = LocalTime.now();
+            LocalTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
             showCabs(cabDetails);
             long cabId = promptCabId(cabDetails);
             TripStatus tripStatus = TripStatus.BOOKED;
+            int payment =  promptPayAmount(pickUp , dropUp);
+            travelDetailsModel.setCabEarnings(cabId ,payment);
             AccountDetails currentUser = accountDetails;
 
-            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,cabId , tripStatus , currentUser);
+            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,dropupTiming , cabId , tripStatus , currentUser , payment);
         }
     }
 
     void onDetailsUploadedSuccessful(){
         System.out.println("Successfully Uploded Your Trip details");
+
+    }
+
+    int promptPayAmount(String pickUp , String dropUp){
+        System.out.println("Please pay your amount for your trip");
+        int money = travelDetailsModel.calculateMoney(pickUp , dropUp);
+        System.out.println("total Cost : "+money);
+        int amount = promptGetAmount(money);
+        return amount;
+    }
+    int promptGetAmount(int money){
+
+        while(true){
+            System.out.println("Pay Your Amount :");
+            int amount = scanner.nextInt();
+            String error = travelDetailsModel.validateAmount(money , amount);
+            if(error == null){
+                return amount;
+            }
+            showErrorMessage(error);
+        }
     }
     void showCabs(ArrayList<CabDetails> cabs){
         System.out.println("Cabs List :");
@@ -125,23 +141,6 @@ public class TravelDetailsView {
             }
             else {
                 showErrorMessage(error);
-            }
-        }
-    }
-
-    int promptPickUpTiming(){
-        while(true){
-            System.out.println("Enter your pickUp Timing : ");
-            System.out.println("Enter Hours and Minutes eg : 10 30");
-            int hours = scanner.nextInt();
-            int minutes = scanner.nextInt();
-            int pickUpTime = hours * minutes;
-            String error = travelDetailsModel.validatePickUpTiming(pickUpTime);
-            if(error == null){
-                return pickUpTime;
-            }
-            else {
-              showErrorMessage(error);
             }
         }
     }

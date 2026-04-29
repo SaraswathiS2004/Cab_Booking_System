@@ -5,6 +5,15 @@ public class CabDetails {
     private long cabId;
     private String model;
     private String type;
+    private int totalEarning = 0;
+
+    public int getTotalEarning() {
+        return totalEarning;
+    }
+
+    public void setTotalEarning(int totalEarning) {
+        this.totalEarning = totalEarning;
+    }
 
     public void setRegistrationNumber(long registrationNumber) {
         this.registrationNumber = registrationNumber;

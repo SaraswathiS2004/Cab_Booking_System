@@ -6,8 +6,6 @@ import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.home.HomeView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
-import com.zsgs.cabbooking.features.user.travelldetails.TravelDetailsModel;
-import com.zsgs.cabbooking.features.user.travelldetails.TravelDetailsView;
 
 import java.util.Scanner;
 

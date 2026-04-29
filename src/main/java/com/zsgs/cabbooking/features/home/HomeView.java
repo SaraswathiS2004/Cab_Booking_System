@@ -3,14 +3,13 @@ package com.zsgs.cabbooking.features.home;
 import com.zsgs.cabbooking.CabBooking;
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
-import com.zsgs.cabbooking.features.admin.list.cablist.CabListModel;
 import com.zsgs.cabbooking.features.admin.list.cablist.CabListView;
 import com.zsgs.cabbooking.features.admin.list.driversList.DriversListView;
-import com.zsgs.cabbooking.features.admin.list.userList.UserDetailsView;
+import com.zsgs.cabbooking.features.admin.list.usertriplist.UserTripDetailsView;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.user.availableCabs.AvailableCabsView;
 import com.zsgs.cabbooking.features.user.feedback.FeedBackView;
-import com.zsgs.cabbooking.features.user.travelldetails.TravelDetailsView;
+import com.zsgs.cabbooking.features.user.traveldetails.TravelDetailsView;
 
 import java.util.Scanner;
 
@@ -55,7 +54,7 @@ public class HomeView {
                     new CabListView().init();
                     break;
                 case "4":
-                    new UserDetailsView().init();
+                    new UserTripDetailsView().init();
                 case "5":
                     CabBooking.showMenu();
                     System.exit(0);

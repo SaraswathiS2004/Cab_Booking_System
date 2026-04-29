@@ -1,9 +1,6 @@
 package com.zsgs.cabbooking.data.repository;
 
-import com.zsgs.cabbooking.data.dto.AccountDetails;
-import com.zsgs.cabbooking.data.dto.CabDetails;
-import com.zsgs.cabbooking.data.dto.DriverDetails;
-import com.zsgs.cabbooking.data.dto.UserTripDetails;
+import com.zsgs.cabbooking.data.dto.*;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,6 +26,7 @@ public class CabDB {
      private static ArrayList<DriverDetails> driverDetails = new ArrayList<>();
      private static ArrayList<CabDetails> cabDetails = new ArrayList<>();
      private static ArrayList<UserTripDetails> userTripDetails = new ArrayList<>();
+
     public static ArrayList<AccountDetails> getAccountDetails() {
         return accountDetails;
     }
@@ -46,11 +44,18 @@ public class CabDB {
          peopleId++;
      }
      public void addTripDetails(UserTripDetails userTripDetails){
+
         cabDB.userTripDetails.add(userTripDetails);
          tripId++;
      }
 
-
+     public void setCabEarnings(long cabId , int earnings){
+        for(CabDetails cabDetails1 : cabDetails){
+            if(cabDetails1.getCabId() == cabId){
+                cabDetails1.setTotalEarning(cabDetails1.getTotalEarning() + earnings);
+            }
+        }
+     }
     public ArrayList<AccountDetails> getAccounts(){
         return accountDetails;
     }
@@ -76,7 +81,6 @@ public class CabDB {
         if (email == null){
             return null;
         }
-//        String key =email.trim();
         if(email.isEmpty()) return null;
         for(AccountDetails current : accountDetails){
             if(current.getEmail() != null && current.getEmail().equals(email) && current.getPassword().equals(password)){
@@ -105,6 +109,10 @@ public class CabDB {
             }
         }
         return null;
+    }
+
+    public ArrayList<UserTripDetails> getUserTripDetails(){
+        return userTripDetails;
     }
 
 }
