@@ -6,8 +6,9 @@ import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
 import com.zsgs.cabbooking.features.admin.list.cablist.CabListView;
 import com.zsgs.cabbooking.features.admin.list.driversList.DriversListView;
 import com.zsgs.cabbooking.features.admin.list.usertriplist.UserTripDetailsView;
+import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
 import com.zsgs.cabbooking.features.input.Input;
-import com.zsgs.cabbooking.features.user.availableCabs.AvailableCabsView;
+import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
 import com.zsgs.cabbooking.features.user.feedback.FeedBackView;
 import com.zsgs.cabbooking.features.user.traveldetails.TravelDetailsView;
 
@@ -88,7 +89,7 @@ public class HomeView {
                     new TravelDetailsView(accountDetails).init();
                     break;
                 case "2":
-                    new AvailableCabsView();
+                    new AvailableCabsView().init();
                     break;
                 case "3":
                     new FeedBackView();
