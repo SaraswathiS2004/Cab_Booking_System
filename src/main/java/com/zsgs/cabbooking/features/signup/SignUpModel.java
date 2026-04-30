@@ -67,7 +67,7 @@ class SignUpModel {
             return "Email address cannot be empty";
         }
         if (!EMAIL_PATTERN.matcher(trimmed).matches()) {
-            return "Enter Valid Email address";
+            return "Invalid Email address";
         }
         return null;
     }

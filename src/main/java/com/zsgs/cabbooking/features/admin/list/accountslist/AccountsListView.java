@@ -19,10 +19,22 @@ public class AccountsListView {
     }
 
     void showAccounts(ArrayList<AccountDetails> accountDetails){
-        System.out.println("Account List");
-        for(AccountDetails accountDetails1 : accountDetails){
-            System.out.println("Id : "+ accountDetails1.getId()+" Name : "+ accountDetails1.getName() + " password : "+ accountDetails1.getPassword() +" Email : "+
-                    accountDetails1.getEmail() + " Role : "+ accountDetails1.getRole() +" Mobile_number : "+accountDetails1.getMobileNumber());
+        System.out.println("Account List:");
+        System.out.println("--------------------------------------------------------------------------");
+
+        System.out.printf("%-5s %-10s %-12s %-25s %-10s %-15s%n",
+                "ID", "Name", "Password", "Email", "Role", "Mobile");
+
+        System.out.println("--------------------------------------------------------------------------");
+
+        for (AccountDetails acc : accountDetails) {
+            System.out.printf("%-5d %-10s %-12s %-25s %-10s %-15s%n",
+                    acc.getId(),
+                    acc.getName(),
+                    acc.getPassword(),
+                    acc.getEmail(),
+                    acc.getRole(),
+                    acc.getMobileNumber());
         }
     }
     void onAccountFailed(){

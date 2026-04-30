@@ -38,7 +38,7 @@ class SignInModel {
         AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
         if(accountDetails == null) {
             signInView.showErrorMessage("You cannot Sign in Your Account");
-            signInView.showErrorMessage("Please try again");
+            signInView.showErrorMessage("Please try again!");
         }
         else{
             signInView.onSignInSuccessful(accountDetails);
@@ -60,7 +60,7 @@ class SignInModel {
             return "Email address cannot be empty";
         }
         if(!EMAIL_PATTERN.matcher(trimmed).matches()){
-            return "Enter Valid Email address";
+            return "Invalid Email address";
         }
         return null;
     }

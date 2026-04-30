@@ -40,7 +40,7 @@ public class DriverDetailsView {
 
     public String promptAddress(){
         while(true){
-            System.out.println("Enter Your Address");
+            System.out.print("\nEnter Your Address : ");
             scanner.nextLine();
             String address = scanner.nextLine();
             String error = driverDetailsModel.validateAddress(address);
@@ -52,7 +52,7 @@ public class DriverDetailsView {
     }
     public int promptAge(){
         while(true){
-            System.out.println("Enter Your Age");
+            System.out.println("\nEnter Your Age");
             int age = scanner.nextInt();
             String error = driverDetailsModel.validateAge(age);
             if(error == null){
@@ -63,7 +63,7 @@ public class DriverDetailsView {
     }
     public int promptExperience(int age){
         while(true){
-            System.out.println("Enter Your Drive Experience");
+            System.out.print("\nEnter Your Drive Experience");
             int experience = scanner.nextInt();
             String error = driverDetailsModel.validateExperience(experience , age);
             if(error == null){
@@ -77,7 +77,7 @@ public class DriverDetailsView {
 
     public String promptMobileNumber(){
         while(true) {
-            System.out.println("Enter Your Mobile Number");
+            System.out.print("\nEnter Your Mobile Number");
             String mobileNumber = scanner.next();
             String error = driverDetailsModel.validateMobileNumber(mobileNumber);
             if (error == null) {

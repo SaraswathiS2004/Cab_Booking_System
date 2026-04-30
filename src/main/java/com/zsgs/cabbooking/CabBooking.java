@@ -25,13 +25,14 @@ public class CabBooking {
         String choice = "Y";
         do {
             if (cabDB.getAccounts().size() == 0) {
-                System.out.println("1. SignUp");
-                System.out.println("Choose Your Option");
-            } else {
-                System.out.println("1. SignUp");
-                System.out.println("2. SignIn");
-            }
+                System.out.print("1. SignUp");
 
+            } else {
+                System.out.print("\n1. SignUp");
+                System.out.print("\n2. SignIn");
+
+            }
+            System.out.print("\nChoose Your Option : ");
             String option = scan.next();
             switch (option) {
                 case "1":
@@ -43,10 +44,10 @@ public class CabBooking {
                     signInView.init();
                     break;
                 default:
-                    System.out.println("Choose a correct Option");
+                    System.out.print("\nChoose a correct Option");
                     break;
             }
-            System.out.println("Do you want to Continue(Y/N)");
+            System.out.print("\nDo you want to Continue(Y/N)");
             choice = scan.next();
         }
         while (choice.equalsIgnoreCase("Y"));

@@ -44,7 +44,6 @@ public class TravelDetailsView {
             int payment =  promptPayAmount(pickUp , dropUp);
             travelDetailsModel.setCabEarnings(cabId ,payment);
             AccountDetails currentUser = accountDetails;
-
             travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,dropupTiming , cabId , tripStatus , currentUser , payment);
         }
     }

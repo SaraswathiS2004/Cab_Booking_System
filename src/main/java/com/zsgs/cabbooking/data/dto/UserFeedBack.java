@@ -1,6 +1,7 @@
 package com.zsgs.cabbooking.data.dto;
 
 public class UserFeedBack {
+    private long id;
     private String email;
     private String password;
     private String feedBackContent;
@@ -22,5 +23,13 @@ public class UserFeedBack {
     }
     public String getFeedBackContent(){
         return feedBackContent;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

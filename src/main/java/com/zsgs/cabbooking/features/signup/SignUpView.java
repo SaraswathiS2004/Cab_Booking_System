@@ -15,6 +15,7 @@ public class SignUpView {
 
     private SignUpModel signUpModel;
     private static Scanner scan;
+    private ArrayList<AccountDetails> accountDetails;
 
     public SignUpView(){
         signUpModel = new SignUpModel(this);
@@ -23,18 +24,15 @@ public class SignUpView {
 
     }
     public void init(){
-        System.out.println("Create Your Account");
+        System.out.print("Create Your Account!");
         String name = promptName();
-        String password = promptPassword();
         String email = promptEmail();
+        String password = promptPassword();
         String city = promptCity();
         String mobileNumber = promptMobileNumber();
         Role role = promptRole();
-        ArrayList<AccountDetails> accountDetails = signUpModel.storeData(name , password , email , city , mobileNumber , role);
-//        System.out.println("Name   Password   email      mobileNumber     role");
-        if(accountDetails.size() == 1){
-            System.out.println("As the first user in the system, you will be registered as a ADMIN.");
-        }
+        accountDetails = signUpModel.storeData(name , password , email , city , mobileNumber , role);
+
         onSignUpSuccessful();
     }
     public void showSignUp(){
@@ -44,7 +42,7 @@ public class SignUpView {
     public String promptName(){
 
         while(true) {
-            System.out.println("Enter Your Name");
+            System.out.print("\nEnter Your Name : ");
             String name = scan.next();
             String error = signUpModel.validateName(name);
             if(error == null){
@@ -58,11 +56,11 @@ public class SignUpView {
 
     public String promptPassword(){
         while(true){
-            System.out.println("Enter the Password");
+            System.out.print("Enter the Password : ");
             String password = scan.next();
             String error = signUpModel.validatePassword(password);
             if(error == null){
-                System.out.println("Enter Confirm Password");
+                System.out.print("Enter Confirm Password : ");
                 String confirm = scan.next();
                 String error1 = signUpModel.validateConfirmPassword(password , confirm);
                 if(error1 == null){
@@ -80,7 +78,7 @@ public class SignUpView {
     }
     public String promptEmail(){
         while(true){
-            System.out.println("Enter the Email Address");
+            System.out.print("Enter the Email Address : ");
             String email = scan.next();
             String error = signUpModel.validateEmailAddress(email);
             if(error == null){
@@ -104,7 +102,7 @@ public class SignUpView {
                 return Role.ADMIN;
             }
             else {
-                System.out.println("Enter Your Role (USER , DRIVER)");
+                System.out.print("Enter Your Role (USER , DRIVER) : ");
             }
             String role = scan.next();
             role = role.toUpperCase();
@@ -127,7 +125,7 @@ public class SignUpView {
 
     public String promptMobileNumber(){
         while(true) {
-            System.out.println("Enter Your Mobile Number");
+            System.out.print("Enter Your Mobile Number : ");
             String mobileNumber = scan.next();
             String error = signUpModel.validateMobileNumber(mobileNumber);
             if (error == null) {
@@ -139,7 +137,7 @@ public class SignUpView {
     }
     public String promptCity(){
         while(true){
-            System.out.println("Enter Your City");
+            System.out.print("Enter Your City : ");
             String city = scan.next();
             String error = signUpModel.validateCity(city);
             if(error == null){
@@ -152,8 +150,10 @@ public class SignUpView {
     }
 
     void onSignUpSuccessful(){
-        System.out.println("Account Created Successfully");
-        System.out.println("Please Sign in to continue");
+        System.out.print("\nAccount Created Successfully!");
+        if(accountDetails.size() == 1){
+            System.out.print("\nAs the first user in the system, you will be registered as a ADMIN.");
+        }
         new SignInView().init();
     }
     void showErrorMessage(String error){

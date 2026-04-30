@@ -23,7 +23,7 @@ public class CabListView {
         }
     }
     void onCabsFailed(){
-        System.out.println("There are No Cabs");
+        System.out.println("There are no Cabs");
     }
 
 }

@@ -22,7 +22,8 @@ public class SignInView {
     }
 
     public void init(){
-        System.out.println("Sign in to RideX");
+
+        System.out.println("\nSign in to RideX!");
         while (!authenticated) {
             promptAndAuthenticate();
             if (authenticated) return;
@@ -37,7 +38,7 @@ public class SignInView {
     }
     public String promptPassword(){
         while(true){
-            System.out.println("Enter the password");
+            System.out.print("Enter the password : ");
             String password = scanner.next();
             String error = signInModel.validatePassword(password);
             if(error == null){
@@ -50,7 +51,8 @@ public class SignInView {
     }
     public String promptEmailAddress(){
         while(true){
-            System.out.println("Enter the Email Address");
+
+            System.out.print("Enter the Email Address : ");
             String email = scanner.next();
             String error = signInModel.validateEmailAddress(email);
             if(error == null){
@@ -65,9 +67,9 @@ public class SignInView {
 
     public void onSignInSuccessful(AccountDetails accountDetails){
         authenticated = true;
-        System.out.println("Welcome to "+ accountDetails.getName());
+
         if(accountDetails.getRole().equals(Role.DRIVER)){
-            System.out.println("Enter Your Driving Details");
+            System.out.print("Enter Your Driving Details : ");
            new DriverDetailsView().init();
         }
         else if(accountDetails.getRole().equals(Role.ADMIN)){
@@ -85,9 +87,10 @@ public class SignInView {
 
         while(true){
             System.out.println();
-            System.out.println("1. Retry");
-            System.out.println("2. SignUp");
-            System.out.println("3. Exit");
+            System.out.print("\n1. Retry");
+            System.out.print("\n2. SignUp");
+            System.out.print("\n3. Exit");
+            System.out.print("\nChoose Your Option : ");
             String choice = scanner.next().trim();
 
             switch (choice){
@@ -109,7 +112,4 @@ public class SignInView {
     public void showErrorMessage(String message){
         System.out.println(message);
     }
-
-
-
 }

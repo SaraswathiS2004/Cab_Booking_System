@@ -12,6 +12,7 @@ public class CabDB {
     private static long driverId = 1;
     private static long cabId = 1;
     private static long tripId = 1;
+    private static long feedBackId = 1;
      private CabDB(){
 
      }
@@ -21,11 +22,15 @@ public class CabDB {
     public long getCabId(){
          return cabId;
     }
+    public long getFeedBackId(){
+         return feedBackId;
+    }
 
      private static ArrayList<AccountDetails> accountDetails = new ArrayList<>();
      private static ArrayList<DriverDetails> driverDetails = new ArrayList<>();
      private static ArrayList<CabDetails> cabDetails = new ArrayList<>();
      private static ArrayList<UserTripDetails> userTripDetails = new ArrayList<>();
+     private static ArrayList<UserFeedBack> userFeedBacks = new ArrayList<>();
 
     public static ArrayList<AccountDetails> getAccountDetails() {
         return accountDetails;
@@ -47,6 +52,10 @@ public class CabDB {
 
         cabDB.userTripDetails.add(userTripDetails);
          tripId++;
+     }
+     public void addFeedBack(UserFeedBack userFeedBack){
+        CabDB.userFeedBacks.add(userFeedBack);
+         feedBackId++;
      }
 
      public void setCabEarnings(long cabId , int earnings){

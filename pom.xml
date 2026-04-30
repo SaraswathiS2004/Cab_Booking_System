@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>Cab_Booking_System</artifactId>
+    <artifactId>RideX</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

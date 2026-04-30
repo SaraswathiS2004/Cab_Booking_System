@@ -18,31 +18,38 @@ public class HomeView {
     private static Scanner scanner;
     private AccountDetails accountDetails;
     private HomeModel homeModel;
-    public HomeView(AccountDetails accountDetails){
+
+    public HomeView(AccountDetails accountDetails) {
         this.accountDetails = accountDetails;
         scanner = new Input().getInstance();
         this.homeModel = new HomeModel(this);
     }
-    public void init(){
-        System.out.println("Welcome to "+accountDetails.getName());
+
+    public void init() {
+
+        System.out.println("\nWelcome to " + accountDetails.getName() + " !");
+
         homeModel.init(accountDetails);
     }
-    public void showUnAuthorized(){
+
+    public void showUnAuthorized() {
         System.out.println("Your Account role is not set");
     }
 
-    void showAdminMenu(){
+    void showAdminMenu() {
 
-        while (true){
-            System.out.println();
-            System.out.println("1. Display Account Details");
-            System.out.println("2. Display Driver Details");
-            System.out.println("3. Display Cab Details");
-            System.out.println("4. Display User Details");
-            System.out.println("5. Log out");
+        while (true) {
+            System.out.println("\n========== ADMIN DASHBOARD ==========\n");
+
+            System.out.println("1. View Account Details");
+            System.out.println("2. View Driver Details");
+            System.out.println("3. View Cab Details");
+            System.out.println("4. View User Details");
+            System.out.println("5. Logout");
             System.out.println("6. Exit");
+            System.out.println("Choose Your Option : ");
             String choice = scanner.next();
-            switch (choice){
+            switch (choice) {
                 case "1":
                     new AccountsListView().init();
                     break;
@@ -72,27 +79,28 @@ public class HomeView {
 
     }
 
-    void showUserMenu(){
+    void showUserMenu() {
 
-        while(true){
+        while (true) {
             System.out.println();
             System.out.println("1. Enter Travel Details");
             System.out.println("2. Check Available Cabs and Drivers");
             System.out.println("3. Feed back Upload");
             System.out.println("4. Log Out");
             System.out.println("5. Exit");
+            System.out.print("Choose Your Option : ");
 
             String choice = scanner.next();
 
-            switch (choice){
-                case "1" :
+            switch (choice) {
+                case "1":
                     new TravelDetailsView(accountDetails).init();
                     break;
                 case "2":
                     new AvailableCabsView().init();
                     break;
                 case "3":
-                    new FeedBackView();
+                    new FeedBackView().init();
                     break;
                 case "4":
                     CabBooking.showMenu();
