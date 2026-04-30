@@ -15,18 +15,25 @@ public class AvailableCabsView {
     }
 
     public void init() {
-        System.out.println("Welcome to RideX");
+        System.out.println("Welcome to RideX\n");
         availableCabsModel.getAvailableCabsDetails();
     }
 
     public void showAvailableCabsDetails(ArrayList<CabDetails> cabDetails) {
-        System.out.println("Cab Details ");
-        System.out.println();
-        for (CabDetails cabDetails1 : cabDetails) {
-            System.out.println(" Id : " + cabDetails1.getCabId() + " Driver Registraion Number : " +
-                    cabDetails1.getRegistrationNumber() + " Model : " + cabDetails1.getModel() +
-                    " Type : " + cabDetails1.getType() + " Total Earnings : " + cabDetails1.getTotalEarning());
+        System.out.println("========== AVAILABLE CABS ==========\n");
 
+        System.out.printf("%-5s %-20s %-15s %-10s %-15s%n",
+                "ID", "Registration No", "Model", "Type", "Earnings");
+
+        System.out.println("--------------------------------------------------------------------------");
+
+        for (CabDetails cabDetails1 : cabDetails) {
+            System.out.printf("%-5d %-20s %-15s %-10s %-15d%n",
+                    cabDetails1.getCabId(),
+                    cabDetails1.getRegistrationNumber(),
+                    cabDetails1.getModel(),
+                    cabDetails1.getType(),
+                    cabDetails1.getTotalEarning());
         }
     }
 

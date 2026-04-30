@@ -21,7 +21,7 @@ public class FeedBackModel {
     }
 
     String validateContent(String feedback) {
-        if (feedback == null || feedback.trim().isEmpty()) return "Invalid Content";
+        if (feedback == null || feedback.trim().isEmpty()) return "FeedBack Cannot be empty.";
         return null;
     }
     long getFeedBackId(){
@@ -30,7 +30,7 @@ public class FeedBackModel {
     public void authenticate(Login login) {
 
         if (login == null) {
-            feedBackView.onSignInFailed("Invalid email or password");
+            feedBackView.onSignInFailed("Invalid email or password.");
             return;
         }
         String emailError = validateEmailAddress(login.getEmail());
@@ -45,8 +45,8 @@ public class FeedBackModel {
 
         AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if (accountDetails == null) {
-            feedBackView.showErrorMessage("You cannot Sign in Your Account");
-            feedBackView.showErrorMessage("Please try again");
+            feedBackView.showErrorMessage("Unable to sign in to your account.");
+            feedBackView.showErrorMessage("Please try again.");
         } else {
             feedBackView.onSuccessful();
         }
@@ -56,10 +56,10 @@ public class FeedBackModel {
     String validateEmailAddress(String email) {
         String trimmed = email.trim();
         if (email == null || trimmed.isEmpty()) {
-            return "Email address cannot be empty";
+            return "Email address cannot be empty.";
         }
         if (!EMAIL_PATTERN.matcher(trimmed).matches()) {
-            return "Enter Valid Email address";
+            return "Invalid Email address";
         }
         return null;
     }
@@ -67,9 +67,9 @@ public class FeedBackModel {
     String validatePassword(String password) {
 
         if (password == null || password.trim().isEmpty()) {
-            return "Password Cannot be Empty";
+            return "Password Cannot be empty.";
         } else if (!PASSWORD_PATTERN.matcher(password).matches()) {
-            return "Password must be at least 8 characters and contain letters and numbers";
+            return "Password must be at least 8 characters and contain letters and numbers.";
         } else {
             return null;
         }

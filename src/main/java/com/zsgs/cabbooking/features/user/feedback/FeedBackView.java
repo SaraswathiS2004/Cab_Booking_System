@@ -1,7 +1,5 @@
 package com.zsgs.cabbooking.features.user.feedback;
 
-
-import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
@@ -19,7 +17,7 @@ public class FeedBackView {
     }
 
     public void init(){
-        System.out.println("Welcome to RideX");
+        System.out.println("Welcome to RideX\n");
 
         while (!authenticated) {
             promptAndAuthenticate();
@@ -39,7 +37,7 @@ public class FeedBackView {
     String promptFeedBack() {
 
         while (true) {
-            System.out.println("Enter Your Feed Back : ");
+            System.out.print("Enter Your Feed Back : ");
             String content = scanner.nextLine();
             String error = feedBackModel.validateContent(content);
             if (error == null) {
@@ -51,7 +49,7 @@ public class FeedBackView {
 
     String promptEmailAddress(){
         while(true){
-            System.out.println("Enter the Email Address");
+            System.out.print("Enter the Email Address");
             String email = scanner.next();
             String error = feedBackModel.validateEmailAddress(email);
             if(error == null){
@@ -64,7 +62,7 @@ public class FeedBackView {
     }
     public String promptPassword(){
         while(true){
-            System.out.println("Enter the password");
+            System.out.print("Enter the password");
             String password = scanner.next();
             String error = feedBackModel.validatePassword(password);
             if(error == null){
@@ -79,10 +77,11 @@ public class FeedBackView {
     public boolean promptPostFailureAction() {
 
         while (true) {
-            System.out.println();
+            System.out.println("\n========== OPTIONS ==========");
             System.out.println("1. Retry");
             System.out.println("2. SignUp");
             System.out.println("3. Exit");
+            System.out.print("Choose an Option: ");
             String choice = scanner.next().trim();
 
             switch (choice) {
@@ -92,19 +91,20 @@ public class FeedBackView {
                     new SignUpView().init();
                     return false;
                 case "3":
-                    System.out.println("Thank you for using RideX");
+                    System.out.println("\nThank you for using RideX");
                     System.exit(0);
                     return false;
                 default:
-                    System.out.println("Invalid Option Please try again");
+                    System.out.println("Invalid option. Please try again.");
             }
         }
     }
     public void onSuccessful() {
         authenticated = true;
+        onFeedBackAddedSuccessful();
     }
     public void onFeedBackAddedSuccessful(){
-        System.out.println("Successfully Added Your Feed Back!");
+        System.out.println("\nFeedback added successfully!");
     }
 
     public void onSignInFailed(String message){

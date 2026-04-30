@@ -30,7 +30,6 @@ public class CabBooking {
             } else {
                 System.out.print("\n1. SignUp");
                 System.out.print("\n2. SignIn");
-
             }
             System.out.print("\nChoose Your Option : ");
             String option = scan.next();
