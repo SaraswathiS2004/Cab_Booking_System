@@ -18,6 +18,6 @@ class AvailableCabsModel {
     public void getAvailableCabsDetails() {
         ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
         if (cabDetails.isEmpty()) availableCabsView.showCabsFailed();
-        availableCabsView.showAvailableCabsDetails(cabDetails);
+        else availableCabsView.showAvailableCabsDetails(cabDetails);
     }
 }

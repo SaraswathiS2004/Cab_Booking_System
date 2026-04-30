@@ -61,7 +61,7 @@ public class AccountDetails {
         this.email = email;
     }
 
-    public void registerPeople(String name , String password ,String email ,  String mobileNumber , String city , Role role , long id){
+    public void registerPeople(String name , String password ,String email ,  String city , String mobileNumber , Role role , long id){
         setName(name);
         setPassword(password);
         setEmail(email);

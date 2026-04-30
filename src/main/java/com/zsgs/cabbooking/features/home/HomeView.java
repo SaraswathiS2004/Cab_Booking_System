@@ -82,7 +82,9 @@ public class HomeView {
     void showUserMenu() {
 
         while (true) {
-            System.out.println();
+
+            System.out.println("\n========== USER DASHBOARD ==========\n");
+
             System.out.println("1. Enter Travel Details");
             System.out.println("2. Check Available Cabs and Drivers");
             System.out.println("3. Feed back Upload");

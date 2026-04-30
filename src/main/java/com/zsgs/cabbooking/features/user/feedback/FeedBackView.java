@@ -38,7 +38,7 @@ public class FeedBackView {
 
         while (true) {
             System.out.print("Enter Your Feed Back : ");
-            String content = scanner.nextLine();
+            String content = scanner.next();
             String error = feedBackModel.validateContent(content);
             if (error == null) {
                 return content;
@@ -49,7 +49,7 @@ public class FeedBackView {
 
     String promptEmailAddress(){
         while(true){
-            System.out.print("Enter the Email Address");
+            System.out.print("Enter the Email Address : ");
             String email = scanner.next();
             String error = feedBackModel.validateEmailAddress(email);
             if(error == null){
@@ -62,7 +62,7 @@ public class FeedBackView {
     }
     public String promptPassword(){
         while(true){
-            System.out.print("Enter the password");
+            System.out.print("Enter the password : ");
             String password = scanner.next();
             String error = feedBackModel.validatePassword(password);
             if(error == null){

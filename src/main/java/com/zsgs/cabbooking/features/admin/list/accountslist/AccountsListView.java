@@ -21,21 +21,13 @@ public class AccountsListView {
     void showAccounts(ArrayList<AccountDetails> accountDetails){
         System.out.println("Account List:");
         System.out.println("--------------------------------------------------------------------------");
-
-        System.out.printf("%-5s %-10s %-12s %-25s %-10s %-15s%n",
-                "ID", "Name", "Password", "Email", "Role", "Mobile");
-
-        System.out.println("--------------------------------------------------------------------------");
-
         for (AccountDetails acc : accountDetails) {
-            System.out.printf("%-5d %-10s %-12s %-25s %-10s %-15s%n",
-                    acc.getId(),
-                    acc.getName(),
-                    acc.getPassword(),
-                    acc.getEmail(),
-                    acc.getRole(),
-                    acc.getMobileNumber());
+            System.out.println("User Id :" + acc.getId() + "  Name : " + acc.getName()+ "  Email Id : " +
+                    acc.getEmail() + "  Role : "+ acc.getRole() + "  Mobile Number : "+ acc.getMobileNumber() + "  City : "+ acc.getCity());
         }
+
+        System.out.println("--------------------------------------------------------------------------------");
+
     }
     void onAccountFailed(){
         System.out.println("There are No Account");
