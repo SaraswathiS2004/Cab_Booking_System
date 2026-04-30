@@ -16,5 +16,11 @@ class UserTripDetailsModel {
 
     public void getUsers(){
         ArrayList<UserTripDetails> userTripDetails = cabDB.getUserTripDetails();
+        if(userTripDetails.isEmpty()) {
+            userDetailsView.showFailedUserDetails("No trips found");
+        }
+        else{
+            userDetailsView.showUserTripDetails(userTripDetails);
+        }
     }
 }

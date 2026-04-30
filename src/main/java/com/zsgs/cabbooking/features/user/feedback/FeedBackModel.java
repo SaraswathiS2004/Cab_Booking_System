@@ -47,10 +47,7 @@ public class FeedBackModel {
         if (accountDetails == null) {
             feedBackView.showErrorMessage("Unable to sign in to your account.");
             feedBackView.showErrorMessage("Please try again.");
-        } else {
-            feedBackView.onSuccessful();
         }
-
     }
 
     String validateEmailAddress(String email) {
@@ -88,5 +85,7 @@ public class FeedBackModel {
         userFeedBack.setEmail(email);
         userFeedBack.setPassword(password);
         userFeedBack.setFeedBackContent(content);
+        cabDB.addFeedBack(userFeedBack);
+        feedBackView.onSuccessfulFeedBack();
     }
 }

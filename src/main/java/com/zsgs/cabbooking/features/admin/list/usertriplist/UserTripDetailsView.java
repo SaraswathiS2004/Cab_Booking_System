@@ -12,11 +12,8 @@ public class UserTripDetailsView {
     private UserTripDetailsModel userDetailsModel;
 
     public UserTripDetailsView() {
-
         this.userDetailsModel = new UserTripDetailsModel(this);
-
     }
-
     public void init() {
         System.out.println("========== RIDEX ==========\n");
         System.out.println("User Trip Details\n");
@@ -43,5 +40,9 @@ public class UserTripDetailsView {
                     "  User Travel Status : "+userTripDetails1.getStatus());
         }
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+    }
+
+    void showFailedUserDetails(String message){
+        System.out.println(message);
     }
 }

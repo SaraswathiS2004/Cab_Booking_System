@@ -25,7 +25,6 @@ public class CabDB {
     public long getFeedBackId(){
          return feedBackId;
     }
-
      private static ArrayList<AccountDetails> accountDetails = new ArrayList<>();
      private static ArrayList<DriverDetails> driverDetails = new ArrayList<>();
      private static ArrayList<CabDetails> cabDetails = new ArrayList<>();
@@ -84,6 +83,9 @@ public class CabDB {
     }
     public ArrayList<CabDetails> getCabDetails(){
         return cabDetails;
+    }
+    public ArrayList<UserFeedBack> getUserFeedBacks(){
+        return userFeedBacks;
     }
 
     public AccountDetails getEmployeeByEmail(String email , String password){

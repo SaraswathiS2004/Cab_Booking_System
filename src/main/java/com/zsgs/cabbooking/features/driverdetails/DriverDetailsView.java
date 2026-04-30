@@ -20,7 +20,7 @@ public class DriverDetailsView {
     }
     public void init(){
         System.out.println("\n========== RIDEX ==========");
-        System.out.println("Welcome to RideX\n");
+        System.out.println("Welcome to RideX");
         promptDriverDetails();
         new CabDetailsView().init();
     }
@@ -34,14 +34,14 @@ public class DriverDetailsView {
 
     }
     public void onDriverSuccessful(long id){
-        System.out.println("\nYour registration number is: " + id);
+        System.out.println("Your registration number is: " + id);
         System.out.println("Driver details added successfully!");
 
     }
 
     public String promptAddress(){
         while(true){
-            System.out.print("\nEnter Your Address : ");
+            System.out.print("Enter Your Address : ");
             scanner.nextLine();
             String address = scanner.nextLine();
             String error = driverDetailsModel.validateAddress(address);
@@ -53,7 +53,7 @@ public class DriverDetailsView {
     }
     public int promptAge(){
         while(true){
-            System.out.print("\nEnter Your Age : ");
+            System.out.print("Enter Your Age : ");
             int age = scanner.nextInt();
             String error = driverDetailsModel.validateAge(age);
             if(error == null){
@@ -64,7 +64,7 @@ public class DriverDetailsView {
     }
     public int promptExperience(int age){
         while(true){
-            System.out.print("\nEnter your driving experience (in years) : ");
+            System.out.print("Enter your driving experience (in years) : ");
             int experience = scanner.nextInt();
             String error = driverDetailsModel.validateExperience(experience , age);
             if(error == null){
@@ -78,7 +78,7 @@ public class DriverDetailsView {
 
     public String promptMobileNumber(){
         while(true) {
-            System.out.print("\nEnter Your Mobile Number : ");
+            System.out.print("Enter Your Mobile Number : ");
             String mobileNumber = scanner.next();
             String error = driverDetailsModel.validateMobileNumber(mobileNumber);
             if (error == null) {

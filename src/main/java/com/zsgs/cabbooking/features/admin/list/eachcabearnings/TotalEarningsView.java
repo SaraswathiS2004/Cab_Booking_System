@@ -1,8 +1,6 @@
-package com.zsgs.cabbooking.features.admin.totalearnings;
+package com.zsgs.cabbooking.features.admin.list.eachcabearnings;
 
 import com.zsgs.cabbooking.data.repository.CabDB;
-
-import java.lang.classfile.attribute.LineNumberInfo;
 
 public class TotalEarningsView {
 

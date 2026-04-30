@@ -5,6 +5,7 @@ import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
 import com.zsgs.cabbooking.features.admin.list.cablist.CabListView;
 import com.zsgs.cabbooking.features.admin.list.driversList.DriversListView;
+import com.zsgs.cabbooking.features.admin.list.feedbacklist.FeedBackListView;
 import com.zsgs.cabbooking.features.admin.list.usertriplist.UserTripDetailsView;
 import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
 import com.zsgs.cabbooking.features.input.Input;
@@ -45,8 +46,9 @@ public class HomeView {
             System.out.println("2. View Driver Details");
             System.out.println("3. View Cab Details");
             System.out.println("4. View User Details");
-            System.out.println("5. Logout");
-            System.out.println("6. Exit");
+            System.out.println("5. View FeedBack Details");
+            System.out.println("6. Logout");
+            System.out.println("7. Exit");
             System.out.println("Choose Your Option : ");
             String choice = scanner.next();
             switch (choice) {
@@ -63,11 +65,15 @@ public class HomeView {
                     break;
                 case "4":
                     new UserTripDetailsView().init();
+                    break;
                 case "5":
+                    new FeedBackListView().init();
+                    break;
+                case "6":
                     CabBooking.showMenu();
                     System.exit(0);
                     break;
-                case "6":
+                case "7":
                     System.out.println("Thank you for using RideX");
                     System.exit(0);
                     break;

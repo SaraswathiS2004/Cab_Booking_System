@@ -100,7 +100,7 @@ public class FeedBackView {
             }
         }
     }
-    public void onSuccessful() {
+    public void onSuccessfulFeedBack() {
         authenticated = true;
         onFeedBackAddedSuccessful();
     }
