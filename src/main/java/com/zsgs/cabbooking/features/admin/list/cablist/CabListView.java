@@ -16,18 +16,16 @@ public class CabListView {
     void showCabs(ArrayList<CabDetails> cabsList){
         System.out.println("========== CAB LIST ==========\n");
 
-        System.out.printf("%-7s %-20s %-15s %-10s%n",
-                "Cab ID", "Registration No", "Model", "Type");
-
         System.out.println("----------------------------------------------------------");
 
-        for(CabDetails cabDetails : cabsList){
-            System.out.printf("%-7d %-20s %-15s %-10s%n",
-                    cabDetails.getCabId(),
-                    cabDetails.getRegistrationNumber(),
-                    cabDetails.getModel(),
-                    cabDetails.getType());
+        for(CabDetails cabDetails : cabsList) {
+
+            System.out.println("Cab Id : " + cabDetails.getCabId() +
+                    "  Driver Id : " + cabDetails.getRegistrationNumber() +
+                    "  Cab Model : " + cabDetails.getModel() + "  Cab Type " + cabDetails.getType() + "  Total Earnings : "+ cabDetails.getTotalEarning());
         }
+        System.out.println("----------------------------------------------------------");
+
     }
     void onCabsFailed(){
         System.out.println("\nNo cabs are available.");

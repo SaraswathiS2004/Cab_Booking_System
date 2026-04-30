@@ -38,7 +38,8 @@ public class FeedBackView {
 
         while (true) {
             System.out.print("Enter Your Feed Back : ");
-            String content = scanner.next();
+            scanner.nextLine();
+            String content = scanner.nextLine();
             String error = feedBackModel.validateContent(content);
             if (error == null) {
                 return content;

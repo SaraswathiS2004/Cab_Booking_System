@@ -91,7 +91,6 @@ public class HomeView {
             System.out.println("4. Log Out");
             System.out.println("5. Exit");
             System.out.print("Choose Your Option : ");
-
             String choice = scanner.next();
 
             switch (choice) {
