@@ -13,8 +13,8 @@ public class CabDetailsView {
         scanner = input.getInstance();
     }
     public void init(){
-        System.out.println("Enter Your Cab Details");
-        System.out.println("Welcome to RideX");
+        System.out.println("========== RIDEX ==========\n");
+        System.out.println("Enter your cab details\n");
         promptAction();
     }
     public void promptAction(){
@@ -26,7 +26,7 @@ public class CabDetailsView {
 
     public long promptDriverID(){
         while(true){
-            System.out.println("Enter Your Registration Number");
+            System.out.print("Enter your registration number: ");
             long id = scanner.nextLong();
             String error = cabDetailsModel.validateId(id);
             if(error == null){
@@ -38,7 +38,7 @@ public class CabDetailsView {
 
     String promptType(){
         while(true){
-            System.out.println("Enter Your Cab Type");
+            System.out.print("Enter cab type: ");
             String type = scanner.nextLine();
             String error = cabDetailsModel.validateType(type);
 
@@ -51,7 +51,7 @@ public class CabDetailsView {
 
     String promptModel(){
         while(true){
-            System.out.println("Enter Your Cab Model");
+            System.out.print("Enter cab model: ");
             scanner.nextLine();
             String model = scanner.nextLine();
             String error = cabDetailsModel.validateModel(model);
@@ -63,7 +63,7 @@ public class CabDetailsView {
     }
 
     void onSuccessful(){
-        System.out.println("Successfully Added Your cab Details");
+        System.out.println("\nCab details added successfully!");
     }
     void showErrorMessage(String message){
         System.out.println(message);

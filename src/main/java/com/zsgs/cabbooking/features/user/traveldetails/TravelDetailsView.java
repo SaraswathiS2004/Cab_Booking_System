@@ -24,13 +24,13 @@ public class TravelDetailsView {
     }
 
     public void init(){
-        System.out.println("Welcome to RideX");
+        System.out.println("Welcome to RideX\n");
         promptTravelDetails();
     }
     void promptTravelDetails(){
         cabDetails = travelDetailsModel.getAvailableCabs();
         if(cabDetails.size() == 0){
-            showErrorMessage("There is no available Cabs");
+            showErrorMessage("No cabs are available in this moment");
             promptPostFailureAction();
         }
         else {
@@ -49,21 +49,22 @@ public class TravelDetailsView {
     }
 
     void onDetailsUploadedSuccessful(){
-        System.out.println("Successfully Uploded Your Trip details");
+        System.out.println("\nTrip details uploaded successfully!");
 
     }
 
     int promptPayAmount(String pickUp , String dropUp){
-        System.out.println("Please pay your amount for your trip");
+        System.out.println("\n========== PAYMENT ==========");
+        System.out.println("Please pay for your trip.");
         int money = travelDetailsModel.calculateMoney(pickUp , dropUp);
-        System.out.println("total Cost : "+money);
+        System.out.println("Total Cost : "+money);
         int amount = promptGetAmount(money);
         return amount;
     }
     int promptGetAmount(int money){
 
         while(true){
-            System.out.println("Pay Your Amount :");
+            System.out.print("Enter payment amount: ");
             int amount = scanner.nextInt();
             String error = travelDetailsModel.validateAmount(money , amount);
             if(error == null){
@@ -73,29 +74,38 @@ public class TravelDetailsView {
         }
     }
     void showCabs(ArrayList<CabDetails> cabs){
-        System.out.println("Cabs List :");
-        System.out.println();
-        for(CabDetails cabDetails : cabs){
-            System.out.println("Cab Id "+ cabDetails.getCabId() +" Driver Regitraion Number : "+
-                    cabDetails.getRegistrationNumber() +" Model : "+cabDetails.getModel() +" Type : "+ cabDetails.getType());
+        System.out.println("\n========== AVAILABLE CABS ==========\n");
+
+        System.out.printf("%-7s %-20s %-15s %-10s%n",
+                "Cab ID", "Registration No", "Model", "Type");
+
+        System.out.println("----------------------------------------------------------");
+
+        for (CabDetails cabDetails : cabs) {
+            System.out.printf("%-7d %-20s %-15s %-10s%n",
+                    cabDetails.getCabId(),
+                    cabDetails.getRegistrationNumber(),
+                    cabDetails.getModel(),
+                    cabDetails.getType());
         }
     }
     void promptPostFailureAction(){
         while(true){
-            System.out.println();
+            System.out.println("\n========== OPTIONS ==========");
             System.out.println("1. Sign In");
             System.out.println("2. Exit");
+            System.out.print("Choose an option: ");
             String choice = scanner.next();
             switch (choice){
                 case "1" :
                     new SignInView().init();
                     break;
                 case "2":
-                    System.out.println("Thank you for using RideX");
+                    System.out.println("\nThank you for using RideX.");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Invalid Option Please Try Again!");
+                    System.out.println("Invalid option. Please try again.");
                     break;
             }
         }
@@ -103,7 +113,7 @@ public class TravelDetailsView {
     long promptCabId(ArrayList<CabDetails> cabDetails){
 
         while(true){
-            System.out.println("Choose Your Cab Id ");
+            System.out.print("Enter Cab ID: ");
             long cabId = scanner.nextLong();
             String error = travelDetailsModel.validateCabId(cabDetails , cabId);
             if(error == null){
@@ -118,7 +128,7 @@ public class TravelDetailsView {
     String promptPickUpPoint(){
 
         while(true){
-            System.out.println("Enter Your Pick Up place (A , B, C , D , E)");
+            System.out.print("Enter pickup location (A, B, C, D, E): ");
             String pickUp = String.valueOf(scanner.next()).toUpperCase();
             String error = travelDetailsModel.validatePickUpPlace(pickUp);
             if(error == null){
@@ -132,7 +142,7 @@ public class TravelDetailsView {
     String promptDropUpPoint(String pickUp){
 
         while(true){
-            System.out.println("Enter Your Drop Up Place (A , B , C , D , E)");
+            System.out.print("Enter drop location (A, B, C, D, E): ");
             String dropUp = String.valueOf(scanner.next()).toUpperCase();
             String error = travelDetailsModel.validateDropUpPlace(pickUp  , dropUp);
             if(error == null){

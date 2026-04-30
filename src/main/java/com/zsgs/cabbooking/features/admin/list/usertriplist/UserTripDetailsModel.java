@@ -16,6 +16,5 @@ class UserTripDetailsModel {
 
     public void getUsers(){
         ArrayList<UserTripDetails> userTripDetails = cabDB.getUserTripDetails();
-
     }
 }

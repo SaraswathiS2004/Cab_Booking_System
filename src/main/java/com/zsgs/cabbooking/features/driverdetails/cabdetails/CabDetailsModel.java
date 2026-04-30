@@ -32,24 +32,24 @@ class CabDetailsModel {
                 return null;
             }
         }
-        return "Your Driver Id is Incorrect";
+        return "Invalid driver ID.";
     }
 
     String validateModel(String model){
          if(model == null || model.trim().isEmpty()){
-             return "Model cannot be empty";
+             return "Cab Model cannot be empty.";
          }
          else if(model.trim().length() < 3 ) {
-             return "Model must be Between 3 to 30 Characters";
+             return "Model must be Between 3 to 30 Characters.";
          }
          return null;
     }
     String validateType(String type){
          if(type == null || type.trim().isEmpty()){
-             return "Type Cannot be Empty";
+             return "Type Cannot be Empty.";
          }
          else if(type.trim().length() < 3){
-             return "Type Must be Between 3 to 30 Characters";
+             return "Type Must be Between 3 to 30 Characters.";
          }
          return null;
     }

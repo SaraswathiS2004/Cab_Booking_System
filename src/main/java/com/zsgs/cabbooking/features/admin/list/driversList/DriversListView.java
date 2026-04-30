@@ -15,15 +15,24 @@ public class DriversListView {
         driversListModel.getDrivers();
     }
     void showDrivers(ArrayList<DriverDetails> driverDetails){
-        System.out.println("Drivers : ");
-        System.out.println();
+        System.out.println("========== DRIVER LIST ==========\n");
+
+        System.out.printf("%-10s %-15s %-20s %-5s %-12s %-15s%n",
+                "Reg No", "Name", "Address", "Age", "Experience", "Mobile");
+
+        System.out.println("--------------------------------------------------------------------------");
+
         for(DriverDetails driverDetails1 : driverDetails){
-            System.out.println("Register_number : "+ driverDetails1.getId()+" Name : "+ driverDetails1.getName()
-            +" Address : "+driverDetails1.getAddress()+" Age : "+driverDetails1.getAge()+" Experience "+
-                    driverDetails1.getExperience()+ " Mobile Number "+ driverDetails1.getMobileNumber());
+            System.out.printf("%-10d %-15s %-20s %-5d %-12s %-15s%n",
+                    driverDetails1.getId(),
+                    driverDetails1.getName(),
+                    driverDetails1.getAddress(),
+                    driverDetails1.getAge(),
+                    driverDetails1.getExperience(),
+                    driverDetails1.getMobileNumber());
         }
     }
     void onDriversListFailed(){
-        System.out.println("Drivers is not available");
+        System.out.println("\nNo drivers are available.");
     }
 }

@@ -19,7 +19,8 @@ public class DriverDetailsView {
 
     }
     public void init(){
-        System.out.println("Welcome to RideX");
+        System.out.println("========== RIDEX ==========\n");
+        System.out.println("Welcome to RideX\n");
         promptDriverDetails();
         new CabDetailsView().init();
     }
@@ -33,8 +34,8 @@ public class DriverDetailsView {
 
     }
     public void onDriverSuccessful(long id){
-        System.out.println("Your Registration Number is : "+ id);
-        System.out.println("Successfully added Your Details");
+        System.out.println("\nYour registration number is: " + id);
+        System.out.println("Driver details added successfully!");
 
     }
 
@@ -52,7 +53,7 @@ public class DriverDetailsView {
     }
     public int promptAge(){
         while(true){
-            System.out.println("\nEnter Your Age");
+            System.out.print("\nEnter Your Age");
             int age = scanner.nextInt();
             String error = driverDetailsModel.validateAge(age);
             if(error == null){
@@ -63,7 +64,7 @@ public class DriverDetailsView {
     }
     public int promptExperience(int age){
         while(true){
-            System.out.print("\nEnter Your Drive Experience");
+            System.out.print("\nEnter your driving experience (in years): ");
             int experience = scanner.nextInt();
             String error = driverDetailsModel.validateExperience(experience , age);
             if(error == null){

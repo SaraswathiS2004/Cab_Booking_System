@@ -14,16 +14,23 @@ public class CabListView {
         cabListModel.getCabs();
     }
     void showCabs(ArrayList<CabDetails> cabsList){
-        System.out.println("Cabs List :");
-        System.out.println();
+        System.out.println("========== CAB LIST ==========\n");
+
+        System.out.printf("%-7s %-20s %-15s %-10s%n",
+                "Cab ID", "Registration No", "Model", "Type");
+
+        System.out.println("----------------------------------------------------------");
 
         for(CabDetails cabDetails : cabsList){
-            System.out.println("Cab Id "+ cabDetails.getCabId() +" Driver Regitraion Number : "+
-                    cabDetails.getRegistrationNumber() +" Model : "+cabDetails.getModel() +" Type : "+ cabDetails.getType());
+            System.out.printf("%-7d %-20s %-15s %-10s%n",
+                    cabDetails.getCabId(),
+                    cabDetails.getRegistrationNumber(),
+                    cabDetails.getModel(),
+                    cabDetails.getType());
         }
     }
     void onCabsFailed(){
-        System.out.println("There are no Cabs");
+        System.out.println("\nNo cabs are available.");
     }
 
 }
