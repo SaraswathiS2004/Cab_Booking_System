@@ -128,7 +128,7 @@ public class TravelDetailsView {
     String promptPickUpPoint(){
 
         while(true){
-            System.out.print("Enter pickup location (A, B, C, D, E): ");
+            System.out.print("Enter pickup location (A, B, C, D, E , F): ");
             String pickUp = String.valueOf(scanner.next()).toUpperCase();
             String error = travelDetailsModel.validatePickUpPlace(pickUp);
             if(error == null){
@@ -142,11 +142,11 @@ public class TravelDetailsView {
     String promptDropUpPoint(String pickUp){
 
         while(true){
-            System.out.print("Enter drop location (A, B, C, D, E): ");
+            System.out.print("Enter drop location (A, B, C, D, E, F): ");
             String dropUp = String.valueOf(scanner.next()).toUpperCase();
             String error = travelDetailsModel.validateDropUpPlace(pickUp  , dropUp);
             if(error == null){
-                return pickUp;
+                return dropUp;
             }
             else {
                 showErrorMessage(error);

@@ -43,7 +43,7 @@ public class TravelDetailsModel {
         userTripDetails.setStatus(tripStatus);
         userTripDetails.setAccountDetails(currentUser);
         userTripDetails.setTripId(cabDB.getCabId());
-        userTripDetails.setPayment(payment);
+        userTripDetails.setPayment(payment + money);
         cabDB.addTripDetails(userTripDetails);
         travelDetailsView.onDetailsUploadedSuccessful();
 
