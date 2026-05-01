@@ -22,7 +22,7 @@ public class CabListView {
 
             System.out.println("Cab Id : " + cabDetails.getCabId() +
                     "  Driver Id : " + cabDetails.getRegistrationNumber() +
-                    "  Cab Model : " + cabDetails.getModel() + "  Cab Type " + cabDetails.getType() + "  Total Earnings : "+ cabDetails.getTotalEarning());
+                    "  Cab Model : " + cabDetails.getModel() + "  Cab Type " + cabDetails.getType());
         }
         System.out.println("----------------------------------------------------------");
 
