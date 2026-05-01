@@ -14,7 +14,7 @@ public class CabDetailsView {
     }
     public void init(){
         System.out.println("========== RIDEX ==========\n");
-        System.out.println("Enter your cab details\n");
+        System.out.println("Enter your cab details : \n");
         promptAction();
     }
     public void promptAction(){
