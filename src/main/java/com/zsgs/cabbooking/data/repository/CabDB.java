@@ -94,7 +94,9 @@ public class CabDB {
     public ArrayList<UserFeedBack> getUserFeedBacks(){
         return userFeedBacks;
     }
-
+    public ArrayList<CabCurrentPosition> getCabsPosition(){
+        return cabsPosition;
+    }
     public AccountDetails getEmployeeByEmail(String email , String password){
         if (email == null){
             return null;

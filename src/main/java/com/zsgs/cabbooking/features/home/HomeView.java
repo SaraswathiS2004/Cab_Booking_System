@@ -4,6 +4,7 @@ import com.zsgs.cabbooking.CabBooking;
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
 import com.zsgs.cabbooking.features.admin.list.cablist.CabListView;
+import com.zsgs.cabbooking.features.admin.list.cabspositionlist.CabsPositionListView;
 import com.zsgs.cabbooking.features.admin.list.driversList.DriversListView;
 import com.zsgs.cabbooking.features.admin.list.eachcabearnings.TotalEarningsView;
 import com.zsgs.cabbooking.features.admin.list.feedbacklist.FeedBackListView;
@@ -48,19 +49,18 @@ public class HomeView {
             System.out.println("4. View User Details");
             System.out.println("5. View FeedBack Details");
             System.out.println("6. View Cabs Total Earnings");
-            System.out.println("7. Logout");
-            System.out.println("8. Exit");
+            System.out.println("7. View Cabs Current Position");
+            System.out.println("8. Logout");
+            System.out.println("9. Exit");
             System.out.println("Choose Your Option : ");
             String choice = scanner.next();
             switch (choice) {
                 case "1":
                     new AccountsListView().init();
                     break;
-
                 case "2":
                     new DriversListView().init();
                     break;
-
                 case "3":
                     new CabListView().init();
                     break;
@@ -74,10 +74,13 @@ public class HomeView {
                     new TotalEarningsView().init();
                     break;
                 case "7":
+                    new CabsPositionListView().init();
+                    break;
+                case "8":
                     CabBooking.showMenu();
                     System.exit(0);
                     break;
-                case "8":
+                case "9":
                     System.out.println("Thank you for using RideX");
                     System.exit(0);
                     break;
