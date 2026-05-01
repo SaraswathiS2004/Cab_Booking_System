@@ -13,9 +13,8 @@ public class CabDB {
     private static long cabId = 1;
     private static long tripId = 1;
     private static long feedBackId = 1;
-     private CabDB(){
 
-     }
+    private CabDB(){}
     public long getDriverId() {
         return driverId;
     }
@@ -30,6 +29,7 @@ public class CabDB {
      private static ArrayList<CabDetails> cabDetails = new ArrayList<>();
      private static ArrayList<UserTripDetails> userTripDetails = new ArrayList<>();
      private static ArrayList<UserFeedBack> userFeedBacks = new ArrayList<>();
+     private static ArrayList<CabCurrentPosition> cabsPosition = new ArrayList<>();
 
     public static ArrayList<AccountDetails> getAccountDetails() {
         return accountDetails;
@@ -48,7 +48,12 @@ public class CabDB {
          peopleId++;
      }
      public void addTripDetails(UserTripDetails userTripDetails){
-
+        long cabId = userTripDetails.getCabId();
+        for(CabCurrentPosition cabCurrentPosition : cabsPosition){
+            if(cabCurrentPosition.getCabId() == cabId){
+                cabCurrentPosition.setPosition(userTripDetails.getDropUp());
+            }
+        }
         cabDB.userTripDetails.add(userTripDetails);
          tripId++;
      }
@@ -68,7 +73,6 @@ public class CabDB {
         return accountDetails;
     }
 
-
     public void addDriver(DriverDetails driverDetails){
 
         CabDB.driverDetails.add(driverDetails);
@@ -80,6 +84,9 @@ public class CabDB {
     public void addCab(CabDetails cabDetails){
         cabDB.cabDetails.add(cabDetails);
         cabId++;
+    }
+    public void addCabPosition(CabCurrentPosition cabCurrentPosition){
+        cabDB.cabsPosition.add(cabCurrentPosition);
     }
     public ArrayList<CabDetails> getCabDetails(){
         return cabDetails;

@@ -1,5 +1,6 @@
 package com.zsgs.cabbooking.features.driverdetails.cabdetails;
 
+import com.zsgs.cabbooking.data.dto.CabCurrentPosition;
 import com.zsgs.cabbooking.data.dto.CabDetails;
 import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
@@ -10,17 +11,22 @@ class CabDetailsModel {
      private CabDetailsView cabDetailsView;
      private CabDetails cabDetails;
      private CabDB cabDB;
+     private CabCurrentPosition cabCurrentPosition;
 
      public CabDetailsModel (CabDetailsView cabDetailsView){
          this.cabDetailsView = cabDetailsView;
-         cabDetails = new CabDetails();
-         cabDB = CabDB.getInstance();
+         this.cabDetails = new CabDetails();
+         this.cabDB = CabDB.getInstance();
+         this.cabCurrentPosition = new CabCurrentPosition();
      }
 
      public void storeData(long registrationNumber  , String model , String type){
          long cabId = cabDB.getCabId();
          cabDetails.setValues(cabId , registrationNumber , model , type);
+         cabCurrentPosition.setCabId(cabId);
+         cabCurrentPosition.setPosition("A");
          cabDB.addCab(cabDetails);
+         cabDB.addCabPosition(cabCurrentPosition);
          cabDetailsView.onSuccessful();
      }
 
@@ -53,20 +59,4 @@ class CabDetailsModel {
          }
          return null;
     }
-     boolean isAlreadyRegistered(long id){
-
-         ArrayList<DriverDetails> driverDetails = cabDB.getDriverDetails();
-
-         for(DriverDetails driverDetails1 : driverDetails){
-             if(driverDetails1 == null) continue;
-             else {
-                 long registerId = driverDetails1.getId();
-                 if(registerId == id){
-                     return true;
-                 }
-             }
-         }
-         return false;
-     }
-
 }

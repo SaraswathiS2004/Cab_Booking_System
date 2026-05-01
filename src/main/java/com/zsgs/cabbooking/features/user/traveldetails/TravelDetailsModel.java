@@ -15,7 +15,7 @@ public class TravelDetailsModel {
     private TravelDetailsView travelDetailsView;
     private CabDB cabDB;
     private UserTripDetails userTripDetails;
-    private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A" , "B" , "C" , "D" , "E"));
+    private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A" , "B" , "C" , "D" , "E" , "F"));
 
     public TravelDetailsModel(TravelDetailsView travelDetailsView){
         this.travelDetailsView = travelDetailsView;
@@ -55,14 +55,8 @@ public class TravelDetailsModel {
     int calculateMoney(String pick , String drop){
         int index = Math.abs(places.indexOf(pick) - places.indexOf(drop));
         int money = 100;
-        index = index -1;
-        int sumMoney = 0;
-        while(index > 0){
-            sumMoney += 10;
-            index --;
-
-        }
-        int totalMoney = sumMoney + money;
+        int km = ((index) * 15) - 5;
+        int totalMoney = (km * 10) + money;
         return totalMoney;
 
     }
