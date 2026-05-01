@@ -1,11 +1,7 @@
 package com.zsgs.cabbooking;
 
-import com.zsgs.cabbooking.data.dto.DriverDetails;
 import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.admin.list.accountslist.AccountsListView;
-import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
-import com.zsgs.cabbooking.features.home.HomeView;
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 

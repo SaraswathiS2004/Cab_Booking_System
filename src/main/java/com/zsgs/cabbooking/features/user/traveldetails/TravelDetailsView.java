@@ -1,7 +1,7 @@
 package com.zsgs.cabbooking.features.user.traveldetails;
 
 import com.zsgs.cabbooking.data.dto.*;
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 
 

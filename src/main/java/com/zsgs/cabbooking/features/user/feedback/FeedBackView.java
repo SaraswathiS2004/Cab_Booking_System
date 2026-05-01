@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.user.feedback;
 
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
 import java.util.Scanner;

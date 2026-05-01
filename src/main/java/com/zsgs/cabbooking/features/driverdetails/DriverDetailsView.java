@@ -3,7 +3,7 @@ package com.zsgs.cabbooking.features.driverdetails;
 //import com.zsgs.cabbooking.features.admin;
 
 import com.zsgs.cabbooking.features.driverdetails.cabdetails.CabDetailsView;
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 
 import java.util.Scanner;
 

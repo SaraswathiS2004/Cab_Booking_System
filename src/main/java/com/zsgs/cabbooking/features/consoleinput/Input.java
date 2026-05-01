@@ -1,4 +1,4 @@
-package com.zsgs.cabbooking.features.input;
+package com.zsgs.cabbooking.features.consoleinput;
 
 import java.util.Scanner;
 

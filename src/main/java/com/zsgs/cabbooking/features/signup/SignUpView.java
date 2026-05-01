@@ -2,13 +2,11 @@ package com.zsgs.cabbooking.features.signup;
 
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Role;
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 
-import com.zsgs.cabbooking.features.input.Input;
 import com.zsgs.cabbooking.features.signin.SignInView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class SignUpView {

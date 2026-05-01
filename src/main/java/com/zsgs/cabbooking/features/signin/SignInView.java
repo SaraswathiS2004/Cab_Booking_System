@@ -4,7 +4,7 @@ import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Role;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.home.HomeView;
-import com.zsgs.cabbooking.features.input.Input;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
 import java.util.Scanner;

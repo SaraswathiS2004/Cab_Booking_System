@@ -9,8 +9,7 @@ import com.zsgs.cabbooking.features.admin.list.eachcabearnings.TotalEarningsView
 import com.zsgs.cabbooking.features.admin.list.feedbacklist.FeedBackListView;
 import com.zsgs.cabbooking.features.admin.list.usertriplist.UserTripDetailsView;
 import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
-import com.zsgs.cabbooking.features.input.Input;
-import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
+import com.zsgs.cabbooking.features.consoleinput.Input;
 import com.zsgs.cabbooking.features.user.feedback.FeedBackView;
 import com.zsgs.cabbooking.features.user.traveldetails.TravelDetailsView;
 
