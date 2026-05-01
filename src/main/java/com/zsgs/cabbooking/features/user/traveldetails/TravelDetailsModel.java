@@ -1,9 +1,6 @@
 package com.zsgs.cabbooking.features.user.traveldetails;
 
-import com.zsgs.cabbooking.data.dto.AccountDetails;
-import com.zsgs.cabbooking.data.dto.CabDetails;
-import com.zsgs.cabbooking.data.dto.TripStatus;
-import com.zsgs.cabbooking.data.dto.UserTripDetails;
+import com.zsgs.cabbooking.data.dto.*;
 import com.zsgs.cabbooking.data.repository.CabDB;
 
 import java.time.LocalTime;
@@ -16,7 +13,6 @@ public class TravelDetailsModel {
     private CabDB cabDB;
     private UserTripDetails userTripDetails;
     private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A" , "B" , "C" , "D" , "E" , "F"));
-
     public TravelDetailsModel(TravelDetailsView travelDetailsView){
         this.travelDetailsView = travelDetailsView;
         this.cabDB = CabDB.getInstance();
@@ -68,6 +64,26 @@ public class TravelDetailsModel {
         else {
             return null;
         }
+    }
+    long getCabs(ArrayList<CabDetails> cabDetails , String pickUp){
+        int minPosition = Integer.MAX_VALUE;
+        CabDetails cab = null;
+        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+        for(CabDetails cabDetails1 : cabDetails){
+            long id = cabDetails1.getCabId();
+            for(CabCurrentPosition cabCurrentPosition : cabCurrentPositions){
+                if(cabCurrentPosition.getCabId() == id){
+                    String position = cabCurrentPosition.getPosition();
+                    int index1 = position.indexOf(position);
+                    int index2 = position.indexOf(pickUp);
+                    if(minPosition > Math.abs(index1 - index2)) {
+                        minPosition = Math.min(Math.abs(index1 - index2), minPosition);
+                        cab = cabDetails1;
+                    }
+                }
+            }
+        }
+        return cab != null ? cab.getCabId() : null;
     }
 
     String validateDropUpPlace(String pickUp , String dropUp){

@@ -36,7 +36,6 @@ public class AvailableCabsView {
                     cabDetails1.getTotalEarning());
         }
     }
-
     public void showCabsFailed() {
         System.out.println("There are no Cabs Available now!");
     }

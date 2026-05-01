@@ -14,7 +14,6 @@ public class TravelDetailsView {
     private TravelDetailsModel travelDetailsModel;
     private AccountDetails accountDetails;
     private Scanner scanner;
-    private ArrayList<CabDetails> cabDetails;
 
     public TravelDetailsView(AccountDetails accountDetails){
         this.travelDetailsModel = new TravelDetailsModel(this);
@@ -28,7 +27,7 @@ public class TravelDetailsView {
         promptTravelDetails();
     }
     void promptTravelDetails(){
-        cabDetails = travelDetailsModel.getAvailableCabs();
+        ArrayList<CabDetails> cabDetails = travelDetailsModel.getAvailableCabs();
         if(cabDetails.size() == 0){
             showErrorMessage("No cabs are available in this moment");
             promptPostFailureAction();
@@ -38,8 +37,8 @@ public class TravelDetailsView {
             String dropUp = promptDropUpPoint(pickUp);
             LocalTime pickupTiming = LocalTime.now();
             LocalTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
-            showCabs(cabDetails);
-            long cabId = promptCabId(cabDetails);
+            long cabId = travelDetailsModel.getCabs(cabDetails , pickUp);
+            showCabs("Your Cab Id is : "+ cabId);
             TripStatus tripStatus = TripStatus.BOOKED;
             int payment =  promptPayAmount(pickUp , dropUp);
             travelDetailsModel.setCabEarnings(cabId ,payment);
@@ -50,7 +49,6 @@ public class TravelDetailsView {
 
     void onDetailsUploadedSuccessful(){
         System.out.println("\nTrip details uploaded successfully!");
-
     }
 
     int promptPayAmount(String pickUp , String dropUp){
@@ -73,21 +71,8 @@ public class TravelDetailsView {
             showErrorMessage(error);
         }
     }
-    void showCabs(ArrayList<CabDetails> cabs){
-        System.out.println("\n========== AVAILABLE CABS ==========\n");
-
-        System.out.printf("%-7s %-20s %-15s %-10s%n",
-                "Cab ID", "Registration No", "Model", "Type");
-
-        System.out.println("----------------------------------------------------------");
-
-        for (CabDetails cabDetails : cabs) {
-            System.out.printf("%-7d %-20s %-15s %-10s%n",
-                    cabDetails.getCabId(),
-                    cabDetails.getRegistrationNumber(),
-                    cabDetails.getModel(),
-                    cabDetails.getType());
-        }
+    void showCabs(String message){
+        System.out.println(message);
     }
     void promptPostFailureAction(){
         while(true){
