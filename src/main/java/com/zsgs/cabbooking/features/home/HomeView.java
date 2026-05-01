@@ -29,7 +29,7 @@ public class HomeView {
 
     public void init() {
 
-        System.out.println("\nWelcome to " + accountDetails.getName() + " !");
+        System.out.println("\nWelcome to RideX");
 
         homeModel.init(accountDetails);
     }

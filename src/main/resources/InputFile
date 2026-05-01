@@ -1,0 +1,358 @@
+C:\Users\ADMIN\.jdks\openjdk-24\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1\lib\idea_rt.jar=62445" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\ADMIN\IdeaProjects\demo\RideX\target\classes com.zsgs.cabbooking.CabBooking
+Welcome to RideX
+1. SignUp
+Choose Your Option : 1
+Create Your Account!
+Enter Your Name : Saras
+Enter the Email Address : Saras@2004.in
+Enter the Password : 123abcde
+Enter Confirm Password : 123abcde
+Enter Your City : tirunelveli
+Enter Your Mobile Number : 8989898989
+
+Account Created Successfully!
+As the first user in the system, you will be registered as a ADMIN.
+Sign in to RideX!
+Enter the Email Address : Saras@2004.in
+Enter the password : 123abcde
+
+Welcome to RideX
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+1
+Account List:
+--------------------------------------------------------------------------
+User Id :1  Name : Saras  Email Id : Saras@2004.in  Role : ADMIN  Mobile Number : 8989898989  City : tirunelveli
+--------------------------------------------------------------------------------
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+8
+
+1. SignUp
+2. SignIn
+Choose Your Option : 1
+Create Your Account!
+Enter Your Name : Sara
+Enter the Email Address : Sara@2004.in
+Enter the Password : 123abcde
+Enter Confirm Password : 123abcde
+Enter Your City : tirunelveli
+Enter Your Mobile Number : 8989898989
+Enter Your Role (USER , DRIVER) : driver
+
+Account Created Successfully!
+Sign in to RideX!
+Enter the Email Address : Sara@2004.in
+Enter the password : 123abcde
+Enter Your Driving Details :
+========== RIDEX ==========
+Welcome to RideX
+Enter Your Age : 19
+Enter Your Address : ckfjnvkj
+Enter your driving experience (in years) : 1
+Enter Your Mobile Number : 8989898989
+Your registration number is: 1
+Driver details added successfully!
+========== RIDEX ==========
+
+Enter your cab details :
+
+Enter your registration number: 1
+Enter cab model: fjenvc
+Enter cab type: vefnve
+
+Cab details added successfully!
+
+Do you want to Continue(Y/N)Y
+
+1. SignUp
+2. SignIn
+Choose Your Option : 2
+
+Sign in to RideX!
+Enter the Email Address : Sara@2004.in
+Enter the password : 123abcde
+Enter Your Driving Details :
+========== RIDEX ==========
+Welcome to RideX
+Enter Your Age : 19
+Enter Your Address : ckenc
+Enter your driving experience (in years) : 1
+Enter Your Mobile Number : 8989898989
+Your registration number is: 2
+Driver details added successfully!
+========== RIDEX ==========
+
+Enter your cab details :
+
+Enter your registration number: 2
+Enter cab model: vjefknv
+Enter cab type: voirenj\
+
+Cab details added successfully!
+
+Do you want to Continue(Y/N)Y
+
+1. SignUp
+2. SignIn
+Choose Your Option : 2
+
+Sign in to RideX!
+Enter the Email Address : Sara@2004.in
+Enter the password : 123abcde
+Enter Your Driving Details :
+========== RIDEX ==========
+Welcome to RideX
+Enter Your Age : 19
+Enter Your Address : 8
+Address must be between 3 to 100 Characters
+Enter Your Address : ckdnkc
+ckdjc
+Enter your driving experience (in years) : 1
+Enter Your Mobile Number : 9090909090
+Your registration number is: 3
+Driver details added successfully!
+========== RIDEX ==========
+
+Enter your cab details :
+
+Enter your registration number: 3
+Enter cab model: dieh
+Enter cab type: coei
+
+Cab details added successfully!
+
+Do you want to Continue(Y/N)Y
+
+1. SignUp
+2. SignIn
+Choose Your Option : 2
+
+Sign in to RideX!
+Enter the Email Address : Saras@2004.in
+Enter the password : 123abcde
+
+Welcome to RideX
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+2
+========== DRIVER LIST ==========
+
+--------------------------------------------------------------------------
+Driver Id : 1  Name : Saras  Address : ckfjnvkj  Age : 19  Experience : 1  Mobile Number : 8989898989
+Driver Id : 2  Name : Sara  Address : ckenc  Age : 19  Experience : 1  Mobile Number : 8989898989
+Driver Id : 3  Name : null  Address : ckdjc  Age : 19  Experience : 1  Mobile Number : 9090909090
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+3
+========== CAB LIST ==========
+
+----------------------------------------------------------
+Cab Id : 1  Driver Id : 1  Cab Model : fjenvc  Cab Type vefnve
+Cab Id : 2  Driver Id : 2  Cab Model : vjefknv  Cab Type voirenj\
+Cab Id : 3  Driver Id : 3  Cab Model : dieh  Cab Type coei
+----------------------------------------------------------
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+8
+
+1. SignUp
+2. SignIn
+Choose Your Option : 2
+
+Sign in to RideX!
+Enter the Email Address : Sarw
+Invalid Email address
+Enter the Email Address : Sara@2004.in
+Enter the password : ken
+Password must be at least 8 characters and contain letters and numbers
+Enter the password : 123abcde
+Enter Your Driving Details :
+========== RIDEX ==========
+Welcome to RideX
+Enter Your Age : 20
+Enter Your Address : 2
+Address must be between 3 to 100 Characters
+Enter Your Address : jn
+frijng
+Enter your driving experience (in years) : 2
+Enter Your Mobile Number : 9090909090
+Your registration number is: 4
+Driver details added successfully!
+========== RIDEX ==========
+
+Enter your cab details :
+
+Enter your registration number: 4
+Enter cab model: vtrg
+Enter cab type: rbt
+
+Cab details added successfully!
+
+Do you want to Continue(Y/N)Y
+
+1. SignUp
+2. SignIn
+Choose Your Option : 1
+Create Your Account!
+Enter Your Name : Sarah
+Enter the Email Address : Sarah@2004.in
+Enter the Password : 123abcde
+Enter Confirm Password : 123abcde
+Enter Your City : Tirunelveli
+Enter Your Mobile Number : 8989898989
+Enter Your Role (USER , DRIVER) : user
+
+Account Created Successfully!
+Sign in to RideX!
+Enter the Email Address : Sarah@2004.in
+Enter the password : 123abcde
+
+Welcome to RideX
+
+========== USER DASHBOARD ==========
+
+1. Enter Travel Details
+2. Check Available Cabs and Drivers
+3. Feed back Upload
+4. Log Out
+5. Exit
+Choose Your Option : 1
+Welcome to RideX
+
+Enter pickup location (A, B, C, D, E , F): A
+Enter drop location (A, B, C, D, E, F): C
+Your Cab Id is : 1
+
+========== PAYMENT ==========
+Please pay for your trip.
+Total Cost : 350
+Enter payment amount: 350
+
+Trip details uploaded successfully!
+
+========== USER DASHBOARD ==========
+
+1. Enter Travel Details
+2. Check Available Cabs and Drivers
+3. Feed back Upload
+4. Log Out
+5. Exit
+Choose Your Option : 1
+Welcome to RideX
+
+Enter pickup location (A, B, C, D, E , F): F
+Enter drop location (A, B, C, D, E, F): E
+Your Cab Id is : 1
+
+========== PAYMENT ==========
+Please pay for your trip.
+Total Cost : 200
+Enter payment amount: 200
+
+Trip details uploaded successfully!
+
+========== USER DASHBOARD ==========
+
+1. Enter Travel Details
+2. Check Available Cabs and Drivers
+3. Feed back Upload
+4. Log Out
+5. Exit
+Choose Your Option : 4
+
+1. SignUp
+2. SignIn
+Choose Your Option : 2
+
+Sign in to RideX!
+Enter the Email Address : Saras@2004.in
+Enter the password : 123abcde
+
+Welcome to RideX
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
+7
+Cab Id : 1  Cab Current Position : E
+Cab Id : 2  Cab Current Position : A
+Cab Id : 3  Cab Current Position : A
+Cab Id : 4  Cab Current Position : A
+
+========== ADMIN DASHBOARD ==========
+
+1. View Account Details
+2. View Driver Details
+3. View Cab Details
+4. View User Details
+5. View FeedBack Details
+6. View Cabs Total Earnings
+7. View Cabs Current Position
+8. Logout
+9. Exit
+Choose Your Option :
