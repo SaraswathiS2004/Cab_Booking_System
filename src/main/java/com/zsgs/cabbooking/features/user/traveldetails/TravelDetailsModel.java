@@ -7,7 +7,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TravelDetailsModel {
+class TravelDetailsModel {
 
     private TravelDetailsView travelDetailsView;
     private CabDB cabDB;

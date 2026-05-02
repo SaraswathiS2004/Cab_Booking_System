@@ -7,7 +7,7 @@ import com.zsgs.cabbooking.data.repository.CabDB;
 
 import java.util.regex.Pattern;
 
-public class FeedBackModel {
+class FeedBackModel {
     private static final Pattern PASSWORD_PATTERN = Pattern.compile(
             "^(?=.*[A-Za-z])(?=.*\\d).{8,}$");
     private static final Pattern EMAIL_PATTERN = Pattern.compile(

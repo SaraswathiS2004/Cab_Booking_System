@@ -5,7 +5,7 @@ import com.zsgs.cabbooking.data.repository.CabDB;
 
 import java.util.ArrayList;
 
-public class FeedBackListModel {
+class FeedBackListModel {
 
     private FeedBackListView feedBackListView;
     private CabDB cabDB;

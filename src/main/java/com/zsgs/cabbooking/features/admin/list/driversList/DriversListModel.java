@@ -5,7 +5,7 @@ import com.zsgs.cabbooking.data.repository.CabDB;
 
 import java.util.ArrayList;
 
-public class DriversListModel {
+class DriversListModel {
 
     private DriversListView driversListView;
     private CabDB cabDB;
