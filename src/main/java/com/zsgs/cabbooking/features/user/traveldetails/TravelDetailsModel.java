@@ -80,6 +80,11 @@ public class TravelDetailsModel {
                         minPosition = Math.min(Math.abs(index1 - index2), minPosition);
                         cab = cabDetails1;
                     }
+                    else if(minPosition == Math.abs(index1 - index2)){
+                        if(cabDetails1.getTotalEarning() < cab.getTotalEarning()) {
+                            cab = cabDetails1;
+                        }
+                    }
                 }
             }
         }
