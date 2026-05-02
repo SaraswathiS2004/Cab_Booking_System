@@ -52,9 +52,12 @@ public class CabDB {
         for(CabCurrentPosition cabCurrentPosition : cabsPosition){
             if(cabCurrentPosition.getCabId() == cabId){
                 cabCurrentPosition.setPosition(userTripDetails.getDropUp());
+                userTripDetails.setStatus(TripStatus.DROPPED);
             }
         }
+
         cabDB.userTripDetails.add(userTripDetails);
+
          tripId++;
      }
      public void addFeedBack(UserFeedBack userFeedBack){
