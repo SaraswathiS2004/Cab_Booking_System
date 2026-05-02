@@ -1,0 +1,161 @@
+﻿Cab Booking System
+
+
+Tech Stack : Java / MySql
+
+
+Timing : 1 month
+
+Requirement Analysis:
+
+1.Registration 
+2.Login
+3.Available Cabs
+4.Drivar Name
+5.Cab Name
+6.Feed back
+7.Each Cab Earnings Amount
+8.Picup & Drop up Timing 
+9.Location
+10.User Details
+11.Choose cab Current Location
+12.Ratings in Each Cab
+13.Live Location Tracking
+14.Enter travel details
+15.Cab booking Success / not Success Message
+16.Feedback Form 
+
+
+
+
+Features :
+     
+1. Admin Account Creation
+2. Role Based Access
+3. User Login Feature
+     
+Admin :
+ 
+   1.  Registration / login.
+   2. View Driver Details.
+   3. View Cab Details.
+   4. View User Details.
+   5. View Feed Back Details
+   6. View Cabs Total Earnings.
+   7. Log Out
+   8. Exit
+
+
+
+
+Users :
+   1. Register / Login
+   2. Enter travel details.
+   3. Check Available Cabs and Drivers
+   4. Feed Back Upload.
+   5. Log Out
+   6. Exit.
+
+
+    Drivers :
+
+
+      1.  Registration / Login.
+      2.  Enter Travel Details.
+      3.  Enter Cab Details.
+
+
+
+
+
+
+Feasibility Analysis :
+
+           1.Pickup & Drop up Timing - next Phase
+           2.Location - no 
+            3.Ratings in Each Cab - next phase
+           4.Live Location Tracking - next Phase
+
+
+
+
+
+Model Classes :
+
+
+Account Creation : 
+
+
+Admin & User & Driver 
+
+
+SignUp : 
+
+
+                 name String
+                password String
+                 email String
+                 role Role
+                 mobileNumber String
+                 id long
+SignIn: 
+
+               email String
+                password String
+                                
+User Trip Details :
+
+               tripId long
+               pickUp String
+               dropUp String
+               cabId long
+              pickUpTiming LocalTime
+              dropUpTiming LocalTime
+               tripStatus TripStatus
+               Payment int
+               accountDetails AccountDetails
+            
+            
+User Feed Back :
+
+       id long
+              email String            
+              password String
+              feedBackContent String
+
+
+Cab Details :
+         
+               registration Number long
+               cabId long
+               model String
+               type String
+               totalEarnings int
+
+
+Cab Current Position :
+
+
+             cabId long
+             position String
+
+
+Role (Enum) :
+         
+            ADMIN , USER , DRIVER
+
+
+Trip Status :       
+           
+           BOOKED , IN_PROGRESS , DROPPED
+ 
+Driver Details :
+
+
+              id long
+              name String
+              address String
+              age int
+              experience int
+              mobileNumber String
+              cabDetails CabDetails
