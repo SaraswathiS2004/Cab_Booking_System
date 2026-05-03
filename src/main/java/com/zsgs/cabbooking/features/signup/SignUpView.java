@@ -41,7 +41,8 @@ public class SignUpView {
 
         while(true) {
             System.out.print("\nEnter Your Name : ");
-            String name = scan.next();
+            scan.nextLine();
+            String name = scan.nextLine();
             String error = signUpModel.validateName(name);
             if(error == null){
                 return name.trim();
