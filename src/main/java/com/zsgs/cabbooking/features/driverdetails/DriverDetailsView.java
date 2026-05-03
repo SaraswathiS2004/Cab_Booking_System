@@ -22,7 +22,6 @@ public class DriverDetailsView {
         System.out.println("\n========== RIDEX ==========");
         System.out.println("Welcome to RideX");
         promptDriverDetails();
-        new CabDetailsView().init();
     }
 
     public void promptDriverDetails(){
@@ -36,6 +35,7 @@ public class DriverDetailsView {
     public void onDriverSuccessful(long id){
         System.out.println("Your registration number is: " + id);
         System.out.println("Driver details added successfully!");
+        new CabDetailsView(id).init();
 
     }
 

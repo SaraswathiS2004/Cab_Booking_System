@@ -1,11 +1,20 @@
 package com.zsgs.cabbooking.data.dto;
 
 public class CabDetails {
-    private long registrationNumber;
+    private long driverId;
+    private String cabRegistrationNumber;
     private long cabId;
     private String model;
     private String type;
     private int totalEarning = 0;
+
+    public long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(long driverId) {
+        this.driverId = driverId;
+    }
 
     public int getTotalEarning() {
         return totalEarning;
@@ -15,8 +24,8 @@ public class CabDetails {
         this.totalEarning = totalEarning;
     }
 
-    public void setRegistrationNumber(long registrationNumber) {
-        this.registrationNumber = registrationNumber;
+    public void setCabRegistrationNumber(String registrationNumber) {
+        this.cabRegistrationNumber = registrationNumber;
     }
 
     public long getCabId() {
@@ -27,8 +36,8 @@ public class CabDetails {
         this.cabId = cabId;
     }
 
-    public long getRegistrationNumber() {
-        return registrationNumber;
+    public String getCabRegistrationNumber() {
+        return cabRegistrationNumber;
     }
 
     public String getModel() {
@@ -47,10 +56,11 @@ public class CabDetails {
         this.type = type;
     }
 
-    public void setValues(long cabId  , long registrationNumber , String model , String type){
+    public void setValues(long driverId , long cabId  , String registrationNumber , String model , String type){
         setCabId(cabId);
-        setRegistrationNumber(registrationNumber);
+        setCabRegistrationNumber(registrationNumber);
         setModel(model);
         setType(type);
+        setDriverId(driverId);
     }
 }

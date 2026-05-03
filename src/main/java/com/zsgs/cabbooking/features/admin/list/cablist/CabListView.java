@@ -20,8 +20,8 @@ public class CabListView {
 
         for(CabDetails cabDetails : cabsList) {
 
-            System.out.println("Cab Id : " + cabDetails.getCabId() +
-                    "  Driver Id : " + cabDetails.getRegistrationNumber() +
+            System.out.println("Driver Id : "+ cabDetails.getDriverId() + "Cab Id : " + cabDetails.getCabId() +
+                    "  Driver Id : " + cabDetails.getCabRegistrationNumber() +
                     "  Cab Model : " + cabDetails.getModel() + "  Cab Type " + cabDetails.getType());
         }
         System.out.println("----------------------------------------------------------");

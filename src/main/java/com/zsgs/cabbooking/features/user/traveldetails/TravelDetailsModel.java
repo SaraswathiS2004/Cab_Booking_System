@@ -74,8 +74,8 @@ class TravelDetailsModel {
             for(CabCurrentPosition cabCurrentPosition : cabCurrentPositions){
                 if(cabCurrentPosition.getCabId() == id){
                     String position = cabCurrentPosition.getPosition();
-                    int index1 = position.indexOf(position);
-                    int index2 = position.indexOf(pickUp);
+                    int index1 = places.indexOf(position);
+                    int index2 = places.indexOf(pickUp);
                     if(minPosition > Math.abs(index1 - index2)) {
                         minPosition = Math.min(Math.abs(index1 - index2), minPosition);
                         cab = cabDetails1;

@@ -7,10 +7,12 @@ import java.util.Scanner;
 public class CabDetailsView {
     private CabDetailsModel cabDetailsModel;
     private Scanner scanner;
-    public CabDetailsView(){
+    private long driverId;
+    public CabDetailsView(long driverId){
         this.cabDetailsModel = new CabDetailsModel(this);
         Input input = new Input();
         scanner = input.getInstance();
+        this.driverId = driverId;
     }
     public void init(){
         System.out.println("========== RIDEX ==========\n");
@@ -18,16 +20,17 @@ public class CabDetailsView {
         promptAction();
     }
     public void promptAction(){
-        long registrationNumber = promptDriverID();
+        String registrationNumber = promptDriverID();
         String model = promptModel();
         String type = promptType();
-        cabDetailsModel.storeData(registrationNumber , model , type);
+        cabDetailsModel.storeData(driverId , registrationNumber , model , type);
     }
 
-    public long promptDriverID(){
+    public String promptDriverID(){
         while(true){
-            System.out.print("Enter your registration number: ");
-            long id = scanner.nextLong();
+            System.out.print("Enter your Cab Registration number: ");
+            scanner.nextLine();
+            String id = scanner.nextLine();
             String error = cabDetailsModel.validateId(id);
             if(error == null){
                 return id;
@@ -39,6 +42,7 @@ public class CabDetailsView {
     String promptType(){
         while(true){
             System.out.print("Enter cab type: ");
+            scanner.nextLine();
             String type = scanner.nextLine();
             String error = cabDetailsModel.validateType(type);
 

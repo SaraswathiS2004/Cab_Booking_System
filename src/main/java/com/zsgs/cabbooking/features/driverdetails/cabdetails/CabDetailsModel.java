@@ -20,9 +20,9 @@ class CabDetailsModel {
          this.cabCurrentPosition = new CabCurrentPosition();
      }
 
-     public void storeData(long registrationNumber  , String model , String type){
+     public void storeData(long driverId , String registrationNumber  , String model , String type){
          long cabId = cabDB.getCabId();
-         cabDetails.setValues(cabId , registrationNumber , model , type);
+         cabDetails.setValues(driverId ,cabId , registrationNumber , model , type);
          cabCurrentPosition.setCabId(cabId);
          cabCurrentPosition.setPosition("A");
          cabDB.addCab(cabDetails);
@@ -30,14 +30,10 @@ class CabDetailsModel {
          cabDetailsView.onSuccessful();
      }
 
-    String validateId(long id){
-        ArrayList<DriverDetails> driverDetails = cabDB.getDriverDetails();
-        for(DriverDetails driverDetails1 : driverDetails){
-            long driverId = driverDetails1.getId();
-            if(driverId == id){
-                return null;
-            }
-        }
+    String validateId(String id){
+       if(id.trim().length() >= 3 && id.trim().length() < 50){
+           return null;
+       }
         return "Invalid driver ID.";
     }
 
