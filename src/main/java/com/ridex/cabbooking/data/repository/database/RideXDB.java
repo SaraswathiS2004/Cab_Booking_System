@@ -337,7 +337,6 @@ public class RideXDB {
                 userTripDetails1.setCabId(set.getInt("CAB_ID"));
                 userTripDetails1.setPickUp(set.getString("PICK_UP"));
                 userTripDetails1.setDropUp(set.getString("DROP_UP"));
-
                 userTripDetails1.setPickupTiming(set.getTime("PICK_UP_TIMING"));
                 userTripDetails1.setDropupTiming();
                 userTripDetails1.setStatus();
