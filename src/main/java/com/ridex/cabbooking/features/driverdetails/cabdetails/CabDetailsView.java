@@ -30,8 +30,7 @@ public class CabDetailsView {
         while(true){
             try {
                 System.out.print("Enter your Cab Registration number: ");
-                scanner.nextLine();
-                String id = scanner.nextLine();
+                String id = scanner.next();
                 String error = cabDetailsModel.validateId(id);
                 if (error == null) {
                     return id;
@@ -48,7 +47,6 @@ public class CabDetailsView {
         while(true){
             try {
                 System.out.print("Enter cab type: ");
-                scanner.nextLine();
                 String type = scanner.nextLine();
                 String error = cabDetailsModel.validateType(type);
 
@@ -67,7 +65,6 @@ public class CabDetailsView {
         while(true){
             try {
                 System.out.print("Enter cab model: ");
-                scanner.nextLine();
                 String model = scanner.nextLine();
                 String error = cabDetailsModel.validateModel(model);
                 if (error == null) {
