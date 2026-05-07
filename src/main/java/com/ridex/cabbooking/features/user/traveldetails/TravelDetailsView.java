@@ -3,7 +3,6 @@ package com.ridex.cabbooking.features.user.traveldetails;
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.CabDetails;
 import com.ridex.cabbooking.data.dto.TripStatus;
-import com.zsgs.cabbooking.data.dto.*;
 import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.signin.SignInView;
 
