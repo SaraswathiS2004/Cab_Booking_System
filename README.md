@@ -1,5 +1,5 @@
 Cab Booking System
-Tech Stack : Java / MySql
+Tech Stack : Java
 Timing : 1 month
 
 Requirement Analysis:
