@@ -1,7 +1,7 @@
 package com.zsgs.cabbooking;
 
 import com.zsgs.cabbooking.data.repository.CabDB;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 import com.zsgs.cabbooking.features.signin.SignInView;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
@@ -15,8 +15,8 @@ public class CabBooking {
     }
     public static void showMenu() {
         CabDB cabDB = CabDB.getInstance();
-        Input input = new Input();
-        Scanner scan = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        Scanner scan = consoleInput.getInstance();
 
         String choice = "Y";
 

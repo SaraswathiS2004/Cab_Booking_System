@@ -1,7 +1,7 @@
 package com.zsgs.cabbooking.features.user.traveldetails;
 
 import com.zsgs.cabbooking.data.dto.*;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 import com.zsgs.cabbooking.features.signin.SignInView;
 
 
@@ -17,8 +17,8 @@ public class TravelDetailsView {
 
     public TravelDetailsView(AccountDetails accountDetails){
         this.travelDetailsModel = new TravelDetailsModel(this);
-        Input input = new Input();
-        this.scanner = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        this.scanner = consoleInput.getInstance();
         this.accountDetails = accountDetails;
     }
 

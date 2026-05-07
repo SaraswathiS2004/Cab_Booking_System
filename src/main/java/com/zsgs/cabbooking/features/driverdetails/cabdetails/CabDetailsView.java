@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.driverdetails.cabdetails;
 
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 
 import java.util.Scanner;
 
@@ -10,8 +10,8 @@ public class CabDetailsView {
     private long driverId;
     public CabDetailsView(long driverId){
         this.cabDetailsModel = new CabDetailsModel(this);
-        Input input = new Input();
-        scanner = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        scanner = consoleInput.getInstance();
         this.driverId = driverId;
     }
     public void init(){

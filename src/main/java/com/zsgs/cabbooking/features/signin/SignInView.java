@@ -4,7 +4,7 @@ import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Role;
 import com.zsgs.cabbooking.features.driverdetails.DriverDetailsView;
 import com.zsgs.cabbooking.features.home.HomeView;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
 import java.util.Scanner;
@@ -17,8 +17,8 @@ public class SignInView {
 
     public SignInView(){
         signInModel = new SignInModel(this);
-        Input input = new Input();
-        scanner = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        scanner = consoleInput.getInstance();
     }
 
     public void init(){

@@ -1,12 +1,12 @@
-package com.zsgs.cabbooking.features.consoleinput;
+package com.zsgs.cabbooking.util;
 
 import java.util.Scanner;
 
-public class Input {
+public class ConsoleInput {
 
     private static Scanner scanner;
 
-    public Input(){
+    public ConsoleInput(){
 
     }
 

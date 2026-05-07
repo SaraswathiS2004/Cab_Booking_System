@@ -13,7 +13,6 @@ public class CabDB {
     private static long cabId = 1;
     private static long tripId = 1;
     private static long feedBackId = 1;
-
     private CabDB(){}
     public long getDriverId() {
         return driverId;

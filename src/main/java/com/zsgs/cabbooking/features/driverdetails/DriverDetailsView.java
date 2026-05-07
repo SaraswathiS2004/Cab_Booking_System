@@ -3,7 +3,7 @@ package com.zsgs.cabbooking.features.driverdetails;
 //import com.zsgs.cabbooking.features.admin;
 
 import com.zsgs.cabbooking.features.driverdetails.cabdetails.CabDetailsView;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 
 import java.util.Scanner;
 
@@ -14,8 +14,8 @@ public class DriverDetailsView {
 
     public DriverDetailsView(){
         this.driverDetailsModel = new DriverDetailsModel(this);
-        Input input = new Input();
-        this.scanner = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        this.scanner = consoleInput.getInstance();
 
     }
     public void init(){

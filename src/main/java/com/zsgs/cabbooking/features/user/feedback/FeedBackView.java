@@ -1,6 +1,6 @@
 package com.zsgs.cabbooking.features.user.feedback;
 
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 import com.zsgs.cabbooking.features.signup.SignUpView;
 
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class FeedBackView {
 
     public FeedBackView(){
         this.feedBackModel = new FeedBackModel(this);
-        this.scanner = new Input().getInstance();
+        this.scanner = new ConsoleInput().getInstance();
     }
 
     public void init(){

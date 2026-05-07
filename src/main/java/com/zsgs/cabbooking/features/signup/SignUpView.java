@@ -2,7 +2,7 @@ package com.zsgs.cabbooking.features.signup;
 
 import com.zsgs.cabbooking.data.dto.AccountDetails;
 import com.zsgs.cabbooking.data.dto.Role;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 
 import com.zsgs.cabbooking.features.signin.SignInView;
 
@@ -17,8 +17,8 @@ public class SignUpView {
 
     public SignUpView(){
         signUpModel = new SignUpModel(this);
-        Input input = new Input();
-        scan = input.getInstance();
+        ConsoleInput consoleInput = new ConsoleInput();
+        scan = consoleInput.getInstance();
 
     }
     public void init(){

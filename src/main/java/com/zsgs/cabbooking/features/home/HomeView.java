@@ -10,7 +10,7 @@ import com.zsgs.cabbooking.features.admin.list.eachcabearnings.TotalEarningsView
 import com.zsgs.cabbooking.features.admin.list.feedbacklist.FeedBackListView;
 import com.zsgs.cabbooking.features.admin.list.usertriplist.UserTripDetailsView;
 import com.zsgs.cabbooking.features.user.availablecabs.AvailableCabsView;
-import com.zsgs.cabbooking.features.consoleinput.Input;
+import com.zsgs.cabbooking.util.ConsoleInput;
 import com.zsgs.cabbooking.features.user.feedback.FeedBackView;
 import com.zsgs.cabbooking.features.user.traveldetails.TravelDetailsView;
 
@@ -23,7 +23,7 @@ public class HomeView {
 
     public HomeView(AccountDetails accountDetails) {
         this.accountDetails = accountDetails;
-        scanner = new Input().getInstance();
+        scanner = new ConsoleInput().getInstance();
         this.homeModel = new HomeModel(this);
     }
 
