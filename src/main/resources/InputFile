@@ -1,4 +1,4 @@
-C:\Users\ADMIN\.jdks\openjdk-24\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1\lib\idea_rt.jar=62445" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\ADMIN\IdeaProjects\demo\RideX\target\classes com.zsgs.cabbooking.CabBooking
+C:\Users\ADMIN\.jdks\openjdk-24\bin\java.exe "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1\lib\idea_rt.jar=62445" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\ADMIN\IdeaProjects\demo\RideX\target\classes com.ridex.cabbooking.CabBooking
 Welcome to RideX
 1. SignUp
 Choose Your Option : 1
