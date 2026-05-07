@@ -1,7 +1,6 @@
 package com.ridex.cabbooking.features.user.traveldetails;
 
 import com.ridex.cabbooking.data.dto.*;
-import com.zsgs.cabbooking.data.dto.*;
 import com.ridex.cabbooking.data.repository.CabDB;
 
 import java.time.LocalTime;
