@@ -28,41 +28,56 @@ public class CabDetailsView {
 
     public String promptDriverID(){
         while(true){
-            System.out.print("Enter your Cab Registration number: ");
-            scanner.nextLine();
-            String id = scanner.nextLine();
-            String error = cabDetailsModel.validateId(id);
-            if(error == null){
-                return id;
+            try {
+                System.out.print("Enter your Cab Registration number: ");
+                scanner.nextLine();
+                String id = scanner.nextLine();
+                String error = cabDetailsModel.validateId(id);
+                if (error == null) {
+                    return id;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
 
     String promptType(){
         while(true){
-            System.out.print("Enter cab type: ");
-            scanner.nextLine();
-            String type = scanner.nextLine();
-            String error = cabDetailsModel.validateType(type);
+            try {
+                System.out.print("Enter cab type: ");
+                scanner.nextLine();
+                String type = scanner.nextLine();
+                String error = cabDetailsModel.validateType(type);
 
-            if(error == null){
-                return type;
+                if (error == null) {
+                    return type;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
 
     String promptModel(){
         while(true){
-            System.out.print("Enter cab model: ");
-            scanner.nextLine();
-            String model = scanner.nextLine();
-            String error = cabDetailsModel.validateModel(model);
-            if(error == null){
-                return model;
+            try {
+                System.out.print("Enter cab model: ");
+                scanner.nextLine();
+                String model = scanner.nextLine();
+                String error = cabDetailsModel.validateModel(model);
+                if (error == null) {
+                    return model;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
 

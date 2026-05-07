@@ -38,28 +38,34 @@ public class SignInView {
     }
     public String promptPassword(){
         while(true){
-            System.out.print("Enter the password : ");
-            String password = scanner.next();
-            String error = signInModel.validatePassword(password);
-            if(error == null){
-                return password;
+            try {
+                System.out.print("Enter the password : ");
+                String password = scanner.next();
+                String error = signInModel.validatePassword(password);
+                if (error == null) {
+                    return password;
+                } else {
+                    showErrorMessage(error);
+                }
             }
-            else {
-                showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
     public String promptEmailAddress(){
-        while(true){
-
-            System.out.print("Enter the Email Address : ");
-            String email = scanner.next();
-            String error = signInModel.validateEmailAddress(email);
-            if(error == null){
-                return email.trim();
-            }
-            else {
-                showErrorMessage(error);
+        while (true) {
+            try {
+                System.out.print("Enter the Email Address : ");
+                String email = scanner.next();
+                String error = signInModel.validateEmailAddress(email);
+                if (error == null) {
+                    return email.trim();
+                } else {
+                    showErrorMessage(error);
+                }
+            } catch (Exception e) {
+                System.out.println("Enter Valid Input!");
             }
         }
     }
@@ -86,6 +92,7 @@ public class SignInView {
     public boolean promptPostFailureAction(){
 
         while(true){
+
             System.out.println();
             System.out.print("\n1. Retry");
             System.out.print("\n2. SignUp");

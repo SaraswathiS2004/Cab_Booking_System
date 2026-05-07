@@ -41,36 +41,51 @@ public class DriverDetailsView {
 
     public String promptAddress(){
         while(true){
-            System.out.print("Enter Your Address : ");
-            scanner.nextLine();
-            String address = scanner.nextLine();
-            String error = driverDetailsModel.validateAddress(address);
-            if(error == null){
-                return address;
+            try {
+                System.out.print("Enter Your Address : ");
+                scanner.nextLine();
+                String address = scanner.nextLine();
+                String error = driverDetailsModel.validateAddress(address);
+                if (error == null) {
+                    return address;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
     public int promptAge(){
         while(true){
-            System.out.print("Enter Your Age : ");
-            int age = scanner.nextInt();
-            String error = driverDetailsModel.validateAge(age);
-            if(error == null){
-                return age;
+            try {
+                System.out.print("Enter Your Age : ");
+                int age = scanner.nextInt();
+                String error = driverDetailsModel.validateAge(age);
+                if (error == null) {
+                    return age;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
     public int promptExperience(int age){
         while(true){
-            System.out.print("Enter your driving experience (in years) : ");
-            int experience = scanner.nextInt();
-            String error = driverDetailsModel.validateExperience(experience , age);
-            if(error == null){
-                return experience;
+            try {
+                System.out.print("Enter your driving experience (in years) : ");
+                int experience = scanner.nextInt();
+                String error = driverDetailsModel.validateExperience(experience, age);
+                if (error == null) {
+                    return experience;
+                }
+                showErrorMessage(error);
             }
-            showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
+            }
         }
     }
 
@@ -78,13 +93,18 @@ public class DriverDetailsView {
 
     public String promptMobileNumber(){
         while(true) {
-            System.out.print("Enter Your Mobile Number : ");
-            String mobileNumber = scanner.next();
-            String error = driverDetailsModel.validateMobileNumber(mobileNumber);
-            if (error == null) {
-                return mobileNumber;
-            } else {
-                showErrorMessage(error);
+            try {
+                System.out.print("Enter Your Mobile Number : ");
+                String mobileNumber = scanner.next();
+                String error = driverDetailsModel.validateMobileNumber(mobileNumber);
+                if (error == null) {
+                    return mobileNumber;
+                } else {
+                    showErrorMessage(error);
+                }
+            }
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }

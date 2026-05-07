@@ -40,56 +40,69 @@ public class SignUpView {
     public String promptName(){
 
         while(true) {
-            System.out.print("\nEnter Your Name : ");
-            scan.nextLine();
-            String name = scan.nextLine();
-            String error = signUpModel.validateName(name);
-            if(error == null){
-                return name.trim();
+            try {
+                System.out.print("\nEnter Your Name : ");
+                scan.nextLine();
+                String name = scan.nextLine();
+                String error = signUpModel.validateName(name);
+                if (error == null) {
+                    return name.trim();
+                } else {
+                    showErrorMessage(error);
+                }
             }
-            else {
-                showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
 
     public String promptPassword(){
         while(true){
-            System.out.print("Enter the Password : ");
-            String password = scan.next();
-            String error = signUpModel.validatePassword(password);
-            if(error == null){
-                System.out.print("Enter Confirm Password : ");
-                String confirm = scan.next();
-                String error1 = signUpModel.validateConfirmPassword(password , confirm);
-                if(error1 == null){
-                    return password.trim();
-                }
-                else {
-                    showErrorMessage(error1);
+            try {
+                System.out.print("Enter the Password : ");
+                String password = scan.next();
+                String error = signUpModel.validatePassword(password);
+                if (error == null) {
+                    System.out.print("Enter Confirm Password : ");
+                    String confirm = scan.next();
+                    String error1 = signUpModel.validateConfirmPassword(password, confirm);
+                    if (error1 == null) {
+                        return password.trim();
+                    } else {
+                        showErrorMessage(error1);
+                    }
+                } else {
+
+                    showErrorMessage(error);
                 }
             }
-            else {
-
-                showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
     public String promptEmail(){
         while(true){
-            System.out.print("Enter the Email Address : ");
-            String email = scan.next();
-            String error = signUpModel.validateEmailAddress(email);
-            if(error == null){
-                boolean isTrue = signUpModel.checkIsEmailId(email);
-                if(isTrue) {
-                    showErrorMessage("This Email Id Already Exist");
-                    continue;
-                };
-                return email.trim();
+
+            try {
+                System.out.print("Enter the Email Address : ");
+                String email = scan.next();
+                String error = signUpModel.validateEmailAddress(email);
+                if (error == null) {
+                    boolean isTrue = signUpModel.checkIsEmailId(email);
+                    if (isTrue) {
+                        showErrorMessage("This Email Id Already Exist");
+                        continue;
+                    }
+                    ;
+                    return email.trim();
+                } else {
+                    showErrorMessage(error);
+                }
             }
-            else {
-                showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
@@ -97,53 +110,67 @@ public class SignUpView {
     public Role promptRole(){
         boolean isAdmin = signUpModel.isAdmin();
         while(true) {
-            if(isAdmin) {
-                return Role.ADMIN;
-            }
-            else {
-                System.out.print("Enter Your Role (USER , DRIVER) : ");
-            }
-            String role = scan.next();
-            role = role.toUpperCase();
-            String error = signUpModel.validateRole(role , isAdmin);
-            Role res;
-            if (error == null) {
-                if (role.equals("ADMIN")) {
-                    res = Role.ADMIN;
-                } else if (role.equals("DRIVER")) {
-                    res = Role.DRIVER;
+            try {
+                if (isAdmin) {
+                    return Role.ADMIN;
                 } else {
-                    res = Role.USER;
+                    System.out.print("Enter Your Role (USER , DRIVER) : ");
                 }
-                return res;
-            } else {
-                showErrorMessage(error);
+                String role = scan.next();
+                role = role.toUpperCase();
+                String error = signUpModel.validateRole(role, isAdmin);
+                Role res;
+                if (error == null) {
+                    if (role.equals("ADMIN")) {
+                        res = Role.ADMIN;
+                    } else if (role.equals("DRIVER")) {
+                        res = Role.DRIVER;
+                    } else {
+                        res = Role.USER;
+                    }
+                    return res;
+                } else {
+                    showErrorMessage(error);
+                }
+            }
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
 
     public String promptMobileNumber(){
         while(true) {
-            System.out.print("Enter Your Mobile Number : ");
-            String mobileNumber = scan.next();
-            String error = signUpModel.validateMobileNumber(mobileNumber);
-            if (error == null) {
-                return mobileNumber;
-            } else {
-                showErrorMessage(error);
+
+            try {
+                System.out.print("Enter Your Mobile Number : ");
+                String mobileNumber = scan.next();
+                String error = signUpModel.validateMobileNumber(mobileNumber);
+                if (error == null) {
+                    return mobileNumber;
+                } else {
+                    showErrorMessage(error);
+                }
+            }
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
     public String promptCity(){
         while(true){
-            System.out.print("Enter Your City : ");
-            String city = scan.next();
-            String error = signUpModel.validateCity(city);
-            if(error == null){
-                return city;
+            try {
+                System.out.print("Enter Your City : ");
+                String city = scan.next();
+                String error = signUpModel.validateCity(city);
+                if (error == null) {
+                    return city;
+                } else {
+                    showErrorMessage(error);
+                }
             }
-            else {
-                showErrorMessage(error);
+            catch (Exception e){
+                System.out.println("Enter Valid Input!");
             }
         }
     }
