@@ -1,9 +1,12 @@
 package com.ridex.cabbooking.features.user.traveldetails;
 
 import com.ridex.cabbooking.data.dto.*;
-import com.zsgs.cabbooking.data.dto.*;
 import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,26 +14,28 @@ import java.util.Arrays;
 class TravelDetailsModel {
 
     private TravelDetailsView travelDetailsView;
-    private CabDB cabDB;
+//    private CabDB cabDB;
+    private RideXDB rideXDB;
     private UserTripDetails userTripDetails;
     private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A" , "B" , "C" , "D" , "E" , "F"));
-    public TravelDetailsModel(TravelDetailsView travelDetailsView){
+    public TravelDetailsModel(TravelDetailsView travelDetailsView) throws SQLException, ClassNotFoundException {
         this.travelDetailsView = travelDetailsView;
-        this.cabDB = CabDB.getInstance();
+//        this.cabDB = CabDB.getInstance();
+        this.rideXDB = new RideXDB();
         this.userTripDetails = new UserTripDetails();
     }
 
-    LocalTime getDropTiming(String pickUpPlace  , String dropUpPlace){
+    LocalDateTime getDropTiming(String pickUpPlace  , String dropUpPlace){
 
         int index1 = places.indexOf(pickUpPlace);
         int index2 = places.indexOf(dropUpPlace);
         int value = Math.abs(index2 - index1) * 10;
-        LocalTime now = LocalTime.now();
-        LocalTime dropTime = now.plusMinutes(value);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime dropTime = now.plusMinutes(value);
         return dropTime;
 
     }
-    void storeData(String pickUp , String dropUp , LocalTime pickupTiming , LocalTime dropupTiming , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment){
+    void storeData(String pickUp , String dropUp , LocalDateTime pickupTiming , LocalDateTime dropupTiming , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment , long userId) throws SQLException, ClassNotFoundException {
         int money = calculateMoney(pickUp , dropUp);
         userTripDetails.setPickUp(pickUp);
         userTripDetails.setDropUp(dropUp);
@@ -39,14 +44,17 @@ class TravelDetailsModel {
         userTripDetails.setCabId(cabId);
         userTripDetails.setStatus(tripStatus);
         userTripDetails.setAccountDetails(currentUser);
-        userTripDetails.setTripId(cabDB.getCabId());
+//        userTripDetails.setTripId(cabDB.getCabId());
         userTripDetails.setPayment(payment + money);
-        cabDB.addTripDetails(userTripDetails);
+        rideXDB.storeUserTrips(userTripDetails);
+//        cabDB.addTripDetails(userTripDetails , userId);
         travelDetailsView.onDetailsUploadedSuccessful();
 
     }
     void setCabEarnings(long cabId ,int earnings){
-        cabDB.setCabEarnings(cabId ,earnings);
+//        CabDB.getInstance().setCabEarnings(cabId ,earnings);
+
+        rideXDB.setCabEarnings(cabId , earnings);
     }
 
     int calculateMoney(String pick , String drop){
@@ -66,10 +74,12 @@ class TravelDetailsModel {
             return null;
         }
     }
-    long getCabs(ArrayList<CabDetails> cabDetails , String pickUp){
+    long getCabs(ArrayList<CabDetails> cabDetails , String pickUp) throws SQLException, ClassNotFoundException {
         int minPosition = Integer.MAX_VALUE;
         CabDetails cab = null;
-        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+//        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+        ArrayList<CabCurrentPosition> cabCurrentPositions = new RideXDB().getCabPositionList();
+
         for(CabDetails cabDetails1 : cabDetails){
             long id = cabDetails1.getCabId();
             for(CabCurrentPosition cabCurrentPosition : cabCurrentPositions){
@@ -101,9 +111,9 @@ class TravelDetailsModel {
             return null;
         }
     }
-    ArrayList<CabDetails> getAvailableCabs(){
-        ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
-
+    ArrayList<CabDetails> getAvailableCabs() throws SQLException, ClassNotFoundException {
+//        ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
+        ArrayList<CabDetails> cabDetails = new RideXDB().getCabList();
         return cabDetails;
     }
     String validateCabId(ArrayList<CabDetails> cabDetails , long cabId){

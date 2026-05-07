@@ -2,6 +2,7 @@ package com.ridex.cabbooking.features.driverdetails.cabdetails;
 
 import com.ridex.cabbooking.util.ConsoleInput;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CabDetailsView {
@@ -14,12 +15,12 @@ public class CabDetailsView {
         scanner = consoleInput.getInstance();
         this.driverId = driverId;
     }
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.println("========== RIDEX ==========\n");
         System.out.println("Enter your cab details : \n");
         promptAction();
     }
-    public void promptAction(){
+    public void promptAction() throws SQLException, ClassNotFoundException {
         String registrationNumber = promptDriverID();
         String model = promptModel();
         String type = promptType();

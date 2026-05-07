@@ -2,17 +2,18 @@ package com.ridex.cabbooking.features.user.availablecabs;
 
 import com.ridex.cabbooking.data.dto.CabDetails;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AvailableCabsView {
     private AvailableCabsModel availableCabsModel;
 
-    public AvailableCabsView() {
+    public AvailableCabsView() throws SQLException, ClassNotFoundException {
         this.availableCabsModel = new AvailableCabsModel(this);
 
     }
 
-    public void init() {
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.println("Welcome to RideX\n");
         availableCabsModel.getAvailableCabsDetails();
     }

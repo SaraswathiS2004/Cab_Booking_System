@@ -3,6 +3,7 @@ package com.ridex.cabbooking.features.user.feedback;
 import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.signup.SignUpView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class FeedBackView {
@@ -11,12 +12,12 @@ public class FeedBackView {
     private Scanner scanner;
     private boolean authenticated;
 
-    public FeedBackView(){
+    public FeedBackView() throws SQLException, ClassNotFoundException {
         this.feedBackModel = new FeedBackModel(this);
         this.scanner = new ConsoleInput().getInstance();
     }
 
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.println("Welcome to RideX\n");
 
         while (!authenticated) {
@@ -25,14 +26,16 @@ public class FeedBackView {
             if (!promptPostFailureAction()) return;
         }
     }
-    public void promptAndAuthenticate(){
-        long id = feedBackModel.getFeedBackId();
+    public void promptAndAuthenticate() throws SQLException, ClassNotFoundException {
+//        long id = feedBackModel.getFeedBackId();
         String email = promptEmailAddress();
         String password = promptPassword();
         String feedBack = promptFeedBack();
         feedBackModel.isAuthenticate(email , password);
-        feedBackModel.storeData(id ,email , password , feedBack);
+//        feedBackModel.storeData(id ,email , password , feedBack);
+        feedBackModel.storeData(email , password ,feedBack);
     }
+
 
     String promptFeedBack() {
 
@@ -75,7 +78,7 @@ public class FeedBackView {
         }
     }
 
-    public boolean promptPostFailureAction() {
+    public boolean promptPostFailureAction() throws SQLException, ClassNotFoundException {
 
         while (true) {
             System.out.println("\n========== OPTIONS ==========");

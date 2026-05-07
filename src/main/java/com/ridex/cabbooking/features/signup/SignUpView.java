@@ -6,6 +6,7 @@ import com.ridex.cabbooking.util.ConsoleInput;
 
 import com.ridex.cabbooking.features.signin.SignInView;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,13 +16,13 @@ public class SignUpView {
     private static Scanner scan;
     private ArrayList<AccountDetails> accountDetails;
 
-    public SignUpView(){
+    public SignUpView() throws SQLException, ClassNotFoundException {
         signUpModel = new SignUpModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         scan = consoleInput.getInstance();
 
     }
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.print("Create Your Account!");
         String name = promptName();
         String email = promptEmail();
@@ -107,7 +108,7 @@ public class SignUpView {
         }
     }
 
-    public Role promptRole(){
+    public Role promptRole() throws SQLException, ClassNotFoundException {
         boolean isAdmin = signUpModel.isAdmin();
         while(true) {
             try {
@@ -141,7 +142,6 @@ public class SignUpView {
 
     public String promptMobileNumber(){
         while(true) {
-
             try {
                 System.out.print("Enter Your Mobile Number : ");
                 String mobileNumber = scan.next();
@@ -175,7 +175,7 @@ public class SignUpView {
         }
     }
 
-    void onSignUpSuccessful(){
+    void onSignUpSuccessful() throws SQLException, ClassNotFoundException {
         System.out.print("\nAccount Created Successfully!");
         if(accountDetails.size() == 1){
             System.out.print("\nAs the first user in the system, you will be registered as a ADMIN.");

@@ -2,37 +2,42 @@ package com.ridex.cabbooking.features.driverdetails;
 
 //import com.zsgs.cabbooking.features.admin;
 
+import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.features.driverdetails.cabdetails.CabDetailsView;
 import com.ridex.cabbooking.util.ConsoleInput;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DriverDetailsView {
 
     private DriverDetailsModel driverDetailsModel;
     private Scanner scanner;
+    private AccountDetails accountDetails;
 
-    public DriverDetailsView(){
+    public DriverDetailsView(AccountDetails accountDetails){
         this.driverDetailsModel = new DriverDetailsModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         this.scanner = consoleInput.getInstance();
+        this.accountDetails = accountDetails;
 
     }
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.println("\n========== RIDEX ==========");
         System.out.println("Welcome to RideX");
         promptDriverDetails();
     }
 
-    public void promptDriverDetails(){
+    public void promptDriverDetails() throws SQLException, ClassNotFoundException {
         int age = promptAge();
         String address = promptAddress();
         int experience = promptExperience(age);
         String mobileNumber = promptMobileNumber();
-        driverDetailsModel.storeDriverData(address , age , experience , mobileNumber);
+        long driverId = accountDetails.getId();
+        driverDetailsModel.storeDriverData(driverId ,address , age , experience , mobileNumber);
 
     }
-    public void onDriverSuccessful(long id){
+    public void onDriverSuccessful(long id) throws SQLException, ClassNotFoundException {
         System.out.println("Your registration number is: " + id);
         System.out.println("Driver details added successfully!");
         new CabDetailsView(id).init();

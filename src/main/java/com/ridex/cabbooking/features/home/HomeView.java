@@ -14,6 +14,7 @@ import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.user.feedback.FeedBackView;
 import com.ridex.cabbooking.features.user.traveldetails.TravelDetailsView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class HomeView {
@@ -27,7 +28,7 @@ public class HomeView {
         this.homeModel = new HomeModel(this);
     }
 
-    public void init() {
+    public void init() throws SQLException, ClassNotFoundException {
 
         System.out.println("\nWelcome to RideX");
 
@@ -38,7 +39,7 @@ public class HomeView {
         System.out.println("Your Account role is not set");
     }
 
-    void showAdminMenu() {
+    void showAdminMenu() throws SQLException, ClassNotFoundException {
 
         while (true) {
             System.out.println("\n========== ADMIN DASHBOARD ==========\n");
@@ -92,7 +93,7 @@ public class HomeView {
 
     }
 
-    void showUserMenu() {
+    void showUserMenu() throws SQLException, ClassNotFoundException {
 
         while (true) {
 

@@ -3,13 +3,14 @@ package com.ridex.cabbooking.features.admin.list.eachcabearnings;
 import com.ridex.cabbooking.data.dto.CabDetails;
 import com.ridex.cabbooking.data.repository.CabDB;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TotalEarningsView {
 
     private TotalEarningsModel totalEarningsModel;
-    private CabDB cabDB;
-    public TotalEarningsView(){
+
+    public TotalEarningsView() throws SQLException, ClassNotFoundException {
         this.totalEarningsModel = new TotalEarningsModel(this);
     }
 

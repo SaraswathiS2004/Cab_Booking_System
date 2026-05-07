@@ -4,7 +4,9 @@ import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
 import com.ridex.cabbooking.data.dto.UserFeedBack;
 import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 class FeedBackModel {
@@ -13,20 +15,21 @@ class FeedBackModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private FeedBackView feedBackView;
-    private CabDB cabDB;
-
-    public FeedBackModel(FeedBackView feedBackView) {
+//    private CabDB cabDB;
+    private RideXDB rideXDB;
+    public FeedBackModel(FeedBackView feedBackView) throws SQLException, ClassNotFoundException {
         this.feedBackView = feedBackView;
-        this.cabDB = CabDB.getInstance();
+//        this.cabDB = CabDB.getInstance();
+        this.rideXDB = new RideXDB();
     }
 
     String validateContent(String feedback) {
         if (feedback == null || feedback.trim().isEmpty()) return "FeedBack Cannot be empty.";
         return null;
     }
-    long getFeedBackId(){
-        return cabDB.getFeedBackId();
-    }
+//    long getFeedBackId(){
+//        return cabDB.getFeedBackId();
+//    }
     public void authenticate(Login login) {
 
         if (login == null) {
@@ -43,7 +46,9 @@ class FeedBackModel {
             return;
         }
 
-        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
+//        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
+
+        AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if (accountDetails == null) {
             feedBackView.showErrorMessage("Unable to sign in to your account.");
             feedBackView.showErrorMessage("Please try again.");
@@ -79,13 +84,14 @@ class FeedBackModel {
         authenticate(login);
     }
 
-    void storeData(long id , String email , String password , String content){
+    void storeData(String email , String password , String content) throws SQLException, ClassNotFoundException {
         UserFeedBack userFeedBack = new UserFeedBack();
-        userFeedBack.setId(id);
+//        userFeedBack.setId(id);
         userFeedBack.setEmail(email);
         userFeedBack.setPassword(password);
         userFeedBack.setFeedBackContent(content);
-        cabDB.addFeedBack(userFeedBack);
+        rideXDB.storeFeedBack(userFeedBack);
+//        cabDB.addFeedBack(userFeedBack);
         feedBackView.onSuccessfulFeedBack();
     }
 }

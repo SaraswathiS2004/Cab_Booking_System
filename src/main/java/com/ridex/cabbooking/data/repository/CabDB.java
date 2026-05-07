@@ -1,8 +1,9 @@
 package com.ridex.cabbooking.data.repository;
 
 import com.ridex.cabbooking.data.dto.*;
-import com.zsgs.cabbooking.data.dto.*;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CabDB {
@@ -31,6 +32,8 @@ public class CabDB {
      private static ArrayList<CabCurrentPosition> cabsPosition = new ArrayList<>();
 
     public static ArrayList<AccountDetails> getAccountDetails() {
+
+
         return accountDetails;
     }
 
@@ -40,26 +43,28 @@ public class CabDB {
          }
          return cabDB;
      }
-     public void addAccount(AccountDetails accountDetails){
+     public void addAccount(AccountDetails accountDetails) throws SQLException, ClassNotFoundException {
 
-
+         new RideXDB().storeAccount(accountDetails);
          CabDB.accountDetails.add(accountDetails);
          peopleId++;
      }
-     public void addTripDetails(UserTripDetails userTripDetails){
+     public void addTripDetails(UserTripDetails userTripDetails , long userId) throws SQLException, ClassNotFoundException {
         long cabId = userTripDetails.getCabId();
+        new RideXDB().updateTrips(userId ,cabId , TripStatus.DROPPED , userTripDetails.getDropUp());
         for(CabCurrentPosition cabCurrentPosition : cabsPosition){
             if(cabCurrentPosition.getCabId() == cabId){
                 cabCurrentPosition.setPosition(userTripDetails.getDropUp());
                 userTripDetails.setStatus(TripStatus.DROPPED);
             }
         }
-
-        cabDB.userTripDetails.add(userTripDetails);
+         new RideXDB().storeUserTrips(userTripDetails);
+         cabDB.userTripDetails.add(userTripDetails);
 
          tripId++;
      }
-     public void addFeedBack(UserFeedBack userFeedBack){
+     public void addFeedBack(UserFeedBack userFeedBack) throws SQLException, ClassNotFoundException {
+        new RideXDB().storeFeedBack(userFeedBack);
         CabDB.userFeedBacks.add(userFeedBack);
          feedBackId++;
      }
@@ -75,19 +80,21 @@ public class CabDB {
         return accountDetails;
     }
 
-    public void addDriver(DriverDetails driverDetails){
-
+    public void addDriver(DriverDetails driverDetails) throws SQLException, ClassNotFoundException {
+        new RideXDB().storeDriver(driverDetails);
         CabDB.driverDetails.add(driverDetails);
         driverId++;
     }
     public ArrayList<DriverDetails> getDriverDetails(){
         return driverDetails;
     }
-    public void addCab(CabDetails cabDetails){
+    public void addCab(CabDetails cabDetails) throws SQLException, ClassNotFoundException {
+        new RideXDB().storeCabs(cabDetails);
         cabDB.cabDetails.add(cabDetails);
         cabId++;
     }
-    public void addCabPosition(CabCurrentPosition cabCurrentPosition){
+    public void addCabPosition(CabCurrentPosition cabCurrentPosition) throws SQLException, ClassNotFoundException {
+        new RideXDB().storeCabPosition(cabCurrentPosition);
         cabDB.cabsPosition.add(cabCurrentPosition);
     }
     public ArrayList<CabDetails> getCabDetails(){
@@ -99,11 +106,14 @@ public class CabDB {
     public ArrayList<CabCurrentPosition> getCabsPosition(){
         return cabsPosition;
     }
+    // change
     public AccountDetails getEmployeeByEmail(String email , String password){
         if (email == null){
             return null;
         }
         if(email.isEmpty()) return null;
+        //
+
         for(AccountDetails current : accountDetails){
             if(current.getEmail() != null && current.getEmail().equals(email) && current.getPassword().equals(password)){
                 return current;
@@ -115,8 +125,9 @@ public class CabDB {
         return peopleId;
     }
 
-    public String  checkIsAlreadyExistEmailId(String email){
-        for(AccountDetails accountDetails1 : accountDetails){
+    public String  checkIsAlreadyExistEmailId(String email) throws SQLException, ClassNotFoundException {
+        ArrayList<AccountDetails> accounts = new RideXDB().getAccountList();
+        for(AccountDetails accountDetails1 : accounts){
             if(accountDetails1.getEmail().equals(email)){
                 return "This Email id Already Exist";
             }

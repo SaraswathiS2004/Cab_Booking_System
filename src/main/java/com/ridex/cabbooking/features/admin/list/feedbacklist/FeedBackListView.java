@@ -2,12 +2,13 @@ package com.ridex.cabbooking.features.admin.list.feedbacklist;
 
 import com.ridex.cabbooking.data.dto.UserFeedBack;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class FeedBackListView {
 
     private FeedBackListModel feedBackListModel;
-    public FeedBackListView(){
+    public FeedBackListView() throws SQLException, ClassNotFoundException {
         this.feedBackListModel = new FeedBackListModel(this);
     }
 

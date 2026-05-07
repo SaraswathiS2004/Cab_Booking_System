@@ -8,6 +8,7 @@ public class AccountDetails {
     private Role role;
     private String mobileNumber;
     private long id;
+    private String city;
 
     public long getId() {
         return id;
@@ -24,8 +25,6 @@ public class AccountDetails {
     public void setCity(String city) {
         this.city = city;
     }
-
-    private String city;
     public void setName(String name){
         this.name = name;
     }
@@ -61,14 +60,13 @@ public class AccountDetails {
         this.email = email;
     }
 
-    public void registerPeople(String name , String password ,String email ,  String city , String mobileNumber , Role role , long id){
+    public void registerPeople(String name , String password ,String email ,  String city , String mobileNumber , Role role ) {
         setName(name);
         setPassword(password);
         setEmail(email);
         setCity(city);
         setMobileNumber(mobileNumber);
         setRole(role);
-        setId(id);
+//        setId(id);
     }
-
 }

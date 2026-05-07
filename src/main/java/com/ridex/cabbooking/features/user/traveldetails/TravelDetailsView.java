@@ -3,11 +3,13 @@ package com.ridex.cabbooking.features.user.traveldetails;
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.CabDetails;
 import com.ridex.cabbooking.data.dto.TripStatus;
-import com.zsgs.cabbooking.data.dto.*;
 import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.signin.SignInView;
 
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,18 +20,18 @@ public class TravelDetailsView {
     private AccountDetails accountDetails;
     private Scanner scanner;
 
-    public TravelDetailsView(AccountDetails accountDetails){
+    public TravelDetailsView(AccountDetails accountDetails) throws SQLException, ClassNotFoundException {
         this.travelDetailsModel = new TravelDetailsModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         this.scanner = consoleInput.getInstance();
         this.accountDetails = accountDetails;
     }
 
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         System.out.println("Welcome to RideX\n");
         promptTravelDetails();
     }
-    void promptTravelDetails(){
+    void promptTravelDetails() throws SQLException, ClassNotFoundException {
         ArrayList<CabDetails> cabDetails = travelDetailsModel.getAvailableCabs();
         if(cabDetails.size() == 0){
             showErrorMessage("No cabs are available in this moment");
@@ -38,15 +40,15 @@ public class TravelDetailsView {
         else {
             String pickUp = promptPickUpPoint();
             String dropUp = promptDropUpPoint(pickUp);
-            LocalTime pickupTiming = LocalTime.now();
-            LocalTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
+            LocalDateTime pickupTiming = LocalDateTime.now();
+            LocalDateTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
             long cabId = travelDetailsModel.getCabs(cabDetails , pickUp);
             showCabs("Your Cab Id is : "+ cabId);
             TripStatus tripStatus = TripStatus.BOOKED;
             int payment =  promptPayAmount(pickUp , dropUp);
             travelDetailsModel.setCabEarnings(cabId ,payment);
             AccountDetails currentUser = accountDetails;
-            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,dropupTiming , cabId , tripStatus , currentUser , payment);
+            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,dropupTiming , cabId , tripStatus , currentUser , payment , accountDetails.getId());
         }
     }
 
@@ -77,7 +79,7 @@ public class TravelDetailsView {
     void showCabs(String message){
         System.out.println(message);
     }
-    void promptPostFailureAction(){
+    void promptPostFailureAction() throws SQLException, ClassNotFoundException {
         while(true){
             System.out.println("\n========== OPTIONS ==========");
             System.out.println("1. Sign In");
@@ -131,7 +133,7 @@ public class TravelDetailsView {
 
         while(true){
             System.out.print("Enter drop location (A, B, C, D, E, F): ");
-            String dropUp = String.valueOf(scanner.next()).toUpperCase();
+            String dropUp = scanner.next().toUpperCase();
             String error = travelDetailsModel.validateDropUpPlace(pickUp  , dropUp);
             if(error == null){
                 return dropUp;

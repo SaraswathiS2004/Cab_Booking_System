@@ -58,6 +58,7 @@ public class CabDetails {
 
     public void setValues(long driverId , long cabId  , String registrationNumber , String model , String type){
         setCabId(cabId);
+        setDriverId(driverId);
         setCabRegistrationNumber(registrationNumber);
         setModel(model);
         setType(type);

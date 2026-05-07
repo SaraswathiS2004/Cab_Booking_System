@@ -3,7 +3,9 @@ package com.ridex.cabbooking.features.signin;
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
 import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 class SignInModel {
@@ -13,13 +15,14 @@ class SignInModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private SignInView signInView;
-    private CabDB cabDB;
-
-    public SignInModel(SignInView signInView){
+//    private CabDB cabDB;
+    private RideXDB rideXDB;
+    public SignInModel(SignInView signInView) throws SQLException, ClassNotFoundException {
         this.signInView = signInView;
-        cabDB = CabDB.getInstance();
+//        cabDB = CabDB.getInstance();
+        rideXDB = new RideXDB();
     }
-    public void authenticate(Login login){
+    public void authenticate(Login login) throws SQLException, ClassNotFoundException {
 
         if(login == null){
             signInView.onSignInFailed("Invalid email or password");
@@ -35,8 +38,10 @@ class SignInModel {
             return;
         }
 
-        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
+// AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
+        AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if(accountDetails == null) {
+
             signInView.showErrorMessage("You cannot Sign in Your Account");
             signInView.showErrorMessage("Please try again!");
         }
@@ -45,7 +50,7 @@ class SignInModel {
         }
 
     }
-    public void isAuthenticate(String password , String email){
+    public void isAuthenticate(String password , String email) throws SQLException, ClassNotFoundException {
 
         Login login = new Login();
         login.setPassword(password);

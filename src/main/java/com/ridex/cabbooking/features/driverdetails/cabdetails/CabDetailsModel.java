@@ -4,6 +4,8 @@ import com.ridex.cabbooking.data.dto.CabCurrentPosition;
 import com.ridex.cabbooking.data.dto.CabDetails;
 import com.ridex.cabbooking.data.repository.CabDB;
 
+import java.sql.SQLException;
+
 class CabDetailsModel {
      private CabDetailsView cabDetailsView;
      private CabDetails cabDetails;
@@ -17,7 +19,7 @@ class CabDetailsModel {
          this.cabCurrentPosition = new CabCurrentPosition();
      }
 
-     public void storeData(long driverId , String registrationNumber  , String model , String type){
+     public void storeData(long driverId , String registrationNumber  , String model , String type) throws SQLException, ClassNotFoundException {
          long cabId = cabDB.getCabId();
          cabDetails.setValues(driverId ,cabId , registrationNumber , model , type);
          cabCurrentPosition.setCabId(cabId);

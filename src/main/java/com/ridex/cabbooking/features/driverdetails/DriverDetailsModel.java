@@ -3,6 +3,7 @@ package com.ridex.cabbooking.features.driverdetails;
 import com.ridex.cabbooking.data.dto.DriverDetails;
 import com.ridex.cabbooking.data.repository.CabDB;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -17,14 +18,14 @@ class DriverDetailsModel {
         cabDB = CabDB.getInstance();
 
     }
-    public void storeDriverData(String address , int age , int experience , String mobileNumber){
-        long id = cabDB.getDriverId();
-        String name = cabDB.getDriverName(id);
+    public void storeDriverData(long driverId , String address , int age , int experience , String mobileNumber) throws SQLException, ClassNotFoundException {
+
+        String name = cabDB.getDriverName(driverId);
         DriverDetails driverDetails = new DriverDetails();
-        driverDetails.setDriverDetails(name , id , address , age , experience , mobileNumber);
+        driverDetails.setDriverDetails(driverId ,name , address , age , experience , mobileNumber);
         cabDB.addDriver(driverDetails);
         ArrayList<DriverDetails> driverDetails1 = cabDB.getDriverDetails();
-        driverDetailsView.onDriverSuccessful(id);
+        driverDetailsView.onDriverSuccessful(driverId);
 
     }
 

@@ -7,6 +7,7 @@ import com.ridex.cabbooking.features.home.HomeView;
 import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.signup.SignUpView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SignInView {
@@ -15,22 +16,24 @@ public class SignInView {
     private Scanner scanner;
     private boolean authenticated;
 
-    public SignInView(){
+    public SignInView() throws SQLException, ClassNotFoundException {
         signInModel = new SignInModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         scanner = consoleInput.getInstance();
+
     }
 
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
 
         System.out.println("\nSign in to RideX!");
+
         while (!authenticated) {
             promptAndAuthenticate();
             if (authenticated) return;
             if (!promptPostFailureAction()) return;
         }
     }
-    public void promptAndAuthenticate(){
+    public void promptAndAuthenticate() throws SQLException, ClassNotFoundException {
         String email = promptEmailAddress();
         String password = promptPassword();
         signInModel.isAuthenticate(password , email);
@@ -71,12 +74,12 @@ public class SignInView {
     }
 
 
-    public void onSignInSuccessful(AccountDetails accountDetails){
+    public void onSignInSuccessful(AccountDetails accountDetails) throws SQLException, ClassNotFoundException {
         authenticated = true;
 
         if(accountDetails.getRole().equals(Role.DRIVER)){
             System.out.print("Enter Your Driving Details : ");
-           new DriverDetailsView().init();
+           new DriverDetailsView(accountDetails).init();
         }
         else if(accountDetails.getRole().equals(Role.ADMIN)){
             new HomeView(accountDetails).init();
@@ -89,7 +92,7 @@ public class SignInView {
         System.out.println(message);
     }
 
-    public boolean promptPostFailureAction(){
+    public boolean promptPostFailureAction() throws SQLException, ClassNotFoundException {
 
         while(true){
 

@@ -2,6 +2,7 @@ package com.ridex.cabbooking.data.dto;
 
 public class DriverDetails {
     private long id;
+    private long driverId;
     private String name;
     private String address;
     private int age;
@@ -9,9 +10,17 @@ public class DriverDetails {
     private String mobileNumber;
     private CabDetails cabDetails;
 
-    public void setDriverDetails(String name , long id , String address , int age , int experience , String mobileNumber ){
+    public long getDriverId() {
+        return driverId;
+    }
+
+    public void setDriverId(long driverId) {
+        this.driverId = driverId;
+    }
+
+    public void setDriverDetails(long driverId ,String name , String address , int age , int experience , String mobileNumber ){
+        setDriverId(driverId);
         setName(name);
-        setId(id);
         setAddress(address);
         setAge(age);
         setExperience(experience);

@@ -2,6 +2,7 @@ package com.ridex.cabbooking.features.admin.list.accountslist;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class AccountsListView {
@@ -11,7 +12,7 @@ public class AccountsListView {
     public AccountsListView(){
         this.accountsListModel = new AccountsListModel(this);
     }
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
 
 
        accountsListModel.getAccounts();

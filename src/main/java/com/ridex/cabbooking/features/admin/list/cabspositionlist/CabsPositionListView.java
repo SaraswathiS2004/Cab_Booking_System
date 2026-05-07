@@ -2,16 +2,17 @@ package com.ridex.cabbooking.features.admin.list.cabspositionlist;
 
 import com.ridex.cabbooking.data.dto.CabCurrentPosition;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CabsPositionListView {
 
     private CabsPositionListModel cabsPositionListModel;
 
-    public CabsPositionListView(){
+    public CabsPositionListView() throws SQLException, ClassNotFoundException {
         this.cabsPositionListModel = new CabsPositionListModel(this);
     }
-    public void init(){
+    public void init() throws SQLException, ClassNotFoundException {
         cabsPositionListModel.getCabs();
     }
 
