@@ -2,6 +2,7 @@ package com.ridex.cabbooking.features.driverdetails;
 
 import com.ridex.cabbooking.data.dto.DriverDetails;
 import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,24 +10,28 @@ import java.util.regex.Pattern;
 
 class DriverDetailsModel {
     private DriverDetailsView driverDetailsView;
-    private CabDB cabDB;
+//    private CabDB cabDB;
 
+    private RideXDB rideXDB;
 
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
-    public DriverDetailsModel(DriverDetailsView driverDetailsView){
+    public DriverDetailsModel(DriverDetailsView driverDetailsView) throws SQLException, ClassNotFoundException {
         this.driverDetailsView = driverDetailsView;
-        cabDB = CabDB.getInstance();
+//        cabDB = CabDB.getInstance();
+        this.rideXDB = new RideXDB();
 
     }
     public void storeDriverData(long driverId , String address , int age , int experience , String mobileNumber) throws SQLException, ClassNotFoundException {
 
-        String name = cabDB.getDriverName(driverId);
+//        String name = cabDB.getDriverName(driverId);
+        String name = rideXDB.getDriverName(driverId);
         DriverDetails driverDetails = new DriverDetails();
         driverDetails.setDriverDetails(driverId ,name , address , age , experience , mobileNumber);
-        cabDB.addDriver(driverDetails);
-        ArrayList<DriverDetails> driverDetails1 = cabDB.getDriverDetails();
+        rideXDB.storeDriver(driverDetails);
+//        cabDB.addDriver(driverDetails);
+//        ArrayList<DriverDetails> driverDetails1 = cabDB.getDriverDetails();
+//        ArrayList<DriverDetails> driverDetails1 = rideXDB.getDriversList();
         driverDetailsView.onDriverSuccessful(driverId);
-
     }
 
 

@@ -130,8 +130,8 @@ class SignUpModel {
         AccountDetails accountDetails = new AccountDetails();
 //        long id = CabDB.getInstance().getPeopleId();
         accountDetails.registerPeople(name, password, email, city, mobileNumber, role);
-        CabDB cabDB = CabDB.getInstance();
-        cabDB.addAccount(accountDetails);
+//        CabDB cabDB = CabDB.getInstance();
+//        cabDB.addAccount(accountDetails);
 //        ArrayList<AccountDetails> accounts = cabDB.getAccounts();
         ArrayList<AccountDetails> accounts = rideXDB.getAccountList();
         return accounts;

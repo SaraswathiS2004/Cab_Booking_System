@@ -32,8 +32,6 @@ public class CabDB {
      private static ArrayList<CabCurrentPosition> cabsPosition = new ArrayList<>();
 
     public static ArrayList<AccountDetails> getAccountDetails() {
-
-
         return accountDetails;
     }
 

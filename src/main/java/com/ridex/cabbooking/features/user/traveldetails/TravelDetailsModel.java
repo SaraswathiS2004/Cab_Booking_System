@@ -31,11 +31,11 @@ class TravelDetailsModel {
         int index2 = places.indexOf(dropUpPlace);
         int value = Math.abs(index2 - index1) * 10;
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime dropTime = now.plusMinutes(value);
+        LocalDateTime dropTime = now.plusSeconds(value);
         return dropTime;
 
     }
-    void storeData(String pickUp , String dropUp , LocalDateTime pickupTiming , LocalDateTime dropupTiming , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment , long userId) throws SQLException, ClassNotFoundException {
+    void storeData(String pickUp , String dropUp , LocalTime pickupTiming , LocalTime dropupTiming , LocalDate pickUpDate , LocalDate dropUpDate , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment , long userId) throws SQLException, ClassNotFoundException {
         int money = calculateMoney(pickUp , dropUp);
         userTripDetails.setPickUp(pickUp);
         userTripDetails.setDropUp(dropUp);
@@ -44,10 +44,12 @@ class TravelDetailsModel {
         userTripDetails.setCabId(cabId);
         userTripDetails.setStatus(tripStatus);
         userTripDetails.setAccountDetails(currentUser);
-//        userTripDetails.setTripId(cabDB.getCabId());
+        userTripDetails.setPickUpDate(pickUpDate);
+        userTripDetails.setDropUpDate(dropUpDate);
+//      userTripDetails.setTripId(cabDB.getCabId());
         userTripDetails.setPayment(payment + money);
         rideXDB.storeUserTrips(userTripDetails);
-//        cabDB.addTripDetails(userTripDetails , userId);
+//      cabDB.addTripDetails(userTripDetails , userId);
         travelDetailsView.onDetailsUploadedSuccessful();
 
     }

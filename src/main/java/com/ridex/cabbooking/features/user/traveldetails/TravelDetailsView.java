@@ -48,7 +48,9 @@ public class TravelDetailsView {
             int payment =  promptPayAmount(pickUp , dropUp);
             travelDetailsModel.setCabEarnings(cabId ,payment);
             AccountDetails currentUser = accountDetails;
-            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming ,dropupTiming , cabId , tripStatus , currentUser , payment , accountDetails.getId());
+            LocalDate pick_up_date = pickupTiming.toLocalDate();
+            LocalDate drop_up_date = dropupTiming.toLocalDate();
+            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming.toLocalTime() ,dropupTiming.toLocalTime() , pick_up_date , drop_up_date , cabId , tripStatus , currentUser , payment , accountDetails.getId());
         }
     }
 

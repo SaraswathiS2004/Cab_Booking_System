@@ -2,13 +2,14 @@ package com.ridex.cabbooking.features.admin.list.usertriplist;
 
 import com.ridex.cabbooking.data.dto.UserTripDetails;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserTripDetailsView {
 
     private UserTripDetailsModel userDetailsModel;
 
-    public UserTripDetailsView() {
+    public UserTripDetailsView() throws SQLException, ClassNotFoundException {
         this.userDetailsModel = new UserTripDetailsModel(this);
     }
     public void init() {
@@ -23,18 +24,17 @@ public class UserTripDetailsView {
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for (UserTripDetails userTripDetails1 : userTripDetails) {
-            System.out.println("User Id : "+userTripDetails1.getAccountDetails().getId() +
-                    "  Name : "+userTripDetails1.getAccountDetails().getName() +
-                    "  Role : "+ userTripDetails1.getAccountDetails().getRole() +
-                    "  Email : "+userTripDetails1.getAccountDetails().getEmail() +
-                    "  Mobile Number : "+userTripDetails1.getAccountDetails().getMobileNumber() +
-                    "  Trip Id : "+userTripDetails1.getTripId() +
+            System.out.println(
+                    "Trip Id : "+userTripDetails1.getTripId() +
                     "  Cab Id : "+userTripDetails1.getCabId() +
                     "  Pick Up : "+ userTripDetails1.getPickUp()+
                     "  Drop Up : "+userTripDetails1.getDropUp() +
                     "  Pick Up Time : "+ userTripDetails1.getPickupTiming()+
                     "  Drop Up Time : "+ userTripDetails1.getDropupTiming()+
-                    "  User Travel Status : "+userTripDetails1.getStatus());
+                            "  Pick Up Date : "+ userTripDetails1.getPickUpDate()+
+                            "  Drop Up Date : "+ userTripDetails1.getDropUpDate()+
+                    "  User Travel Status : "+userTripDetails1.getStatus()+
+                    "  Payment : "+userTripDetails1.getPayment());
         }
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }

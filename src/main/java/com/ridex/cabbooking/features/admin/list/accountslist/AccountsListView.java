@@ -9,7 +9,7 @@ public class AccountsListView {
 
     private AccountsListModel accountsListModel;
 
-    public AccountsListView(){
+    public AccountsListView() throws SQLException, ClassNotFoundException {
         this.accountsListModel = new AccountsListModel(this);
     }
     public void init() throws SQLException, ClassNotFoundException {
@@ -23,7 +23,7 @@ public class AccountsListView {
         System.out.println("--------------------------------------------------------------------------");
         for (AccountDetails acc : accountDetails) {
             System.out.println("User Id :" + acc.getId() + "  Name : " + acc.getName()+ "  Email Id : " +
-                    acc.getEmail() + "  Role : "+ acc.getRole() + "  Mobile Number : "+ acc.getMobileNumber() + "  City : "+ acc.getCity());
+                    acc.getEmail() + " Password : "+ acc.getPassword()+"  Role : "+ acc.getRole() + "  Mobile Number : "+ acc.getMobileNumber() + "  City : "+ acc.getCity());
         }
 
         System.out.println("--------------------------------------------------------------------------------");

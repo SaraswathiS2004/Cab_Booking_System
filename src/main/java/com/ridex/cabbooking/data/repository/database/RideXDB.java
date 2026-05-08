@@ -34,13 +34,14 @@ public class RideXDB {
     public void storeDriver(DriverDetails driverDetails){
         try{
             pre = connection.prepareStatement
-                    ("INSERT INTO DRIVERS(DRIVER_ID ,ADDRESS , AGE , EXPERIENCE , MOBILE_NUMBER) VALUES \n" +
-                    "(? ,?, ? , ? , ?);");
+                    ("INSERT INTO DRIVERS(DRIVER_ID ,NAME , ADDRESS , AGE , EXPERIENCE , MOBILE_NUMBER) VALUES \n" +
+                    "(? ,?, ? ,? , ? , ?);");
             pre.setInt(1 , (int) driverDetails.getDriverId());
-            pre.setString(2 , driverDetails.getAddress());
-            pre.setInt(3 , driverDetails.getAge());
-            pre.setInt(4 , driverDetails.getExperience());
-            pre.setString(5 , driverDetails.getMobileNumber());
+            pre.setString(2 , driverDetails.getName());
+            pre.setString(3 , driverDetails.getAddress());
+            pre.setInt(4 , driverDetails.getAge());
+            pre.setInt(5 , driverDetails.getExperience());
+            pre.setString(6 , driverDetails.getMobileNumber());
             pre.executeUpdate();
 
         }
@@ -64,11 +65,6 @@ public class RideXDB {
         }
     }
     public void storeUserTrips(UserTripDetails userTripDetails){
-        LocalTime pickup_time= userTripDetails.getPickupTiming().toLocalTime();
-        LocalTime dropup_time = userTripDetails.getDropupTiming().toLocalTime();
-        LocalDate pick_date = userTripDetails.getPickupTiming().toLocalDate();
-        LocalDate drop_date = userTripDetails.getDropupTiming().toLocalDate();
-
         try{
             pre = connection.prepareStatement(
                     "INSERT INTO USERTRIPS(CAB_ID , PICK_UP , DROP_UP , PICK_UP_TIMING , DROP_UP_TIMING , PICKUP_DATE , DROPUP_DATE , TRIP_STATUS , PAYMENT)\n" +
@@ -76,14 +72,13 @@ public class RideXDB {
             pre.setInt(1 , (int) userTripDetails.getCabId());
             pre.setString(2 , userTripDetails.getPickUp());
             pre.setString(3 , userTripDetails.getDropUp());
-            pre.setTime(4 , Time.valueOf(pickup_time));
-            pre.setTime(5 , Time.valueOf(dropup_time));
-            pre.setDate(6 , Date.valueOf(pick_date));
-            pre.setDate(7 , Date.valueOf(drop_date));
+            pre.setTime(4 , Time.valueOf(userTripDetails.getPickupTiming()));
+            pre.setTime(5 , Time.valueOf(userTripDetails.getDropupTiming()));
+            pre.setDate(6 , Date.valueOf(userTripDetails.getPickUpDate()));
+            pre.setDate(7 , Date.valueOf(userTripDetails.getDropUpDate()));
             pre.setString(8 , userTripDetails.getStatus().toString());
             pre.setInt(9 , userTripDetails.getPayment());
             pre.executeUpdate();
-
         }
         catch (Exception e){
             System.out.println(e);
@@ -157,7 +152,7 @@ public class RideXDB {
             ResultSet set = pre.executeQuery();
             while(set.next()){
                 AccountDetails accountDetails = new AccountDetails();
-//                accountDetails.setId(set.getInt("ID"));
+                accountDetails.setId(set.getInt("ID"));
                 accountDetails.setName(set.getString("NAME"));
                 accountDetails.setEmail(set.getString("EMAIL"));
                 accountDetails.setPassword(set.getString("PASSWORD"));
@@ -188,7 +183,7 @@ public class RideXDB {
             ResultSet set = pre.executeQuery();
             while(set.next()){
                 AccountDetails accountDetails = new AccountDetails();
-//                accountDetails.setId(set.getInt("ID"));
+                accountDetails.setId(set.getInt("ID"));
                 accountDetails.setName(set.getString("NAME"));
                 accountDetails.setEmail(set.getString("EMAIL"));
                 accountDetails.setPassword(set.getString("PASSWORD"));
@@ -310,6 +305,7 @@ public class RideXDB {
             ResultSet set = pre.executeQuery();
             while(set.next()){
                 UserFeedBack userFeedBack = new UserFeedBack();
+                userFeedBack.setId(set.getInt("ID"));
                 userFeedBack.setEmail(set.getString("EMAIL"));
                 userFeedBack.setPassword(set.getString("PASSWORD"));
                 userFeedBack.setFeedBackContent(set.getString("FEEDBACK"));
@@ -334,17 +330,42 @@ public class RideXDB {
             while(set.next()){
 
                 UserTripDetails userTripDetails1 = new UserTripDetails();
+                userTripDetails1.setTripId(set.getInt("ID"));
                 userTripDetails1.setCabId(set.getInt("CAB_ID"));
                 userTripDetails1.setPickUp(set.getString("PICK_UP"));
                 userTripDetails1.setDropUp(set.getString("DROP_UP"));
-                userTripDetails1.setPickupTiming(set.getTime("PICK_UP_TIMING"));
-                userTripDetails1.setDropupTiming();
-                userTripDetails1.setStatus();
-                userTripDetails1.setPayment();
+                userTripDetails1.setPickupTiming(set.getTime("PICK_UP_TIMING").toLocalTime());
+                userTripDetails1.setDropupTiming(set.getTime("DROP_UP_TIMING").toLocalTime());
+                userTripDetails1.setPickUpDate(set.getDate("PICKUP_DATE").toLocalDate());
+                userTripDetails1.setDropUpDate(set.getDate("DROPUP_DATE").toLocalDate());
+                userTripDetails1.setStatus(TripStatus.valueOf(set.getString("TRIP_STATUS")));
+                userTripDetails1.setPayment(set.getInt("PAYMENT"));
+                userTripDetails.add(userTripDetails1);
             }
         }
         catch (Exception e){
             System.out.println(e);
         }
+
+        return userTripDetails;
+    }
+
+    public String getDriverName(long id){
+        String name = null;
+        try{
+            pre = connection.prepareStatement("SELECT NAME FROM ACCOUNTS WHERE ID = ?");
+            pre.setInt(1 , (int) id);
+            ResultSet set  = pre.executeQuery();
+
+            if(set.next()){
+                 name = set.getString("NAME");
+            }
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+
+        return name;
     }
 }

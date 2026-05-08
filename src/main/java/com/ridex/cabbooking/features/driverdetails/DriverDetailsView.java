@@ -15,7 +15,7 @@ public class DriverDetailsView {
     private Scanner scanner;
     private AccountDetails accountDetails;
 
-    public DriverDetailsView(AccountDetails accountDetails){
+    public DriverDetailsView(AccountDetails accountDetails) throws SQLException, ClassNotFoundException {
         this.driverDetailsModel = new DriverDetailsModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         this.scanner = consoleInput.getInstance();

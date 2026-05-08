@@ -1,8 +1,9 @@
 package com.ridex.cabbooking.data.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public class UserTripDetails {
     private long tripId;
@@ -11,11 +12,27 @@ public class UserTripDetails {
     private long cabId;
     private LocalTime pickupTiming;
     private LocalTime dropupTiming;
-    private Date pickUpDate;
-    private Date dropUpDate;
+    private LocalDate pickUpDate;
+    private LocalDate dropUpDate;
     private TripStatus status;
     private int payment;
     private AccountDetails accountDetails;
+
+    public LocalDate getDropUpDate() {
+        return dropUpDate;
+    }
+
+    public void setDropUpDate(LocalDate dropUpDate) {
+        this.dropUpDate = dropUpDate;
+    }
+
+    public LocalDate getPickUpDate() {
+        return pickUpDate;
+    }
+
+    public void setPickUpDate(LocalDate pickUpDate) {
+        this.pickUpDate = pickUpDate;
+    }
 
     public void setPickupTiming(LocalTime pickupTiming) {
         this.pickupTiming = pickupTiming;
