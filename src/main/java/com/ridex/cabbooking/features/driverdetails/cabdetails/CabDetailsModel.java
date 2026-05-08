@@ -2,28 +2,28 @@ package com.ridex.cabbooking.features.driverdetails.cabdetails;
 
 import com.ridex.cabbooking.data.dto.CabCurrentPosition;
 import com.ridex.cabbooking.data.dto.CabDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 class CabDetailsModel {
      private CabDetailsView cabDetailsView;
      private CabDetails cabDetails;
-     private CabDB cabDB;
+     private RideXDB rideXDB;
      private CabCurrentPosition cabCurrentPosition;
 
      public CabDetailsModel (CabDetailsView cabDetailsView){
          this.cabDetailsView = cabDetailsView;
          this.cabDetails = new CabDetails();
-         this.cabDB = CabDB.getInstance();
+         this.rideXDB = RideXDB.getInstance();
          this.cabCurrentPosition = new CabCurrentPosition();
      }
 
      public void storeData(long driverId , String registrationNumber  , String model , String type){
-         long cabId = cabDB.getCabId();
+         long cabId = rideXDB.getCabId();
          cabDetails.setValues(driverId ,cabId , registrationNumber , model , type);
          cabCurrentPosition.setCabId(cabId);
          cabCurrentPosition.setPosition("A");
-         cabDB.addCab(cabDetails);
-         cabDB.addCabPosition(cabCurrentPosition);
+         rideXDB.addCab(cabDetails);
+         rideXDB.addCabPosition(cabCurrentPosition);
          cabDetailsView.onSuccessful();
      }
 

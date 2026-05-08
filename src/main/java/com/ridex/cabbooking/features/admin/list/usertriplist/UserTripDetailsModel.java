@@ -1,21 +1,21 @@
 package com.ridex.cabbooking.features.admin.list.usertriplist;
 
 import com.ridex.cabbooking.data.dto.UserTripDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 
 class UserTripDetailsModel {
 
     private UserTripDetailsView userDetailsView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
     public UserTripDetailsModel(UserTripDetailsView userDetailsView){
         this.userDetailsView = userDetailsView;
-        this.cabDB = CabDB.getInstance();
+        this.rideXDB = RideXDB.getInstance();
     }
 
     public void getUsers(){
-        ArrayList<UserTripDetails> userTripDetails = cabDB.getUserTripDetails();
+        ArrayList<UserTripDetails> userTripDetails = rideXDB.getUserTripDetails();
         if(userTripDetails.isEmpty()) {
             userDetailsView.showFailedUserDetails("No trips found");
         }

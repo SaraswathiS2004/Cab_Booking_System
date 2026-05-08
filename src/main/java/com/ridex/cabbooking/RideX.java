@@ -1,6 +1,6 @@
 package com.ridex.cabbooking;
 
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 import com.ridex.cabbooking.util.ConsoleInput;
 import com.ridex.cabbooking.features.signin.SignInView;
 import com.ridex.cabbooking.features.signup.SignUpView;
@@ -14,7 +14,7 @@ public class RideX {
         showMenu();
     }
     public static void showMenu() {
-        CabDB cabDB = CabDB.getInstance();
+        RideXDB rideXDB = RideXDB.getInstance();
         ConsoleInput consoleInput = new ConsoleInput();
         Scanner scan = consoleInput.getInstance();
 
@@ -22,7 +22,7 @@ public class RideX {
 
             while (true) {
                 try {
-                    if (cabDB.getAccounts().size() == 0) {
+                    if (rideXDB.getAccounts().size() == 0) {
                         System.out.print("1. SignUp");
                     } else {
                         System.out.print("\n1. SignUp");

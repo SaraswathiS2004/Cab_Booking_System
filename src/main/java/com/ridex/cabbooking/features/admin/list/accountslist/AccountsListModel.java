@@ -1,22 +1,22 @@
 package com.ridex.cabbooking.features.admin.list.accountslist;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 
 class AccountsListModel {
 
     private AccountsListView accountsListView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
     public AccountsListModel(AccountsListView accountsListView){
         this.accountsListView = accountsListView;
-        this.cabDB = CabDB.getInstance();
+        this.rideXDB = RideXDB.getInstance();
     }
 
     void getAccounts(){
 
-        ArrayList<AccountDetails> accountDetails = cabDB.getAccounts();
+        ArrayList<AccountDetails> accountDetails = rideXDB.getAccounts();
         if(accountDetails.isEmpty()){
             accountsListView.onAccountFailed();
         }

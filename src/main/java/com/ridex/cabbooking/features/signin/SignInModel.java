@@ -2,7 +2,7 @@ package com.ridex.cabbooking.features.signin;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.regex.Pattern;
 
@@ -13,11 +13,11 @@ class SignInModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private SignInView signInView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
 
     public SignInModel(SignInView signInView){
         this.signInView = signInView;
-        cabDB = CabDB.getInstance();
+        rideXDB = RideXDB.getInstance();
     }
     public void authenticate(Login login){
 
@@ -35,7 +35,7 @@ class SignInModel {
             return;
         }
 
-        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
+        AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
         if(accountDetails == null) {
             signInView.showErrorMessage("You cannot Sign in Your Account");
             signInView.showErrorMessage("Please try again!");

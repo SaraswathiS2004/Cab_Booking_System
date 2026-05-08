@@ -1,7 +1,7 @@
 package com.ridex.cabbooking.features.user.traveldetails;
 
 import com.ridex.cabbooking.data.dto.*;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,12 +10,12 @@ import java.util.Arrays;
 class TravelDetailsModel {
 
     private TravelDetailsView travelDetailsView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
     private UserTripDetails userTripDetails;
     private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A" , "B" , "C" , "D" , "E" , "F"));
     public TravelDetailsModel(TravelDetailsView travelDetailsView){
         this.travelDetailsView = travelDetailsView;
-        this.cabDB = CabDB.getInstance();
+        this.rideXDB = RideXDB.getInstance();
         this.userTripDetails = new UserTripDetails();
     }
 
@@ -38,14 +38,14 @@ class TravelDetailsModel {
         userTripDetails.setCabId(cabId);
         userTripDetails.setStatus(tripStatus);
         userTripDetails.setAccountDetails(currentUser);
-        userTripDetails.setTripId(cabDB.getCabId());
+        userTripDetails.setTripId(rideXDB.getCabId());
         userTripDetails.setPayment(payment + money);
-        cabDB.addTripDetails(userTripDetails);
+        rideXDB.addTripDetails(userTripDetails);
         travelDetailsView.onDetailsUploadedSuccessful();
 
     }
     void setCabEarnings(long cabId ,int earnings){
-        cabDB.setCabEarnings(cabId ,earnings);
+        rideXDB.setCabEarnings(cabId ,earnings);
     }
 
     int calculateMoney(String pick , String drop){
@@ -68,7 +68,7 @@ class TravelDetailsModel {
     long getCabs(ArrayList<CabDetails> cabDetails , String pickUp){
         int minPosition = Integer.MAX_VALUE;
         CabDetails cab = null;
-        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+        ArrayList<CabCurrentPosition> cabCurrentPositions = rideXDB.getCabsPosition();
         for(CabDetails cabDetails1 : cabDetails){
             long id = cabDetails1.getCabId();
             for(CabCurrentPosition cabCurrentPosition : cabCurrentPositions){
@@ -101,7 +101,7 @@ class TravelDetailsModel {
         }
     }
     ArrayList<CabDetails> getAvailableCabs(){
-        ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
+        ArrayList<CabDetails> cabDetails = rideXDB.getCabDetails();
 
         return cabDetails;
     }

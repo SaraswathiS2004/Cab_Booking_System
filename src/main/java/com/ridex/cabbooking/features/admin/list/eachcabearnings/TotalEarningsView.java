@@ -1,14 +1,14 @@
 package com.ridex.cabbooking.features.admin.list.eachcabearnings;
 
 import com.ridex.cabbooking.data.dto.CabDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 
 public class TotalEarningsView {
 
     private TotalEarningsModel totalEarningsModel;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
     public TotalEarningsView(){
         this.totalEarningsModel = new TotalEarningsModel(this);
     }

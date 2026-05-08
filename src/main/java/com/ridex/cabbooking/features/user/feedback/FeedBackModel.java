@@ -3,7 +3,7 @@ package com.ridex.cabbooking.features.user.feedback;
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
 import com.ridex.cabbooking.data.dto.UserFeedBack;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.regex.Pattern;
 
@@ -13,11 +13,11 @@ class FeedBackModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private FeedBackView feedBackView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
 
     public FeedBackModel(FeedBackView feedBackView) {
         this.feedBackView = feedBackView;
-        this.cabDB = CabDB.getInstance();
+        this.rideXDB = RideXDB.getInstance();
     }
 
     String validateContent(String feedback) {
@@ -25,7 +25,7 @@ class FeedBackModel {
         return null;
     }
     long getFeedBackId(){
-        return cabDB.getFeedBackId();
+        return rideXDB.getFeedBackId();
     }
     public void authenticate(Login login) {
 
@@ -43,7 +43,7 @@ class FeedBackModel {
             return;
         }
 
-        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
+        AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if (accountDetails == null) {
             feedBackView.showErrorMessage("Unable to sign in to your account.");
             feedBackView.showErrorMessage("Please try again.");
@@ -85,7 +85,7 @@ class FeedBackModel {
         userFeedBack.setEmail(email);
         userFeedBack.setPassword(password);
         userFeedBack.setFeedBackContent(content);
-        cabDB.addFeedBack(userFeedBack);
+        rideXDB.addFeedBack(userFeedBack);
         feedBackView.onSuccessfulFeedBack();
     }
 }

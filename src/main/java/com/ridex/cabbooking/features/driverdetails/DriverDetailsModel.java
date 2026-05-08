@@ -1,29 +1,29 @@
 package com.ridex.cabbooking.features.driverdetails;
 
 import com.ridex.cabbooking.data.dto.DriverDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 class DriverDetailsModel {
     private DriverDetailsView driverDetailsView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
 
 
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
     public DriverDetailsModel(DriverDetailsView driverDetailsView){
         this.driverDetailsView = driverDetailsView;
-        cabDB = CabDB.getInstance();
+        rideXDB = RideXDB.getInstance();
 
     }
     public void storeDriverData(String address , int age , int experience , String mobileNumber){
-        long id = cabDB.getDriverId();
-        String name = cabDB.getDriverName(id);
+        long id = rideXDB.getDriverId();
+        String name = rideXDB.getDriverName(id);
         DriverDetails driverDetails = new DriverDetails();
         driverDetails.setDriverDetails(name , id , address , age , experience , mobileNumber);
-        cabDB.addDriver(driverDetails);
-        ArrayList<DriverDetails> driverDetails1 = cabDB.getDriverDetails();
+        rideXDB.addDriver(driverDetails);
+        ArrayList<DriverDetails> driverDetails1 = rideXDB.getDriverDetails();
         driverDetailsView.onDriverSuccessful(id);
 
     }

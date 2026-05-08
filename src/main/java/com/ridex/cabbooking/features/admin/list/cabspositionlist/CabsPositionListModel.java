@@ -1,19 +1,19 @@
 package com.ridex.cabbooking.features.admin.list.cabspositionlist;
 
 import com.ridex.cabbooking.data.dto.CabCurrentPosition;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 
 class CabsPositionListModel {
     private CabsPositionListView cabsPositionListView;
-    private CabDB cabDB;
+    private RideXDB rideXDB;
     public CabsPositionListModel(CabsPositionListView cabsPositionListView){
         this.cabsPositionListView = cabsPositionListView;
-        this.cabDB = CabDB.getInstance();
+        this.rideXDB = RideXDB.getInstance();
     }
     public void getCabs(){
-        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+        ArrayList<CabCurrentPosition> cabCurrentPositions = rideXDB.getCabsPosition();
         if(cabCurrentPositions.isEmpty()) cabsPositionListView.showFailedCabs("No Cabs Found!");
         else{
             cabsPositionListView.showOnCabsSuccessful(cabCurrentPositions);

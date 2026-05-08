@@ -5,15 +5,15 @@ import com.ridex.cabbooking.data.dto.*;
 
 import java.util.ArrayList;
 
-public class CabDB {
+public class RideXDB {
 
-    private static CabDB cabDB;
+    private static RideXDB rideXDB;
     private static long peopleId = 1;
     private static long driverId = 1;
     private static long cabId = 1;
     private static long tripId = 1;
     private static long feedBackId = 1;
-    private CabDB(){}
+    private RideXDB(){}
     public long getDriverId() {
         return driverId;
     }
@@ -34,16 +34,16 @@ public class CabDB {
         return accountDetails;
     }
 
-    public static CabDB getInstance(){
-         if(cabDB == null){
-             cabDB = new CabDB();
+    public static RideXDB getInstance(){
+         if(rideXDB == null){
+             rideXDB = new RideXDB();
          }
-         return cabDB;
+         return rideXDB;
      }
      public void addAccount(AccountDetails accountDetails){
 
 
-         CabDB.accountDetails.add(accountDetails);
+         RideXDB.accountDetails.add(accountDetails);
          peopleId++;
      }
      public void addTripDetails(UserTripDetails userTripDetails){
@@ -55,12 +55,12 @@ public class CabDB {
             }
         }
 
-        cabDB.userTripDetails.add(userTripDetails);
+        rideXDB.userTripDetails.add(userTripDetails);
 
          tripId++;
      }
      public void addFeedBack(UserFeedBack userFeedBack){
-        CabDB.userFeedBacks.add(userFeedBack);
+        RideXDB.userFeedBacks.add(userFeedBack);
          feedBackId++;
      }
 
@@ -77,18 +77,18 @@ public class CabDB {
 
     public void addDriver(DriverDetails driverDetails){
 
-        CabDB.driverDetails.add(driverDetails);
+        RideXDB.driverDetails.add(driverDetails);
         driverId++;
     }
     public ArrayList<DriverDetails> getDriverDetails(){
         return driverDetails;
     }
     public void addCab(CabDetails cabDetails){
-        cabDB.cabDetails.add(cabDetails);
+        rideXDB.cabDetails.add(cabDetails);
         cabId++;
     }
     public void addCabPosition(CabCurrentPosition cabCurrentPosition){
-        cabDB.cabsPosition.add(cabCurrentPosition);
+        rideXDB.cabsPosition.add(cabCurrentPosition);
     }
     public ArrayList<CabDetails> getCabDetails(){
         return cabDetails;

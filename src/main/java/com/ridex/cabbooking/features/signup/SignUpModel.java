@@ -2,7 +2,7 @@ package com.ridex.cabbooking.features.signup;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Role;
-import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.RideXDB;
 
 import java.util.ArrayList;
 import java.util.regex.Pattern;
@@ -16,12 +16,12 @@ class SignUpModel {
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
 
-    private CabDB cabDB;
+    private RideXDB rideXDB;
 
     public boolean isAdmin() {
 
-        cabDB = CabDB.getInstance();
-        ArrayList<AccountDetails> accountDetails = cabDB.getAccounts();
+        rideXDB = RideXDB.getInstance();
+        ArrayList<AccountDetails> accountDetails = rideXDB.getAccounts();
         int size = accountDetails.size();
         if (size == 0) {
             return true;
@@ -31,7 +31,7 @@ class SignUpModel {
 
     public SignUpModel(SignUpView signUpView) {
         this.signUpView = signUpView;
-        cabDB = CabDB.getInstance();
+        rideXDB = RideXDB.getInstance();
     }
 
     public void getSignUp() {
@@ -111,7 +111,7 @@ class SignUpModel {
     }
 
     public boolean checkIsEmailId(String email) {
-        String message = cabDB.checkIsAlreadyExistEmailId(email);
+        String message = rideXDB.checkIsAlreadyExistEmailId(email);
         if (message == null) {
             return false;
         }
@@ -120,11 +120,11 @@ class SignUpModel {
 
     public ArrayList<AccountDetails> storeData(String name, String password, String email, String city, String mobileNumber, Role role) {
         AccountDetails accountDetails = new AccountDetails();
-        long id = cabDB.getPeopleId();
+        long id = this.rideXDB.getPeopleId();
         accountDetails.registerPeople(name, password, email, city, mobileNumber, role, id);
-        CabDB cabDB = CabDB.getInstance();
-        cabDB.addAccount(accountDetails);
-        ArrayList<AccountDetails> accounts = cabDB.getAccounts();
+        RideXDB rideXDB = RideXDB.getInstance();
+        rideXDB.addAccount(accountDetails);
+        ArrayList<AccountDetails> accounts = rideXDB.getAccounts();
         return accounts;
     }
 }
