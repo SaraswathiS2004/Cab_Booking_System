@@ -24,7 +24,6 @@ public class RideX {
                 try {
                     if (cabDB.getAccounts().size() == 0) {
                         System.out.print("1. SignUp");
-
                     } else {
                         System.out.print("\n1. SignUp");
                         System.out.print("\n2. SignIn");
