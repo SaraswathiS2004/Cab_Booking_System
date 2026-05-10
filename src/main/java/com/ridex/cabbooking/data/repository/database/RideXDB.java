@@ -380,8 +380,7 @@ public class RideXDB extends Thread {
                     pre = connection.prepareStatement("UPDATE USERTRIPS SET TRIP_STATUS = ? WHERE ID = ? ");
                     pre.setString(1, String.valueOf(TripStatus.DROPPED));
                     pre.setInt(2, (int) tripId);
-                    int numberOfRowsAffected1 = pre.executeUpdate();
-                    System.out.println(numberOfRowsAffected1);
+                    pre.executeUpdate();
                     setUpdateCabs(userTripDetails.getCabId(), userTripDetails.getDropUp(), CabStatus.AVAILABLE);
                 } catch (Exception e) {
                     System.out.println(e);
