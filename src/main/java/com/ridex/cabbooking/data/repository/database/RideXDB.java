@@ -429,7 +429,7 @@ public class RideXDB extends Thread {
         return cabList;
     }
 
-    public ArrayList<CabDetails> availableCabs() {
+    public ArrayList<CabDetails> getAvailableCabs() {
 
         ArrayList<CabDetails> cabList = new ArrayList<>();
         try {

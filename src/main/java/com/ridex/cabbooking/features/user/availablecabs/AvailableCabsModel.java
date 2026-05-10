@@ -17,7 +17,7 @@ class AvailableCabsModel {
 
 
     public void getAvailableCabsDetails() throws SQLException, ClassNotFoundException {
-        ArrayList<CabDetails> cabDetails = new RideXDB().getCabList();
+        ArrayList<CabDetails> cabDetails = rideXDB.getAvailableCabs();
         if (cabDetails.isEmpty()) availableCabsView.showCabsFailed();
         else availableCabsView.showAvailableCabsDetails(cabDetails);
     }

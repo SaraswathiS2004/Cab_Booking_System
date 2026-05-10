@@ -82,7 +82,7 @@ class TravelDetailsModel {
     long getCabs(String pickUp) throws SQLException, ClassNotFoundException {
         int minPosition = Integer.MAX_VALUE;
         CabDetails cab = null;
-        ArrayList<CabDetails> cabDetails = rideXDB.availableCabs();
+        ArrayList<CabDetails> cabDetails = rideXDB.getAvailableCabs();
         ArrayList<CabCurrentPosition> cabCurrentPositions = new RideXDB().getCabPositionList();
 
         for (CabDetails cabDetails1 : cabDetails) {
