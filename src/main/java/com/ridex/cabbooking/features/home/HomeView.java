@@ -110,6 +110,7 @@ public class HomeView {
             switch (choice) {
                 case "1":
                     new TravelDetailsView(accountDetails).init();
+                    RideX.showMenu();
                     break;
                 case "2":
                     new AvailableCabsView().init();

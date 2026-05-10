@@ -117,7 +117,7 @@ class TravelDetailsModel {
 
     ArrayList<CabDetails> getAvailableCabs() throws SQLException, ClassNotFoundException {
 //        ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
-        ArrayList<CabDetails> cabDetails = new RideXDB().getCabList();
+        ArrayList<CabDetails> cabDetails = new RideXDB().getAvailableCabs();
         return cabDetails;
     }
 

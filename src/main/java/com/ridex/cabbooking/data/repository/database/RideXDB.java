@@ -383,8 +383,6 @@ public class RideXDB extends Thread {
                     int numberOfRowsAffected1 = pre.executeUpdate();
                     System.out.println(numberOfRowsAffected1);
                     setUpdateCabs(userTripDetails.getCabId(), userTripDetails.getDropUp(), CabStatus.AVAILABLE);
-
-                    System.out.println("called!");
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -401,8 +399,7 @@ public class RideXDB extends Thread {
             pre.setString(1, String.valueOf(status));
             pre.setString(2, position);
             pre.setInt(3, (int) cabId);
-            int numberOfRowsAffected2 = pre.executeUpdate();
-            System.out.println(numberOfRowsAffected2);
+            pre.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
         }

@@ -15,8 +15,8 @@ public class TotalEarningsView {
     }
 
     public void init() {
-        System.out.println("====== Welcome to RideX ======");
 
+        System.out.println("====== Welcome to RideX ======");
         totalEarningsModel.getEarnings();
     }
 

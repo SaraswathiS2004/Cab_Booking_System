@@ -56,6 +56,7 @@ public class TravelDetailsView {
 
     void onDetailsUploadedSuccessful() {
         System.out.println("\nTrip details uploaded successfully!");
+        System.out.println("Thank you for using RideX!");
     }
 
     int promptPayAmount(String pickUp, String dropUp) {
