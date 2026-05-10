@@ -28,8 +28,10 @@ public class RideX {
                     System.out.print("\n2. SignIn");
                     System.out.print("\n3. Exit");
                 }
+
                 System.out.print("\nChoose Your Option : ");
                 String option = scan.next();
+
                 switch (option) {
                     case "1":
                         SignUpView signUpView = new SignUpView();
