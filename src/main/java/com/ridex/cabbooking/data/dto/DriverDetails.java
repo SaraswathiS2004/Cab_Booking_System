@@ -1,6 +1,7 @@
 package com.ridex.cabbooking.data.dto;
 
 public class DriverDetails {
+
     private long id;
     private long driverId;
     private String name;

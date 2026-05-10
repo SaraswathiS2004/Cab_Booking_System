@@ -8,12 +8,10 @@ import java.util.ArrayList;
 
 class TotalEarningsModel {
     private TotalEarningsView totalEarningsView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public TotalEarningsModel(TotalEarningsView totalEarningsView) throws SQLException, ClassNotFoundException {
         this.totalEarningsView = totalEarningsView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
     }
 

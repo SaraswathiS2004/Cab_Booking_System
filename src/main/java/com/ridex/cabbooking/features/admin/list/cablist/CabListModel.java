@@ -9,17 +9,14 @@ import java.util.ArrayList;
 public class CabListModel {
 
     private CabListView cabListView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public CabListModel(CabListView cabListView) throws SQLException, ClassNotFoundException {
         this.cabListView = cabListView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
     }
 
     public void getCabs() throws SQLException, ClassNotFoundException {
-//        ArrayList<CabDetails> cabsList = cabDB.getCabDetails();
 
         ArrayList<CabDetails> cabsList = rideXDB.getCabList();
         if (cabsList.size() == 0) {

@@ -14,12 +14,10 @@ class SignInModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private SignInView signInView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public SignInModel(SignInView signInView) throws SQLException, ClassNotFoundException {
         this.signInView = signInView;
-//        cabDB = CabDB.getInstance();
         rideXDB = new RideXDB();
     }
 
@@ -39,7 +37,6 @@ class SignInModel {
             return;
         }
 
-// AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
         AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if (accountDetails == null) {
 

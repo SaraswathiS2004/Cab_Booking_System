@@ -1,9 +1,9 @@
 package com.ridex.cabbooking.data.dto;
 
 public class Login extends AccountDetails {
+
     private String email;
     private String password;
-
 
     public String getEmail() {
         return email;

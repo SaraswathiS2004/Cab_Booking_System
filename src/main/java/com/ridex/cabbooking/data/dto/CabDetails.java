@@ -1,6 +1,7 @@
 package com.ridex.cabbooking.data.dto;
 
 public class CabDetails {
+
     private long driverId;
     private String cabRegistrationNumber;
     private long cabId;
@@ -56,12 +57,4 @@ public class CabDetails {
         this.type = type;
     }
 
-    public void setValues(long driverId, long cabId, String registrationNumber, String model, String type) {
-        setCabId(cabId);
-        setDriverId(driverId);
-        setCabRegistrationNumber(registrationNumber);
-        setModel(model);
-        setType(type);
-        setDriverId(driverId);
-    }
 }

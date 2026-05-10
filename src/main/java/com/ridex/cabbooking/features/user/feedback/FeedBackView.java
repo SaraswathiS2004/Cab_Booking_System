@@ -28,12 +28,11 @@ public class FeedBackView {
     }
 
     public void promptAndAuthenticate() throws SQLException, ClassNotFoundException {
-//        long id = feedBackModel.getFeedBackId();
+
         String email = promptEmailAddress();
         String password = promptPassword();
         String feedBack = promptFeedBack();
         feedBackModel.isAuthenticate(email, password);
-//        feedBackModel.storeData(id ,email , password , feedBack);
         feedBackModel.storeData(email, password, feedBack);
     }
 

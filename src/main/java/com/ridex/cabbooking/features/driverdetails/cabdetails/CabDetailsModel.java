@@ -10,14 +10,12 @@ import java.sql.SQLException;
 class CabDetailsModel {
     private CabDetailsView cabDetailsView;
     private CabDetails cabDetails;
-    //     private CabDB cabDB;
     private RideXDB rideXDB;
     private CabCurrentPosition cabCurrentPosition;
 
     public CabDetailsModel(CabDetailsView cabDetailsView) throws SQLException, ClassNotFoundException {
         this.cabDetailsView = cabDetailsView;
         this.cabDetails = new CabDetails();
-//         this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
         this.cabCurrentPosition = new CabCurrentPosition();
     }

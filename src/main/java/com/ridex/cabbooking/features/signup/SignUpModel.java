@@ -16,34 +16,18 @@ class SignUpModel {
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
 
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
 
     public SignUpModel(SignUpView signUpView) throws SQLException, ClassNotFoundException {
         this.signUpView = signUpView;
-//        cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
-    }
-
-    public void getSignUp() {
-        signUpView.showSignUp();
     }
 
     public boolean isAdmin() throws SQLException, ClassNotFoundException {
 
-//        cabDB = CabDB.getInstance();
-
-
         boolean isAdmin = new RideXDB().isAdmin();
         return isAdmin;
-//        ArrayList<AccountDetails> accountDetails = cabDB.getAccounts();
-//        int size = accountDetails.size();
-//        if (size == 0) {
-//            return true;
-//        }
-//        return false;
-
     }
 
     String validateName(String name) {
@@ -128,13 +112,9 @@ class SignUpModel {
 
     public void storeData(String name, String password, String email, String city, String mobileNumber, Role role) throws SQLException, ClassNotFoundException {
         AccountDetails accountDetails = new AccountDetails();
-//        long id = CabDB.getInstance().getPeopleId();
         accountDetails.registerPeople(name, password, email, city, mobileNumber, role);
-//        CabDB cabDB = CabDB.getInstance();
         rideXDB.storeAccount(accountDetails);
         boolean isFirstUser = rideXDB.getAccountList().size() == 1;
         signUpView.onSignUpSuccessful(isFirstUser);
-//        ArrayList<AccountDetails> accounts = cabDB.getAccounts();
-//        ArrayList<AccountDetails> accounts = rideXDB.getAccountList();
     }
 }

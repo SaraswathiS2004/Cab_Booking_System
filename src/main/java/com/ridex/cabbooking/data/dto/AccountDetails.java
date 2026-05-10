@@ -67,12 +67,13 @@ public class AccountDetails {
     }
 
     public void registerPeople(String name, String password, String email, String city, String mobileNumber, Role role) {
+
         setName(name);
         setPassword(password);
         setEmail(email);
         setCity(city);
         setMobileNumber(mobileNumber);
         setRole(role);
-//        setId(id);
+
     }
 }

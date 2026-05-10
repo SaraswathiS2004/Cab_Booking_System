@@ -35,10 +35,6 @@ public class SignUpView {
 
     }
 
-    public void showSignUp() {
-
-    }
-
     public String promptName() {
 
         while (true) {

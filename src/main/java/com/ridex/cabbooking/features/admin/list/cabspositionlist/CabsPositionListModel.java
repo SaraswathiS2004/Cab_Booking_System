@@ -8,17 +8,14 @@ import java.util.ArrayList;
 
 class CabsPositionListModel {
     private CabsPositionListView cabsPositionListView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public CabsPositionListModel(CabsPositionListView cabsPositionListView) throws SQLException, ClassNotFoundException {
         this.cabsPositionListView = cabsPositionListView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
     }
 
     public void getCabs() throws SQLException, ClassNotFoundException {
-//        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
 
         ArrayList<CabCurrentPosition> cabCurrentPositions = new RideXDB().getCabPositionList();
         if (cabCurrentPositions.isEmpty()) cabsPositionListView.showFailedCabs("No Cabs Found!");

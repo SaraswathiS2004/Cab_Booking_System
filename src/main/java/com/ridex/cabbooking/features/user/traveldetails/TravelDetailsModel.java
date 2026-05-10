@@ -13,14 +13,12 @@ import java.util.Arrays;
 class TravelDetailsModel {
 
     private TravelDetailsView travelDetailsView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
     private UserTripDetails userTripDetails;
     private ArrayList<String> places = new ArrayList<String>(Arrays.asList("A", "B", "C", "D", "E", "F"));
 
     public TravelDetailsModel(TravelDetailsView travelDetailsView) throws SQLException, ClassNotFoundException {
         this.travelDetailsView = travelDetailsView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
         this.userTripDetails = new UserTripDetails();
     }
@@ -29,11 +27,9 @@ class TravelDetailsModel {
 
         int index1 = places.indexOf(pickUpPlace);
         int index2 = places.indexOf(dropUpPlace);
-//        int value = Math.abs(index2 - index1) * 1;
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime dropTime = now.plusMinutes(1);
+        LocalDateTime dropTime = now.plusMinutes(Math.abs(index1 - index2)/2);
         return dropTime;
-
     }
 
     void storeData(String pickUp, String dropUp, LocalTime pickupTiming, LocalTime dropupTiming, LocalDate pickUpDate, LocalDate dropUpDate, long cabId, TripStatus tripStatus, AccountDetails currentUser, int payment, long userId) throws SQLException, ClassNotFoundException {
@@ -46,17 +42,14 @@ class TravelDetailsModel {
         userTripDetails.setAccountDetails(currentUser);
         userTripDetails.setPickUpDate(pickUpDate);
         userTripDetails.setDropUpDate(dropUpDate);
-//      userTripDetails.setTripId(cabDB.getCabId());
         userTripDetails.setPayment(payment);
         rideXDB.setUpdateCabs(cabId, null, CabStatus.UN_AVAILABLE);
         rideXDB.storeUserTrips(userTripDetails);
-//      cabDB.addTripDetails(userTripDetails , userId);
         travelDetailsView.onDetailsUploadedSuccessful();
 
     }
 
     void setCabEarnings(long cabId, int earnings) {
-//        CabDB.getInstance().setCabEarnings(cabId ,earnings);
 
         rideXDB.setCabEarnings(cabId, earnings);
     }
@@ -116,7 +109,6 @@ class TravelDetailsModel {
     }
 
     ArrayList<CabDetails> getAvailableCabs() throws SQLException, ClassNotFoundException {
-//        ArrayList<CabDetails> cabDetails = cabDB.getCabDetails();
         ArrayList<CabDetails> cabDetails = new RideXDB().getAvailableCabs();
         return cabDetails;
     }

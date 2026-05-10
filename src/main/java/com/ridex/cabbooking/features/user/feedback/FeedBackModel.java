@@ -14,12 +14,10 @@ class FeedBackModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private FeedBackView feedBackView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public FeedBackModel(FeedBackView feedBackView) throws SQLException, ClassNotFoundException {
         this.feedBackView = feedBackView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
     }
 
@@ -28,9 +26,6 @@ class FeedBackModel {
         return null;
     }
 
-    //    long getFeedBackId(){
-//        return cabDB.getFeedBackId();
-//    }
     public void authenticate(Login login) {
 
         if (login == null) {
@@ -46,8 +41,6 @@ class FeedBackModel {
             feedBackView.onSignInFailed(passwordError);
             return;
         }
-
-//        AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
 
         AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
         if (accountDetails == null) {
@@ -87,12 +80,10 @@ class FeedBackModel {
 
     void storeData(String email, String password, String content) throws SQLException, ClassNotFoundException {
         UserFeedBack userFeedBack = new UserFeedBack();
-//        userFeedBack.setId(id);
         userFeedBack.setEmail(email);
         userFeedBack.setPassword(password);
         userFeedBack.setFeedBackContent(content);
         rideXDB.storeFeedBack(userFeedBack);
-//        cabDB.addFeedBack(userFeedBack);
         feedBackView.onSuccessfulFeedBack();
     }
 }

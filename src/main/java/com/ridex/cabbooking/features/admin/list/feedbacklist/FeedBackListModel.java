@@ -9,17 +9,15 @@ import java.util.ArrayList;
 class FeedBackListModel {
 
     private FeedBackListView feedBackListView;
-    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
     public FeedBackListModel(FeedBackListView feedBackListView) throws SQLException, ClassNotFoundException {
         this.feedBackListView = feedBackListView;
-//        this.cabDB = CabDB.getInstance();
         this.rideXDB = new RideXDB();
     }
 
     public void getFeedBacks() {
-//        ArrayList<UserFeedBack> userFeedBacks = cabDB.getUserFeedBacks();
+
         ArrayList<UserFeedBack> userFeedBacks = rideXDB.getFeedBackList();
 
         if (userFeedBacks.isEmpty()) {
@@ -28,6 +26,4 @@ class FeedBackListModel {
             feedBackListView.showSuccessfulFeedBacks(userFeedBacks);
         }
     }
-
-
 }

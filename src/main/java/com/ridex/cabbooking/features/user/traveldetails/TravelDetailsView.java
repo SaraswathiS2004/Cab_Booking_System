@@ -106,22 +106,6 @@ public class TravelDetailsView {
             }
         }
     }
-
-    long promptCabId(ArrayList<CabDetails> cabDetails) {
-
-        while (true) {
-            System.out.print("Enter Cab ID: ");
-            long cabId = scanner.nextLong();
-            String error = travelDetailsModel.validateCabId(cabDetails, cabId);
-            if (error == null) {
-                return cabId;
-            } else {
-                showErrorMessage(error);
-            }
-        }
-
-    }
-
     String promptPickUpPoint() {
 
         while (true) {
