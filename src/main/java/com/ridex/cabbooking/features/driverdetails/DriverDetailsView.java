@@ -22,6 +22,7 @@ public class DriverDetailsView {
         this.accountDetails = accountDetails;
 
     }
+
     public void init() throws SQLException, ClassNotFoundException {
         System.out.println("\n========== RIDEX ==========");
         System.out.println("Welcome to RideX");
@@ -34,9 +35,10 @@ public class DriverDetailsView {
         int experience = promptExperience(age);
         String mobileNumber = promptMobileNumber();
         long driverId = accountDetails.getId();
-        driverDetailsModel.storeDriverData(driverId ,address , age , experience , mobileNumber);
+        driverDetailsModel.storeDriverData(driverId, address, age, experience, mobileNumber);
 
     }
+
     public void onDriverSuccessful(long id) throws SQLException, ClassNotFoundException {
         System.out.println("Your registration number is: " + id);
         System.out.println("Driver details added successfully!");
@@ -44,8 +46,8 @@ public class DriverDetailsView {
 
     }
 
-    public String promptAddress(){
-        while(true){
+    public String promptAddress() {
+        while (true) {
             try {
                 System.out.print("Enter Your Address : ");
                 scanner.nextLine();
@@ -55,14 +57,14 @@ public class DriverDetailsView {
                     return address;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
-    public int promptAge(){
-        while(true){
+
+    public int promptAge() {
+        while (true) {
             try {
                 System.out.print("Enter Your Age : ");
                 int age = scanner.nextInt();
@@ -71,14 +73,14 @@ public class DriverDetailsView {
                     return age;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
-    public int promptExperience(int age){
-        while(true){
+
+    public int promptExperience(int age) {
+        while (true) {
             try {
                 System.out.print("Enter your driving experience (in years) : ");
                 int experience = scanner.nextInt();
@@ -87,17 +89,15 @@ public class DriverDetailsView {
                     return experience;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
 
-
-    public String promptMobileNumber(){
-        while(true) {
+    public String promptMobileNumber() {
+        while (true) {
             try {
                 System.out.print("Enter Your Mobile Number : ");
                 String mobileNumber = scanner.next();
@@ -107,14 +107,13 @@ public class DriverDetailsView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    public void showErrorMessage(String message){
+    public void showErrorMessage(String message) {
         System.out.println(message);
     }
 

@@ -1,6 +1,6 @@
 package com.ridex.cabbooking.data.dto;
 
-public class Login extends AccountDetails{
+public class Login extends AccountDetails {
     private String email;
     private String password;
 
@@ -13,10 +13,11 @@ public class Login extends AccountDetails{
         this.email = email;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
 

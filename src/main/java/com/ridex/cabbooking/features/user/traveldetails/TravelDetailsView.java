@@ -31,65 +31,68 @@ public class TravelDetailsView {
         System.out.println("Welcome to RideX\n");
         promptTravelDetails();
     }
+
     void promptTravelDetails() throws SQLException, ClassNotFoundException {
         ArrayList<CabDetails> cabDetails = travelDetailsModel.getAvailableCabs();
-        if(cabDetails.size() == 0){
+        if (cabDetails.size() == 0) {
             showErrorMessage("No cabs are available in this moment");
             promptPostFailureAction();
-        }
-        else {
+        } else {
             String pickUp = promptPickUpPoint();
             String dropUp = promptDropUpPoint(pickUp);
             LocalDateTime pickupTiming = LocalDateTime.now();
-            LocalDateTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
+            LocalDateTime dropupTiming = travelDetailsModel.getDropTiming(pickUp, dropUp);
             long cabId = travelDetailsModel.getCabs(pickUp);
-            showCabs("Your Cab Id is : "+ cabId);
+            showCabs("Your Cab Id is : " + cabId);
             TripStatus tripStatus = TripStatus.BOOKED;
-            int payment =  promptPayAmount(pickUp , dropUp);
-            travelDetailsModel.setCabEarnings(cabId ,payment);
+            int payment = promptPayAmount(pickUp, dropUp);
+            travelDetailsModel.setCabEarnings(cabId, payment);
             AccountDetails currentUser = accountDetails;
             LocalDate pick_up_date = pickupTiming.toLocalDate();
             LocalDate drop_up_date = dropupTiming.toLocalDate();
-            travelDetailsModel.storeData(pickUp , dropUp , pickupTiming.toLocalTime() ,dropupTiming.toLocalTime() , pick_up_date , drop_up_date , cabId , tripStatus , currentUser , payment , accountDetails.getId());
+            travelDetailsModel.storeData(pickUp, dropUp, pickupTiming.toLocalTime(), dropupTiming.toLocalTime(), pick_up_date, drop_up_date, cabId, tripStatus, currentUser, payment, accountDetails.getId());
         }
     }
 
-    void onDetailsUploadedSuccessful(){
+    void onDetailsUploadedSuccessful() {
         System.out.println("\nTrip details uploaded successfully!");
     }
 
-    int promptPayAmount(String pickUp , String dropUp){
+    int promptPayAmount(String pickUp, String dropUp) {
         System.out.println("\n========== PAYMENT ==========");
         System.out.println("Please pay for your trip.");
-        int money = travelDetailsModel.calculateMoney(pickUp , dropUp);
-        System.out.println("Total Cost : "+money);
+        int money = travelDetailsModel.calculateMoney(pickUp, dropUp);
+        System.out.println("Total Cost : " + money);
         int amount = promptGetAmount(money);
         return amount;
     }
-    int promptGetAmount(int money){
 
-        while(true){
+    int promptGetAmount(int money) {
+
+        while (true) {
             System.out.print("Enter payment amount: ");
             int amount = scanner.nextInt();
-            String error = travelDetailsModel.validateAmount(money , amount);
-            if(error == null){
+            String error = travelDetailsModel.validateAmount(money, amount);
+            if (error == null) {
                 return amount;
             }
             showErrorMessage(error);
         }
     }
-    void showCabs(String message){
+
+    void showCabs(String message) {
         System.out.println(message);
     }
+
     void promptPostFailureAction() throws SQLException, ClassNotFoundException {
-        while(true){
+        while (true) {
             System.out.println("\n========== OPTIONS ==========");
             System.out.println("1. Sign In");
             System.out.println("2. Exit");
             System.out.print("Choose an option: ");
             String choice = scanner.next();
-            switch (choice){
-                case "1" :
+            switch (choice) {
+                case "1":
                     new SignInView().init();
                     break;
                 case "2":
@@ -102,50 +105,51 @@ public class TravelDetailsView {
             }
         }
     }
-    long promptCabId(ArrayList<CabDetails> cabDetails){
 
-        while(true){
+    long promptCabId(ArrayList<CabDetails> cabDetails) {
+
+        while (true) {
             System.out.print("Enter Cab ID: ");
             long cabId = scanner.nextLong();
-            String error = travelDetailsModel.validateCabId(cabDetails , cabId);
-            if(error == null){
+            String error = travelDetailsModel.validateCabId(cabDetails, cabId);
+            if (error == null) {
                 return cabId;
-            }
-            else{
+            } else {
                 showErrorMessage(error);
             }
         }
 
     }
-    String promptPickUpPoint(){
 
-        while(true){
+    String promptPickUpPoint() {
+
+        while (true) {
             System.out.print("Enter pickup location (A, B, C, D, E , F): ");
             String pickUp = String.valueOf(scanner.next()).toUpperCase();
             String error = travelDetailsModel.validatePickUpPlace(pickUp);
-            if(error == null){
+            if (error == null) {
                 return pickUp;
-            }
-            else {
+            } else {
                 showErrorMessage(error);
             }
         }
     }
-    String promptDropUpPoint(String pickUp){
 
-        while(true){
+    String promptDropUpPoint(String pickUp) {
+
+        while (true) {
             System.out.print("Enter drop location (A, B, C, D, E, F): ");
             String dropUp = scanner.next().toUpperCase();
-            String error = travelDetailsModel.validateDropUpPlace(pickUp  , dropUp);
-            if(error == null){
+            String error = travelDetailsModel.validateDropUpPlace(pickUp, dropUp);
+            if (error == null) {
                 return dropUp;
-            }
-            else {
+            } else {
                 showErrorMessage(error);
             }
         }
     }
-    void showErrorMessage(String message){
+
+    void showErrorMessage(String message) {
         System.out.println(message);
     }
 

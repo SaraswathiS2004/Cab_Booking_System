@@ -32,6 +32,7 @@ public class AvailableCabsView {
         }
 
     }
+
     public void showCabsFailed() {
         System.out.println("There are no Cabs Available now!");
     }

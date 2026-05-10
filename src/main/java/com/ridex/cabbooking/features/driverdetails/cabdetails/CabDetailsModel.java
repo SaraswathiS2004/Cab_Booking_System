@@ -3,64 +3,62 @@ package com.ridex.cabbooking.features.driverdetails.cabdetails;
 import com.ridex.cabbooking.data.dto.CabCurrentPosition;
 import com.ridex.cabbooking.data.dto.CabDetails;
 import com.ridex.cabbooking.data.dto.CabStatus;
-import com.ridex.cabbooking.data.repository.CabDB;
 import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
 
 class CabDetailsModel {
-     private CabDetailsView cabDetailsView;
-     private CabDetails cabDetails;
-//     private CabDB cabDB;
+    private CabDetailsView cabDetailsView;
+    private CabDetails cabDetails;
+    //     private CabDB cabDB;
     private RideXDB rideXDB;
-     private CabCurrentPosition cabCurrentPosition;
+    private CabCurrentPosition cabCurrentPosition;
 
-     public CabDetailsModel (CabDetailsView cabDetailsView) throws SQLException, ClassNotFoundException {
-         this.cabDetailsView = cabDetailsView;
-         this.cabDetails = new CabDetails();
+    public CabDetailsModel(CabDetailsView cabDetailsView) throws SQLException, ClassNotFoundException {
+        this.cabDetailsView = cabDetailsView;
+        this.cabDetails = new CabDetails();
 //         this.cabDB = CabDB.getInstance();
-         this.rideXDB = new RideXDB();
-         this.cabCurrentPosition = new CabCurrentPosition();
-     }
+        this.rideXDB = new RideXDB();
+        this.cabCurrentPosition = new CabCurrentPosition();
+    }
 
-     public void storeData(long driverId , String registrationNumber  , String model , String type) throws SQLException, ClassNotFoundException {
+    public void storeData(long driverId, String registrationNumber, String model, String type) throws SQLException, ClassNotFoundException {
 
-         cabDetails.setDriverId(driverId);
-         cabDetails.setCabRegistrationNumber(registrationNumber);
-         cabDetails.setModel(model);
-         cabDetails.setType(type);
-         rideXDB.storeCabs(cabDetails);
-         long cabId = rideXDB.getCabList().size();
-         cabCurrentPosition.setCabId(cabId);
-         cabCurrentPosition.setPosition("A");
-         cabCurrentPosition.setCabStatus(CabStatus.AVAILABLE);
-         rideXDB.storeCabPosition(cabCurrentPosition);
-         cabDetailsView.onSuccessful();
-     }
+        cabDetails.setDriverId(driverId);
+        cabDetails.setCabRegistrationNumber(registrationNumber);
+        cabDetails.setModel(model);
+        cabDetails.setType(type);
+        rideXDB.storeCabs(cabDetails);
+        long cabId = rideXDB.getCabList().size();
+        cabCurrentPosition.setCabId(cabId);
+        cabCurrentPosition.setPosition("A");
+        cabCurrentPosition.setCabStatus(CabStatus.AVAILABLE);
+        rideXDB.storeCabPosition(cabCurrentPosition);
+        cabDetailsView.onSuccessful();
+    }
 
-    String validateId(String id){
-       if(id.trim().length() >= 3 && id.trim().length() < 50){
-           return null;
-       }
+    String validateId(String id) {
+        if (id.trim().length() >= 3 && id.trim().length() < 50) {
+            return null;
+        }
         return "Invalid driver ID.";
     }
 
-    String validateModel(String model){
-         if(model == null || model.trim().isEmpty()){
-             return "Cab Model cannot be empty.";
-         }
-         else if(model.trim().length() < 3 ) {
-             return "Model must be Between 3 to 30 Characters.";
-         }
-         return null;
+    String validateModel(String model) {
+        if (model == null || model.trim().isEmpty()) {
+            return "Cab Model cannot be empty.";
+        } else if (model.trim().length() < 3) {
+            return "Model must be Between 3 to 30 Characters.";
+        }
+        return null;
     }
-    String validateType(String type){
-         if(type == null || type.trim().isEmpty()){
-             return "Type Cannot be Empty.";
-         }
-         else if(type.trim().length() < 3){
-             return "Type Must be Between 3 to 30 Characters.";
-         }
-         return null;
+
+    String validateType(String type) {
+        if (type == null || type.trim().isEmpty()) {
+            return "Type Cannot be Empty.";
+        } else if (type.trim().length() < 3) {
+            return "Type Must be Between 3 to 30 Characters.";
+        }
+        return null;
     }
 }

@@ -2,11 +2,9 @@ package com.ridex.cabbooking.features.signup;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Role;
-import com.ridex.cabbooking.data.repository.CabDB;
 import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 class SignUpModel {
@@ -18,7 +16,7 @@ class SignUpModel {
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private static final Pattern MOBILE_PATTERN = Pattern.compile("^[6-9]\\d{9}$");
 
-//    private CabDB cabDB;
+    //    private CabDB cabDB;
     private RideXDB rideXDB;
 
 
@@ -31,6 +29,7 @@ class SignUpModel {
     public void getSignUp() {
         signUpView.showSignUp();
     }
+
     public boolean isAdmin() throws SQLException, ClassNotFoundException {
 
 //        cabDB = CabDB.getInstance();
@@ -46,6 +45,7 @@ class SignUpModel {
 //        return false;
 
     }
+
     String validateName(String name) {
 
         if (name == null || name.trim().isEmpty()) {

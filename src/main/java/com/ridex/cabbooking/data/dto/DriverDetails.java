@@ -18,7 +18,7 @@ public class DriverDetails {
         this.driverId = driverId;
     }
 
-    public void setDriverDetails(long driverId ,String name , String address , int age , int experience , String mobileNumber ){
+    public void setDriverDetails(long driverId, String name, String address, int age, int experience, String mobileNumber) {
         setDriverId(driverId);
         setName(name);
         setAddress(address);
@@ -38,6 +38,7 @@ public class DriverDetails {
     public long getId() {
         return id;
     }
+
     public void setId(long id) {
         this.id = id;
     }
@@ -65,16 +66,20 @@ public class DriverDetails {
     public void setExperience(int experience) {
         this.experience = experience;
     }
-    public void setMobileNumber(String mobileNumber){
+
+    public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
-    public String getMobileNumber(){
+
+    public String getMobileNumber() {
         return mobileNumber;
     }
-    public void setCabDetails(CabDetails cabDetails){
+
+    public void setCabDetails(CabDetails cabDetails) {
         this.cabDetails = cabDetails;
     }
-    public CabDetails getCabDetails(){
+
+    public CabDetails getCabDetails() {
         return cabDetails;
     }
 }

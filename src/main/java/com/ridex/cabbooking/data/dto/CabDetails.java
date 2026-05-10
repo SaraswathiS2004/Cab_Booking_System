@@ -56,7 +56,7 @@ public class CabDetails {
         this.type = type;
     }
 
-    public void setValues(long driverId , long cabId  , String registrationNumber , String model , String type){
+    public void setValues(long driverId, long cabId, String registrationNumber, String model, String type) {
         setCabId(cabId);
         setDriverId(driverId);
         setCabRegistrationNumber(registrationNumber);

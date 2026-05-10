@@ -9,26 +9,29 @@ public class CabDetailsView {
     private CabDetailsModel cabDetailsModel;
     private Scanner scanner;
     private long driverId;
+
     public CabDetailsView(long driverId) throws SQLException, ClassNotFoundException {
         this.cabDetailsModel = new CabDetailsModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         scanner = consoleInput.getInstance();
         this.driverId = driverId;
     }
+
     public void init() throws SQLException, ClassNotFoundException {
         System.out.println("========== RIDEX ==========\n");
         System.out.println("Enter your cab details : \n");
         promptAction();
     }
+
     public void promptAction() throws SQLException, ClassNotFoundException {
         String registrationNumber = promptDriverID();
         String model = promptModel();
         String type = promptType();
-        cabDetailsModel.storeData(driverId , registrationNumber , model , type);
+        cabDetailsModel.storeData(driverId, registrationNumber, model, type);
     }
 
-    public String promptDriverID(){
-        while(true){
+    public String promptDriverID() {
+        while (true) {
             try {
                 System.out.print("Enter your Cab Registration number: ");
                 scanner.nextLine();
@@ -38,15 +41,14 @@ public class CabDetailsView {
                     return id;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    String promptType(){
-        while(true){
+    String promptType() {
+        while (true) {
             try {
                 System.out.print("Enter cab type: ");
                 scanner.nextLine();
@@ -57,15 +59,14 @@ public class CabDetailsView {
                     return type;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    String promptModel(){
-        while(true){
+    String promptModel() {
+        while (true) {
             try {
                 System.out.print("Enter cab model: ");
                 scanner.nextLine();
@@ -75,17 +76,17 @@ public class CabDetailsView {
                     return model;
                 }
                 showErrorMessage(error);
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    void onSuccessful(){
+    void onSuccessful() {
         System.out.println("\nCab details added successfully!");
     }
-    void showErrorMessage(String message){
+
+    void showErrorMessage(String message) {
         System.out.println(message);
     }
 }

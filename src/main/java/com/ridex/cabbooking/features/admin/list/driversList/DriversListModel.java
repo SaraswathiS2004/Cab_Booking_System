@@ -1,7 +1,6 @@
 package com.ridex.cabbooking.features.admin.list.driversList;
 
 import com.ridex.cabbooking.data.dto.DriverDetails;
-import com.ridex.cabbooking.data.repository.CabDB;
 import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
@@ -13,6 +12,7 @@ class DriversListModel {
 //    private CabDB cabDB;
 
     private RideXDB rideXDB;
+
     public DriversListModel(DriversListView driversListView) throws SQLException, ClassNotFoundException {
         this.driversListView = driversListView;
 //        this.cabDB = CabDB.getInstance();
@@ -22,10 +22,9 @@ class DriversListModel {
     void getDrivers() throws SQLException, ClassNotFoundException {
 //        ArrayList<DriverDetails> driverDetails = cabDB.getDriverDetails();
         ArrayList<DriverDetails> driverDetails = rideXDB.getDriversList();
-        if(driverDetails.isEmpty()){
+        if (driverDetails.isEmpty()) {
             driversListView.onDriversListFailed();
-        }
-        else {
+        } else {
             driversListView.showDrivers(driverDetails);
         }
     }

@@ -33,14 +33,16 @@ public class SignInView {
             if (!promptPostFailureAction()) return;
         }
     }
+
     public void promptAndAuthenticate() throws SQLException, ClassNotFoundException {
         String email = promptEmailAddress();
         String password = promptPassword();
-        signInModel.isAuthenticate(password , email);
+        signInModel.isAuthenticate(password, email);
 
     }
-    public String promptPassword(){
-        while(true){
+
+    public String promptPassword() {
+        while (true) {
             try {
                 System.out.print("Enter the password : ");
                 String password = scanner.next();
@@ -50,13 +52,13 @@ public class SignInView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
-    public String promptEmailAddress(){
+
+    public String promptEmailAddress() {
         while (true) {
             try {
                 System.out.print("Enter the Email Address : ");
@@ -77,24 +79,23 @@ public class SignInView {
     public void onSignInSuccessful(AccountDetails accountDetails) throws SQLException, ClassNotFoundException {
         authenticated = true;
 
-        if(accountDetails.getRole().equals(Role.DRIVER)){
+        if (accountDetails.getRole().equals(Role.DRIVER)) {
             System.out.print("Enter Your Driving Details : ");
-           new DriverDetailsView(accountDetails).init();
-        }
-        else if(accountDetails.getRole().equals(Role.ADMIN)){
+            new DriverDetailsView(accountDetails).init();
+        } else if (accountDetails.getRole().equals(Role.ADMIN)) {
             new HomeView(accountDetails).init();
-        }
-        else if(accountDetails.getRole().equals(Role.USER)){
+        } else if (accountDetails.getRole().equals(Role.USER)) {
             new HomeView(accountDetails).init();
         }
     }
-    public void onSignInFailed(String message){
+
+    public void onSignInFailed(String message) {
         System.out.println(message);
     }
 
     public boolean promptPostFailureAction() throws SQLException, ClassNotFoundException {
 
-        while(true){
+        while (true) {
 
             System.out.println();
             System.out.print("\n1. Retry");
@@ -103,7 +104,7 @@ public class SignInView {
             System.out.print("\nChoose Your Option : ");
             String choice = scanner.next().trim();
 
-            switch (choice){
+            switch (choice) {
                 case "1":
                     return true;
                 case "2":
@@ -119,7 +120,7 @@ public class SignInView {
         }
     }
 
-    public void showErrorMessage(String message){
+    public void showErrorMessage(String message) {
         System.out.println(message);
     }
 }

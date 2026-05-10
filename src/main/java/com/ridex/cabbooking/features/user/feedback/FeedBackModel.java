@@ -3,7 +3,6 @@ package com.ridex.cabbooking.features.user.feedback;
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
 import com.ridex.cabbooking.data.dto.UserFeedBack;
-import com.ridex.cabbooking.data.repository.CabDB;
 import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
@@ -15,8 +14,9 @@ class FeedBackModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private FeedBackView feedBackView;
-//    private CabDB cabDB;
+    //    private CabDB cabDB;
     private RideXDB rideXDB;
+
     public FeedBackModel(FeedBackView feedBackView) throws SQLException, ClassNotFoundException {
         this.feedBackView = feedBackView;
 //        this.cabDB = CabDB.getInstance();
@@ -27,7 +27,8 @@ class FeedBackModel {
         if (feedback == null || feedback.trim().isEmpty()) return "FeedBack Cannot be empty.";
         return null;
     }
-//    long getFeedBackId(){
+
+    //    long getFeedBackId(){
 //        return cabDB.getFeedBackId();
 //    }
     public void authenticate(Login login) {
@@ -84,7 +85,7 @@ class FeedBackModel {
         authenticate(login);
     }
 
-    void storeData(String email , String password , String content) throws SQLException, ClassNotFoundException {
+    void storeData(String email, String password, String content) throws SQLException, ClassNotFoundException {
         UserFeedBack userFeedBack = new UserFeedBack();
 //        userFeedBack.setId(id);
         userFeedBack.setEmail(email);

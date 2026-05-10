@@ -12,16 +12,18 @@ public class CabsPositionListView {
     public CabsPositionListView() throws SQLException, ClassNotFoundException {
         this.cabsPositionListModel = new CabsPositionListModel(this);
     }
+
     public void init() throws SQLException, ClassNotFoundException {
         cabsPositionListModel.getCabs();
     }
 
-    public void showOnCabsSuccessful(ArrayList<CabCurrentPosition> cabCurrentPositions){
-        for(CabCurrentPosition cabCurrentPosition : cabCurrentPositions){
-            System.out.println("Cab Id : "+ cabCurrentPosition.getCabId() + "  Cab Current Position : "+ cabCurrentPosition.getPosition());
+    public void showOnCabsSuccessful(ArrayList<CabCurrentPosition> cabCurrentPositions) {
+        for (CabCurrentPosition cabCurrentPosition : cabCurrentPositions) {
+            System.out.println("Cab Id : " + cabCurrentPosition.getCabId() + "  Cab Current Position : " + cabCurrentPosition.getPosition());
         }
     }
-    void showFailedCabs(String message){
+
+    void showFailedCabs(String message) {
         System.out.println(message);
     }
 }

@@ -12,6 +12,7 @@ public class UserTripDetailsView {
     public UserTripDetailsView() throws SQLException, ClassNotFoundException {
         this.userDetailsModel = new UserTripDetailsModel(this);
     }
+
     public void init() {
         System.out.println("========== RIDEX ==========\n");
         System.out.println("User Trip Details\n");
@@ -25,21 +26,21 @@ public class UserTripDetailsView {
 
         for (UserTripDetails userTripDetails1 : userTripDetails) {
             System.out.println(
-                    "Trip Id : "+userTripDetails1.getTripId() +
-                    "  Cab Id : "+userTripDetails1.getCabId() +
-                    "  Pick Up : "+ userTripDetails1.getPickUp()+
-                    "  Drop Up : "+userTripDetails1.getDropUp() +
-                    "  Pick Up Time : "+ userTripDetails1.getPickupTiming()+
-                    "  Drop Up Time : "+ userTripDetails1.getDropupTiming()+
-                            "  Pick Up Date : "+ userTripDetails1.getPickUpDate()+
-                            "  Drop Up Date : "+ userTripDetails1.getDropUpDate()+
-                    "  User Travel Status : "+userTripDetails1.getStatus()+
-                    "  Payment : "+userTripDetails1.getPayment());
+                    "Trip Id : " + userTripDetails1.getTripId() +
+                            "  Cab Id : " + userTripDetails1.getCabId() +
+                            "  Pick Up : " + userTripDetails1.getPickUp() +
+                            "  Drop Up : " + userTripDetails1.getDropUp() +
+                            "  Pick Up Time : " + userTripDetails1.getPickupTiming() +
+                            "  Drop Up Time : " + userTripDetails1.getDropupTiming() +
+                            "  Pick Up Date : " + userTripDetails1.getPickUpDate() +
+                            "  Drop Up Date : " + userTripDetails1.getDropUpDate() +
+                            "  User Travel Status : " + userTripDetails1.getStatus() +
+                            "  Payment : " + userTripDetails1.getPayment());
         }
         System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
-    void showFailedUserDetails(String message){
+    void showFailedUserDetails(String message) {
         System.out.println(message);
     }
 }

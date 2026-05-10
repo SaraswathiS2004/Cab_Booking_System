@@ -25,22 +25,28 @@ public class AccountDetails {
     public void setCity(String city) {
         this.city = city;
     }
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    public void setPassword(String password){
+
+    public void setPassword(String password) {
         this.password = password;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getPassword(){
+
+    public String getPassword() {
         return password;
     }
-    public void setRole(Role role){
+
+    public void setRole(Role role) {
         this.role = role;
     }
-    public Role getRole(){
+
+    public Role getRole() {
         return role;
     }
 
@@ -60,7 +66,7 @@ public class AccountDetails {
         this.email = email;
     }
 
-    public void registerPeople(String name , String password ,String email ,  String city , String mobileNumber , Role role ) {
+    public void registerPeople(String name, String password, String email, String city, String mobileNumber, Role role) {
         setName(name);
         setPassword(password);
         setEmail(email);

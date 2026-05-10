@@ -22,6 +22,7 @@ public class SignUpView {
         scan = consoleInput.getInstance();
 
     }
+
     public void init() throws SQLException, ClassNotFoundException {
         System.out.print("Create Your Account!");
         String name = promptName();
@@ -30,16 +31,17 @@ public class SignUpView {
         String city = promptCity();
         String mobileNumber = promptMobileNumber();
         Role role = promptRole();
-        signUpModel.storeData(name , password , email , city , mobileNumber , role);
-
-    }
-    public void showSignUp(){
+        signUpModel.storeData(name, password, email, city, mobileNumber, role);
 
     }
 
-    public String promptName(){
+    public void showSignUp() {
 
-        while(true) {
+    }
+
+    public String promptName() {
+
+        while (true) {
             try {
                 System.out.print("\nEnter Your Name : ");
                 scan.nextLine();
@@ -50,15 +52,14 @@ public class SignUpView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    public String promptPassword(){
-        while(true){
+    public String promptPassword() {
+        while (true) {
             try {
                 System.out.print("Enter the Password : ");
                 String password = scan.next();
@@ -76,14 +77,14 @@ public class SignUpView {
 
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
-    public String promptEmail(){
-        while(true){
+
+    public String promptEmail() {
+        while (true) {
 
             try {
                 System.out.print("Enter the Email Address : ");
@@ -100,8 +101,7 @@ public class SignUpView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
@@ -109,7 +109,7 @@ public class SignUpView {
 
     public Role promptRole() throws SQLException, ClassNotFoundException {
         boolean isAdmin = signUpModel.isAdmin();
-        while(true) {
+        while (true) {
             try {
                 if (isAdmin) {
                     return Role.ADMIN;
@@ -132,15 +132,14 @@ public class SignUpView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
 
-    public String promptMobileNumber(){
-        while(true) {
+    public String promptMobileNumber() {
+        while (true) {
             try {
                 System.out.print("Enter Your Mobile Number : ");
                 String mobileNumber = scan.next();
@@ -150,14 +149,14 @@ public class SignUpView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
     }
-    public String promptCity(){
-        while(true){
+
+    public String promptCity() {
+        while (true) {
             try {
                 System.out.print("Enter Your City : ");
                 String city = scan.next();
@@ -167,8 +166,7 @@ public class SignUpView {
                 } else {
                     showErrorMessage(error);
                 }
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Enter Valid Input!");
             }
         }
@@ -177,12 +175,13 @@ public class SignUpView {
     void onSignUpSuccessful(boolean isFirstUser) throws SQLException, ClassNotFoundException {
         System.out.print("\nAccount Created Successfully!");
 
-        if(isFirstUser){
+        if (isFirstUser) {
             System.out.print("\nAs the first user in the system, you will be registered as a ADMIN.");
         }
         new SignInView().init();
     }
-    void showErrorMessage(String error){
+
+    void showErrorMessage(String error) {
         System.out.println(error);
     }
 }

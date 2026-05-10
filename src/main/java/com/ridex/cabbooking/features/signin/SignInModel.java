@@ -2,7 +2,6 @@ package com.ridex.cabbooking.features.signin;
 
 import com.ridex.cabbooking.data.dto.AccountDetails;
 import com.ridex.cabbooking.data.dto.Login;
-import com.ridex.cabbooking.data.repository.CabDB;
 import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
@@ -15,42 +14,44 @@ class SignInModel {
     private static final Pattern EMAIL_PATTERN = Pattern.compile(
             "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     private SignInView signInView;
-//    private CabDB cabDB;
+    //    private CabDB cabDB;
     private RideXDB rideXDB;
+
     public SignInModel(SignInView signInView) throws SQLException, ClassNotFoundException {
         this.signInView = signInView;
 //        cabDB = CabDB.getInstance();
         rideXDB = new RideXDB();
     }
+
     public void authenticate(Login login) throws SQLException, ClassNotFoundException {
 
-        if(login == null){
+        if (login == null) {
             signInView.onSignInFailed("Invalid email or password");
             return;
         }
         String emailError = validateEmailAddress(login.getEmail());
-        if(emailError != null){
+        if (emailError != null) {
             signInView.onSignInFailed(emailError);
         }
         String passwordError = validatePassword(login.getPassword());
-        if(passwordError != null){
+        if (passwordError != null) {
             signInView.onSignInFailed(passwordError);
             return;
         }
 
 // AccountDetails accountDetails = cabDB.getEmployeeByEmail(login.getEmail() , login.getPassword());
         AccountDetails accountDetails = rideXDB.getEmployeeByEmail(login.getEmail(), login.getPassword());
-        if(accountDetails == null) {
+        if (accountDetails == null) {
 
             signInView.showErrorMessage("You cannot Sign in Your Account");
             signInView.showErrorMessage("Please try again!");
-        }
-        else{
+        } else {
             signInView.onSignInSuccessful(accountDetails);
         }
 
     }
-    public void isAuthenticate(String password , String email) throws SQLException, ClassNotFoundException {
+
+    public void isAuthenticate(String password, String email) throws SQLException, ClassNotFoundException {
 
         Login login = new Login();
         login.setPassword(password);
@@ -59,16 +60,17 @@ class SignInModel {
 
     }
 
-    String validateEmailAddress(String email){
+    String validateEmailAddress(String email) {
         String trimmed = email.trim();
-        if(email == null || trimmed.isEmpty()){
+        if (email == null || trimmed.isEmpty()) {
             return "Email address cannot be empty";
         }
-        if(!EMAIL_PATTERN.matcher(trimmed).matches()){
+        if (!EMAIL_PATTERN.matcher(trimmed).matches()) {
             return "Invalid Email address";
         }
         return null;
     }
+
     String validatePassword(String password) {
 
         if (password == null || password.trim().isEmpty()) {

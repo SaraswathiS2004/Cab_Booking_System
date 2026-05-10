@@ -6,12 +6,12 @@ public class ConsoleInput {
 
     private static Scanner scanner;
 
-    public ConsoleInput(){
+    public ConsoleInput() {
 
     }
 
-    public Scanner getInstance(){
-        if(scanner == null){
+    public Scanner getInstance() {
+        if (scanner == null) {
             scanner = new Scanner(System.in);
         }
         return scanner;

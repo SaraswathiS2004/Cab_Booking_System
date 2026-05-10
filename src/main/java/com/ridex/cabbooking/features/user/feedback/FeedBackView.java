@@ -26,14 +26,15 @@ public class FeedBackView {
             if (!promptPostFailureAction()) return;
         }
     }
+
     public void promptAndAuthenticate() throws SQLException, ClassNotFoundException {
 //        long id = feedBackModel.getFeedBackId();
         String email = promptEmailAddress();
         String password = promptPassword();
         String feedBack = promptFeedBack();
-        feedBackModel.isAuthenticate(email , password);
+        feedBackModel.isAuthenticate(email, password);
 //        feedBackModel.storeData(id ,email , password , feedBack);
-        feedBackModel.storeData(email , password ,feedBack);
+        feedBackModel.storeData(email, password, feedBack);
     }
 
 
@@ -51,28 +52,27 @@ public class FeedBackView {
         }
     }
 
-    String promptEmailAddress(){
-        while(true){
+    String promptEmailAddress() {
+        while (true) {
             System.out.print("Enter the Email Address : ");
             String email = scanner.next();
             String error = feedBackModel.validateEmailAddress(email);
-            if(error == null){
+            if (error == null) {
                 return email.trim();
-            }
-            else {
+            } else {
                 showErrorMessage(error);
             }
         }
     }
-    public String promptPassword(){
-        while(true){
+
+    public String promptPassword() {
+        while (true) {
             System.out.print("Enter the password : ");
             String password = scanner.next();
             String error = feedBackModel.validatePassword(password);
-            if(error == null){
+            if (error == null) {
                 return password;
-            }
-            else {
+            } else {
                 showErrorMessage(error);
             }
         }
@@ -103,18 +103,21 @@ public class FeedBackView {
             }
         }
     }
+
     public void onSuccessfulFeedBack() {
         authenticated = true;
         onFeedBackAddedSuccessful();
     }
-    public void onFeedBackAddedSuccessful(){
+
+    public void onFeedBackAddedSuccessful() {
         System.out.println("\nFeedback added successfully!");
     }
 
-    public void onSignInFailed(String message){
+    public void onSignInFailed(String message) {
         System.out.println(message);
     }
-    void showErrorMessage(String message){
+
+    void showErrorMessage(String message) {
         System.out.println(message);
     }
 

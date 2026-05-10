@@ -12,24 +12,26 @@ public class AccountsListView {
     public AccountsListView() throws SQLException, ClassNotFoundException {
         this.accountsListModel = new AccountsListModel(this);
     }
+
     public void init() throws SQLException, ClassNotFoundException {
 
 
-       accountsListModel.getAccounts();
+        accountsListModel.getAccounts();
     }
 
-    void showAccounts(ArrayList<AccountDetails> accountDetails){
+    void showAccounts(ArrayList<AccountDetails> accountDetails) {
         System.out.println("Account List:");
         System.out.println("--------------------------------------------------------------------------");
         for (AccountDetails acc : accountDetails) {
-            System.out.println("User Id :" + acc.getId() + "  Name : " + acc.getName()+ "  Email Id : " +
-                    acc.getEmail() + " Password : "+ acc.getPassword()+"  Role : "+ acc.getRole() + "  Mobile Number : "+ acc.getMobileNumber() + "  City : "+ acc.getCity());
+            System.out.println("User Id :" + acc.getId() + "  Name : " + acc.getName() + "  Email Id : " +
+                    acc.getEmail() + " Password : " + acc.getPassword() + "  Role : " + acc.getRole() + "  Mobile Number : " + acc.getMobileNumber() + "  City : " + acc.getCity());
         }
 
         System.out.println("--------------------------------------------------------------------------------");
 
     }
-    void onAccountFailed(){
+
+    void onAccountFailed() {
         System.out.println("There are No Account");
     }
 }
