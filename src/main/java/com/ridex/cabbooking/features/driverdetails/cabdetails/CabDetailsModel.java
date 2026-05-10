@@ -2,30 +2,39 @@ package com.ridex.cabbooking.features.driverdetails.cabdetails;
 
 import com.ridex.cabbooking.data.dto.CabCurrentPosition;
 import com.ridex.cabbooking.data.dto.CabDetails;
+import com.ridex.cabbooking.data.dto.CabStatus;
 import com.ridex.cabbooking.data.repository.CabDB;
+import com.ridex.cabbooking.data.repository.database.RideXDB;
 
 import java.sql.SQLException;
 
 class CabDetailsModel {
      private CabDetailsView cabDetailsView;
      private CabDetails cabDetails;
-     private CabDB cabDB;
+//     private CabDB cabDB;
+    private RideXDB rideXDB;
      private CabCurrentPosition cabCurrentPosition;
 
-     public CabDetailsModel (CabDetailsView cabDetailsView){
+     public CabDetailsModel (CabDetailsView cabDetailsView) throws SQLException, ClassNotFoundException {
          this.cabDetailsView = cabDetailsView;
          this.cabDetails = new CabDetails();
-         this.cabDB = CabDB.getInstance();
+//         this.cabDB = CabDB.getInstance();
+         this.rideXDB = new RideXDB();
          this.cabCurrentPosition = new CabCurrentPosition();
      }
 
      public void storeData(long driverId , String registrationNumber  , String model , String type) throws SQLException, ClassNotFoundException {
-         long cabId = cabDB.getCabId();
-         cabDetails.setValues(driverId ,cabId , registrationNumber , model , type);
+
+         cabDetails.setDriverId(driverId);
+         cabDetails.setCabRegistrationNumber(registrationNumber);
+         cabDetails.setModel(model);
+         cabDetails.setType(type);
+         rideXDB.storeCabs(cabDetails);
+         long cabId = rideXDB.getCabList().size();
          cabCurrentPosition.setCabId(cabId);
          cabCurrentPosition.setPosition("A");
-         cabDB.addCab(cabDetails);
-         cabDB.addCabPosition(cabCurrentPosition);
+         cabCurrentPosition.setCabStatus(CabStatus.AVAILABLE);
+         rideXDB.storeCabPosition(cabCurrentPosition);
          cabDetailsView.onSuccessful();
      }
 

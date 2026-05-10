@@ -29,14 +29,13 @@ class TravelDetailsModel {
 
         int index1 = places.indexOf(pickUpPlace);
         int index2 = places.indexOf(dropUpPlace);
-        int value = Math.abs(index2 - index1) * 10;
+//        int value = Math.abs(index2 - index1) * 1;
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime dropTime = now.plusSeconds(value);
+        LocalDateTime dropTime = now.plusMinutes(1);
         return dropTime;
 
     }
     void storeData(String pickUp , String dropUp , LocalTime pickupTiming , LocalTime dropupTiming , LocalDate pickUpDate , LocalDate dropUpDate , long cabId , TripStatus tripStatus , AccountDetails currentUser , int payment , long userId) throws SQLException, ClassNotFoundException {
-        int money = calculateMoney(pickUp , dropUp);
         userTripDetails.setPickUp(pickUp);
         userTripDetails.setDropUp(dropUp);
         userTripDetails.setPickupTiming(pickupTiming);
@@ -47,7 +46,8 @@ class TravelDetailsModel {
         userTripDetails.setPickUpDate(pickUpDate);
         userTripDetails.setDropUpDate(dropUpDate);
 //      userTripDetails.setTripId(cabDB.getCabId());
-        userTripDetails.setPayment(payment + money);
+        userTripDetails.setPayment(payment);
+        rideXDB.setUpdateCabs(cabId , null , CabStatus.UN_AVAILABLE);
         rideXDB.storeUserTrips(userTripDetails);
 //      cabDB.addTripDetails(userTripDetails , userId);
         travelDetailsView.onDetailsUploadedSuccessful();
@@ -76,10 +76,10 @@ class TravelDetailsModel {
             return null;
         }
     }
-    long getCabs(ArrayList<CabDetails> cabDetails , String pickUp) throws SQLException, ClassNotFoundException {
+    long getCabs(String pickUp) throws SQLException, ClassNotFoundException {
         int minPosition = Integer.MAX_VALUE;
         CabDetails cab = null;
-//        ArrayList<CabCurrentPosition> cabCurrentPositions = cabDB.getCabsPosition();
+        ArrayList<CabDetails> cabDetails = rideXDB.availableCabs();
         ArrayList<CabCurrentPosition> cabCurrentPositions = new RideXDB().getCabPositionList();
 
         for(CabDetails cabDetails1 : cabDetails){

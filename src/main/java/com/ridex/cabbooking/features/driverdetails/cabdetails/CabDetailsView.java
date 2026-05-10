@@ -9,7 +9,7 @@ public class CabDetailsView {
     private CabDetailsModel cabDetailsModel;
     private Scanner scanner;
     private long driverId;
-    public CabDetailsView(long driverId){
+    public CabDetailsView(long driverId) throws SQLException, ClassNotFoundException {
         this.cabDetailsModel = new CabDetailsModel(this);
         ConsoleInput consoleInput = new ConsoleInput();
         scanner = consoleInput.getInstance();

@@ -3,14 +3,18 @@ package com.ridex.cabbooking.data.repository.database;
 import com.ridex.cabbooking.data.dto.*;
 
 import java.sql.*;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class RideXDB {
+public class RideXDB extends Thread{
 
     private Connection connection;
+
     public RideXDB() throws SQLException, ClassNotFoundException {
         connection = DB.getInstance().getConnection();
     }
@@ -65,6 +69,8 @@ public class RideXDB {
         }
     }
     public void storeUserTrips(UserTripDetails userTripDetails){
+
+        int tripId = 0;
         try{
             pre = connection.prepareStatement(
                     "INSERT INTO USERTRIPS(CAB_ID , PICK_UP , DROP_UP , PICK_UP_TIMING , DROP_UP_TIMING , PICKUP_DATE , DROPUP_DATE , TRIP_STATUS , PAYMENT)\n" +
@@ -76,39 +82,32 @@ public class RideXDB {
             pre.setTime(5 , Time.valueOf(userTripDetails.getDropupTiming()));
             pre.setDate(6 , Date.valueOf(userTripDetails.getPickUpDate()));
             pre.setDate(7 , Date.valueOf(userTripDetails.getDropUpDate()));
-            pre.setString(8 , userTripDetails.getStatus().toString());
+            pre.setString(8 , TripStatus.IN_PROGRESS.toString());
             pre.setInt(9 , userTripDetails.getPayment());
             pre.executeUpdate();
+
+            pre = connection.prepareStatement("SELECT COUNT(*) FROM USERTRIPS");
+
+            ResultSet set = pre.executeQuery();
+            if(set.next()){
+                tripId = set.getInt(1);
+            }
+
         }
         catch (Exception e){
             System.out.println(e);
         }
+
+        setTripUpdate(userTripDetails , tripId);
     }
 
     public void storeCabPosition(CabCurrentPosition cabCurrentPosition){
         try {
-            pre = connection.prepareStatement("INSERT INTO CAB_CURRENT_POSITION (CAB_ID , CURRENT_POSITION) VALUES(? , ?);");
+            pre = connection.prepareStatement("INSERT INTO CAB_CURRENT_POSITION (CAB_ID , CURRENT_POSITION , STATUS) VALUES(? , ? , ?);");
             pre.setInt(1 , (int) cabCurrentPosition.getCabId());
             pre.setString(2 , cabCurrentPosition.getPosition());
+            pre.setString(3 , cabCurrentPosition.getCabStatus().toString());
             pre.executeUpdate();
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
-    }
-
-    public void updateTrips(long userId , long cab_id , TripStatus status , String cabPosition){
-        try {
-            pre = connection.prepareStatement("UPDATE USERTRIPS SET TRIP_STATUS = ? WHERE ID = ? ");
-            pre.setString(1 , status.toString());
-            pre.setInt(2 ,(int) userId);
-            int numberOfRowsAffected1 = pre.executeUpdate();
-            System.out.println(numberOfRowsAffected1);
-            pre = connection.prepareStatement("UPDATE CAB_CURRENT_POSITION set CURRENT_POSITION = ? where ID = ?");
-            pre.setString(1 , cabPosition);
-            pre.setInt(2 , (int) cab_id);
-            int numberOfRowsAffected2 = pre.executeUpdate();
-            System.out.println(numberOfRowsAffected2);
         }
         catch (Exception e){
             System.out.println(e);
@@ -367,5 +366,109 @@ public class RideXDB {
         }
 
         return name;
+    }
+
+    synchronized public void setTripUpdate(UserTripDetails userTripDetails , int tripId){
+
+        LocalTime timeDelay = null;
+        LocalTime bookTime = null;
+        try{
+            pre = connection.prepareStatement("SELECT * FROM USERTRIPS WHERE ID = ?");
+            pre.setInt(1 , (int) tripId);
+            ResultSet set = pre.executeQuery();
+            if(set.next()){
+                timeDelay = set.getTime("DROP_UP_TIMING").toLocalTime();
+                bookTime = set.getTime("PICK_UP_TIMING").toLocalTime();
+
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    pre = connection.prepareStatement("UPDATE USERTRIPS SET TRIP_STATUS = ? WHERE ID = ? ");
+                    pre.setString(1 , String.valueOf(TripStatus.DROPPED));
+                    pre.setInt(2 ,(int) tripId);
+                    int numberOfRowsAffected1 = pre.executeUpdate();
+                    System.out.println(numberOfRowsAffected1);
+                    setUpdateCabs(userTripDetails.getCabId(), userTripDetails.getDropUp() , CabStatus.AVAILABLE);
+
+                    System.out.println("called!");
+                }
+                catch (Exception e){
+                    System.out.println(e);
+                }
+            }
+        };
+
+        long delay = Duration.between(bookTime , timeDelay).toMillis();
+        timer.schedule(task , delay);
+    }
+    public void setUpdateCabs(long cabId , String position , CabStatus status){
+        try{
+            pre = connection.prepareStatement("UPDATE CAB_CURRENT_POSITION SET STATUS = ? , CURRENT_POSITION = ? WHERE CAB_ID = ?");
+            pre.setString(1 , String.valueOf(status));
+            pre.setString(2 , position);
+            pre.setInt(3 , (int) cabId);
+            int numberOfRowsAffected2 = pre.executeUpdate();
+            System.out.println(numberOfRowsAffected2);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public ArrayList<CabDetails> getCabs(){
+        ArrayList<CabDetails> cabList = new ArrayList<>();
+        try{
+            pre = connection.prepareStatement("SELECT * FROM CABS");
+            ResultSet set = pre.executeQuery();
+            while(set.next()){
+                CabDetails cab = new CabDetails();
+                cab.setCabId(set.getInt("ID"));
+                cab.setCabRegistrationNumber(set.getString("REGISTRATION_NUMBER"));
+                cab.setDriverId(set.getInt("DRIVER_ID"));
+                cab.setModel(set.getString("MODEL"));
+                cab.setType(set.getString("TYPE"));
+                cab.setTotalEarning(set.getInt("EARNINGS"));
+                cabList.add(cab);
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return cabList;
+    }
+
+    public ArrayList<CabDetails> availableCabs(){
+
+        ArrayList<CabDetails> cabList = new ArrayList<>();
+        try{
+            pre = connection.prepareStatement("SELECT * FROM CAB_CURRENT_POSITION WHERE STATUS = 'AVAILABLE'");
+            ResultSet set = pre.executeQuery();
+            while(set.next()) {
+                int id = set.getInt("CAB_ID");
+                pre = connection.prepareStatement("SELECT * FROM CABS WHERE ID = ?");
+                pre.setInt(1, id);
+                ResultSet set1 = pre.executeQuery();
+                while (set1.next()) {
+                    CabDetails cab = new CabDetails();
+                    cab.setCabId(set1.getInt("ID"));
+                    cab.setCabRegistrationNumber(set1.getString("REGISTRATION_NUMBER"));
+                    cab.setDriverId(set1.getInt("DRIVER_ID"));
+                    cab.setModel(set1.getString("MODEL"));
+                    cab.setType(set1.getString("TYPE"));
+                    cab.setTotalEarning(set1.getInt("EARNINGS"));
+                    cabList.add(cab);
+                }
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+        return cabList;
     }
 }

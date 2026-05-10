@@ -30,9 +30,8 @@ public class SignUpView {
         String city = promptCity();
         String mobileNumber = promptMobileNumber();
         Role role = promptRole();
-        accountDetails = signUpModel.storeData(name , password , email , city , mobileNumber , role);
+        signUpModel.storeData(name , password , email , city , mobileNumber , role);
 
-        onSignUpSuccessful();
     }
     public void showSignUp(){
 
@@ -175,9 +174,10 @@ public class SignUpView {
         }
     }
 
-    void onSignUpSuccessful() throws SQLException, ClassNotFoundException {
+    void onSignUpSuccessful(boolean isFirstUser) throws SQLException, ClassNotFoundException {
         System.out.print("\nAccount Created Successfully!");
-        if(accountDetails.size() == 1){
+
+        if(isFirstUser){
             System.out.print("\nAs the first user in the system, you will be registered as a ADMIN.");
         }
         new SignInView().init();

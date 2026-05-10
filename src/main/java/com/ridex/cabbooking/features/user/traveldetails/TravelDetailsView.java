@@ -42,7 +42,7 @@ public class TravelDetailsView {
             String dropUp = promptDropUpPoint(pickUp);
             LocalDateTime pickupTiming = LocalDateTime.now();
             LocalDateTime dropupTiming = travelDetailsModel.getDropTiming(pickUp , dropUp);
-            long cabId = travelDetailsModel.getCabs(cabDetails , pickUp);
+            long cabId = travelDetailsModel.getCabs(pickUp);
             showCabs("Your Cab Id is : "+ cabId);
             TripStatus tripStatus = TripStatus.BOOKED;
             int payment =  promptPayAmount(pickUp , dropUp);

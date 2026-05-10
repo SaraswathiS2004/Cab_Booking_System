@@ -4,6 +4,16 @@ public class CabCurrentPosition {
 
     long cabId;
     String position;
+    CabStatus cabStatus;
+
+    public CabStatus getCabStatus() {
+        return cabStatus;
+    }
+
+    public void setCabStatus(CabStatus cabStatus) {
+        this.cabStatus = cabStatus;
+    }
+
     public long getCabId() {
         return cabId;
     }

@@ -126,15 +126,15 @@ class SignUpModel {
         return true;
     }
 
-    public ArrayList<AccountDetails> storeData(String name, String password, String email, String city, String mobileNumber, Role role) throws SQLException, ClassNotFoundException {
+    public void storeData(String name, String password, String email, String city, String mobileNumber, Role role) throws SQLException, ClassNotFoundException {
         AccountDetails accountDetails = new AccountDetails();
 //        long id = CabDB.getInstance().getPeopleId();
         accountDetails.registerPeople(name, password, email, city, mobileNumber, role);
 //        CabDB cabDB = CabDB.getInstance();
-//        cabDB.addAccount(accountDetails);
+        rideXDB.storeAccount(accountDetails);
+        boolean isFirstUser = rideXDB.getAccountList().size() == 1;
+        signUpView.onSignUpSuccessful(isFirstUser);
 //        ArrayList<AccountDetails> accounts = cabDB.getAccounts();
-        ArrayList<AccountDetails> accounts = rideXDB.getAccountList();
-        return accounts;
-
+//        ArrayList<AccountDetails> accounts = rideXDB.getAccountList();
     }
 }
